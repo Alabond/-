@@ -782,10 +782,138 @@ DispatchKOrbitOutput := function(ambient, type, h_str, e_str, f_str)
     fi;
 end;;
 
+ApplySimpleReflectionG2Vec := function(v, alpha)
+    local ip, coeff;
+    ip := function(x, y)
+        if IsBoundGlobal("InnerProduct") then
+            return ValueGlobal("InnerProduct")(x, y);
+        fi;
+        return x[1] * 2 * y[1] + x[1] * (-3) * y[2] + x[2] * (-3) * y[1] + x[2] * 6 * y[2];
+    end;
+    coeff := 2 * ip(v, alpha) / ip(alpha, alpha);
+    return [v[1] - coeff * alpha[1], v[2] - coeff * alpha[2]];
+end;;
+
+ApplyWKWordOnRootG2 := function(v, word, generators)
+    local out, idx;
+    out := [v[1], v[2]];
+    for idx in word do
+        out := ApplySimpleReflectionG2Vec(out, generators[idx]);
+    od;
+    return out;
+end;;
+
+SplitExprTermsByPlus := function(expr)
+    local cleaned, terms, rest, pos;
+    cleaned := Filtered(expr, c -> c <> '\n' and c <> '\r' and c <> '\t' and c <> '\\');
+    while PositionSublist(cleaned, "  ") <> fail do
+        cleaned := ReplacedString(cleaned, "  ", " ");
+    od;
+    if cleaned = "0" or cleaned = "" then
+        return [];
+    fi;
+    terms := [];
+    rest := cleaned;
+    while true do
+        pos := PositionSublist(rest, " + ");
+        if pos = fail then
+            Add(terms, rest);
+            break;
+        fi;
+        Add(terms, rest{[1..pos-1]});
+        if pos + 3 <= Length(rest) then
+            rest := rest{[pos+3..Length(rest)]};
+        else
+            rest := "";
+        fi;
+    od;
+    return terms;
+end;;
+
+BuildConjugacyKeyForExprG2 := function(expr, expected_kind, word, generators, parser)
+    local terms, t, data, roots, v, wv;
+    terms := SplitExprTermsByPlus(expr);
+    roots := [];
+    for t in terms do
+        data := ParseTerm(t);
+        if data.kind = expected_kind then
+            v := parser(data.root);
+            if v = fail then
+                return fail;
+            fi;
+            wv := ApplyWKWordOnRootG2(v, word, generators);
+            Add(roots, Concatenation(String(data.coeff), "@", FormatRoot(wv)));
+        fi;
+    od;
+    return SortedList(roots);
+end;;
+
+IsWKConjugateFixingDeltaJG2 := function(t1, t2, subsystem_roots)
+    local parser, gcj, delta_roots, delta_key, generators, words, stabilizer_words, word, moved, key1_h, key1_e, key1_f, key2_h, key2_e, key2_f;
+    parser := ParseRootStringG2Simple;
+    if IsBoundGlobal("ParseRootString") then
+        parser := ValueGlobal("ParseRootString");
+    fi;
+    gcj := fail;
+    if IsBoundGlobal("BuildGCJFromJ_G2") then
+        gcj := ValueGlobal("BuildGCJFromJ_G2")(subsystem_roots);
+    fi;
+    if gcj = fail or not IsRecord(gcj) or not IsBound(gcj.delta_roots) then
+        return false;
+    fi;
+    delta_roots := gcj.delta_roots;
+    delta_key := SortedList(List(delta_roots, r -> FormatRoot(parser(r))));
+    generators := [[1, 0], [-3, -2]];
+    words := [[], [1], [2], [1, 2]];
+    stabilizer_words := [];
+    for word in words do
+        moved := SortedList(List(delta_roots, r -> FormatRoot(ApplyWKWordOnRootG2(parser(r), word, generators))));
+        if moved = delta_key then
+            Add(stabilizer_words, word);
+        fi;
+    od;
+    if Length(stabilizer_words) = 0 then
+        return false;
+    fi;
+    key2_h := BuildConjugacyKeyForExprG2(t2.h, "H", [], generators, parser);
+    key2_e := BuildConjugacyKeyForExprG2(t2.e, "E", [], generators, parser);
+    key2_f := BuildConjugacyKeyForExprG2(t2.f, "F", [], generators, parser);
+    if key2_h = fail or key2_e = fail or key2_f = fail then
+        return false;
+    fi;
+    for word in stabilizer_words do
+        key1_h := BuildConjugacyKeyForExprG2(t1.h, "H", word, generators, parser);
+        key1_e := BuildConjugacyKeyForExprG2(t1.e, "E", word, generators, parser);
+        key1_f := BuildConjugacyKeyForExprG2(t1.f, "F", word, generators, parser);
+        if key1_h <> fail and key1_e <> fail and key1_f <> fail and key1_h = key2_h and key1_e = key2_e and key1_f = key2_f then
+            return true;
+        fi;
+    od;
+    return false;
+end;;
+
+FilterCompositeTriplesByWKConjugacyFixingDeltaJG2 := function(triples, subsystem_roots)
+    local kept, i, j, is_dup;
+    kept := [];
+    for i in [1..Length(triples)] do
+        is_dup := false;
+        for j in [1..Length(kept)] do
+            if IsWKConjugateFixingDeltaJG2(triples[i], kept[j], subsystem_roots) then
+                is_dup := true;
+                break;
+            fi;
+        od;
+        if not is_dup then
+            Add(kept, triples[i]);
+        fi;
+    od;
+    return kept;
+end;;
+
 # 模块 4 的统一主入口。
 # 负责根列表规范化、线性构造/组件构造、EFH 与 P/K 校验以及 K-orbit 联动输出。
 PrintSL2TripleUnified := function(ab_diagram_str, type, rank, subsystem_roots, colors_opt)
-    local normalized_roots, e_str, h_str, f_str, effective_colors, triple, efh_ok, pk_ok, diag_ok, gcj_data, real_form_info, theta_data, is_composite, theta_triple, k, m5_item, m5_count;
+    local normalized_roots, e_str, h_str, f_str, effective_colors, triple, efh_ok, pk_ok, diag_ok, gcj_data, real_form_info, theta_data, is_composite, theta_triple, k, m5_item, m5_count, raw_m5_count;
 
     normalized_roots := NormalizeRootsForNormalTriple(type, rank, subsystem_roots, colors_opt);
     effective_colors := colors_opt;
@@ -860,6 +988,13 @@ PrintSL2TripleUnified := function(ab_diagram_str, type, rank, subsystem_roots, c
         Read("../04_Orbit_Analysis/K_Orbit_Classifier.g");
     fi;
     if is_composite and IsRecord(triple) and IsBound(triple.all_triples) and IsList(triple.all_triples) and Length(triple.all_triples) > 0 then
+        raw_m5_count := Length(triple.all_triples);
+        triple.all_triples := FilterCompositeTriplesByWKConjugacyFixingDeltaJG2(triple.all_triples, subsystem_roots);
+        if Length(triple.all_triples) < raw_m5_count then
+            Print("        [M4-WK-FILTER] 按“W_k 共轭且固定 Delta_J”过滤: ", raw_m5_count, " -> ", Length(triple.all_triples), "\n");
+        else
+            Print("        [M4-WK-FILTER] 无可过滤的 W_k 共轭 triple (固定 Delta_J)\n");
+        fi;
         m5_count := Length(triple.all_triples);
         Print("        [M5-PROPAGATE] 向模块5传递组合 triple 数 = ", m5_count, "\n");
         for k in [1..m5_count] do
