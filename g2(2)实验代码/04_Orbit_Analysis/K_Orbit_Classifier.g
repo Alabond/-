@@ -286,8 +286,17 @@ PrintKOrbitInfo := function(h_str)
     local h_coeffs, dom_h, w1, w0, is_a2;
     h_coeffs := ParseHString(h_str);
     Print("        >>> 模块 5 输出: K-Orbit 分类\n");
+    if IsBoundGlobal("AppendRetainedMirrorText") then
+        ValueGlobal("AppendRetainedMirrorText")("        >>> 模块 5 输出: K-Orbit 分类\n");
+    fi;
     Print("        K-Orbit Classification:\n");
+    if IsBoundGlobal("AppendRetainedMirrorText") then
+        ValueGlobal("AppendRetainedMirrorText")("        K-Orbit Classification:\n");
+    fi;
     Print("          初始 h 系数: ", h_coeffs, "\n");
+    if IsBoundGlobal("AppendRetainedMirrorText") then
+        ValueGlobal("AppendRetainedMirrorText")(Concatenation("          初始 h 系数: ", String(h_coeffs), "\n"));
+    fi;
     is_a2 := IsA2SubsystemFromGlobal();
     if not is_a2 and PositionSublist(h_str, "2H_{") <> fail then
         is_a2 := true;
@@ -303,6 +312,9 @@ PrintKOrbitInfo := function(h_str)
     fi;
     if dom_h <> h_coeffs then
         Print("          变换后 h 系数: ", dom_h, "\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")(Concatenation("          变换后 h 系数: ", String(dom_h), "\n"));
+        fi;
     fi;
     DrawG2VoganDiagram(dom_h);
 end;;

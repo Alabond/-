@@ -228,17 +228,44 @@ PrintNoticedOrbits_Generic := function(real_form_type, params, subsystem_roots)
     
     if Length(orbits) = 0 then
         Print("    >>> 模块 3 输出: Noticed Orbit 分析\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")("    >>> 模块 3 输出: Noticed Orbit 分析\n");
+        fi;
         Print("        未发现 Noticed Nilpotent 轨道。\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")("        未发现 Noticed Nilpotent 轨道。\n");
+        fi;
     else
         Print("    >>> 模块 3 输出: Noticed Orbit 分析\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")("    >>> 模块 3 输出: Noticed Orbit 分析\n");
+        fi;
         Print("        查询参数: RealForm=", real_form_type, ", Params=", params, "\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")(Concatenation("        查询参数: RealForm=", real_form_type, ", Params=", String(params), "\n"));
+        fi;
         Print("        共发现 ", Length(orbits), " 个 Noticed Nilpotent 轨道。\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")(Concatenation("        共发现 ", String(Length(orbits)), " 个 Noticed Nilpotent 轨道。\n"));
+        fi;
         
         for o in orbits do
             Print("        --------------------------------------\n");
+            if IsBoundGlobal("AppendRetainedMirrorText") then
+                ValueGlobal("AppendRetainedMirrorText")("        --------------------------------------\n");
+            fi;
             Print("        轨道信息:\n");
+            if IsBoundGlobal("AppendRetainedMirrorText") then
+                ValueGlobal("AppendRetainedMirrorText")("        轨道信息:\n");
+            fi;
             Print("          划分 (Partition): ", o.partition, "\n");
+            if IsBoundGlobal("AppendRetainedMirrorText") then
+                ValueGlobal("AppendRetainedMirrorText")(Concatenation("          划分 (Partition): ", String(o.partition), "\n"));
+            fi;
             Print("          ab-diagram: ", o.ab_diagram, "\n");
+            if IsBoundGlobal("AppendRetainedMirrorText") then
+                ValueGlobal("AppendRetainedMirrorText")(Concatenation("          ab-diagram: ", String(o.ab_diagram), "\n"));
+            fi;
             
             if subsystem_roots <> fail then
                 # 将字符串列表转换为单行字符串（用换行符分隔）
@@ -279,6 +306,9 @@ PrintNoticedOrbits_Generic := function(real_form_type, params, subsystem_roots)
                 fi;
             fi;
             Print("\n");
+            if IsBoundGlobal("AppendRetainedMirrorText") then
+                ValueGlobal("AppendRetainedMirrorText")("\n");
+            fi;
         od;
     fi;
 end;;

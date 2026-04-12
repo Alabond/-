@@ -121,7 +121,8 @@ FindG2Subsystems := function(custom_roots, custom_colors)
           subsystem, results, black_nodes, white_nodes, root_strs, root_vecs, i, color, root_v,
           type_info, colors_list, c1, c2, target_black, target_white, all_roots, idx_count,
           r1, r2, ip, j, desired_type, desired_long_long, t1, t2, len1, len2, seen, key,
-          l1, l2, tmp, tmpc, type_str, parser, ParseRootStringLocal;
+          l1, l2, tmp, tmpc, type_str, parser, ParseRootStringLocal, mid_color,
+          pos_roots, pos_root_strs, pos_colors, pos_labels_local, i_local, j_local;
 
     results := [];
 
@@ -177,9 +178,17 @@ FindG2Subsystems := function(custom_roots, custom_colors)
                 Add(seen, key);
                 idx_count := idx_count + 1;
                 colors_list := [c2, c1];
+                mid_color := 0;
+                if IsRootBlack(w_alpha1) then
+                    mid_color := 1;
+                fi;
                 Add(results, rec(
                     idx := idx_count,
                     roots_list := root_strs,
+                    all_roots_list := [FormatRoot(neg_w_theta), FormatRoot(w_alpha1), FormatRoot(w_alpha2)],
+                    all_colors_list := [c2, mid_color, c1],
+                    pos_labels := ["a0", "a2"],
+                    all_pos_labels := ["a0", "a1", "a2"],
                     colors_list := colors_list,
                     components := type_info.components,
                     black_nodes := c1 + c2,
@@ -188,6 +197,66 @@ FindG2Subsystems := function(custom_roots, custom_colors)
                     w_alpha2 := FormatRoot(w_alpha2),
                     neg_w_theta := FormatRoot(neg_w_theta)
                 ));
+            od;
+            return results;
+        fi;
+        
+        if desired_type = "A1 + A1" then
+            WeylImages := G2_WeylImages();
+            idx_count := 0;
+            seen := [];
+            for idx in [1..Length(WeylImages)] do
+                w_alpha1 := WeylImages[idx][1];
+                w_alpha2 := WeylImages[idx][2];
+                w_theta := 3 * w_alpha1 + 2 * w_alpha2;
+                neg_w_theta := -w_theta;
+                pos_roots := [neg_w_theta, w_alpha1, w_alpha2];
+                pos_root_strs := List(pos_roots, r -> FormatRoot(r));
+                pos_labels_local := ["a0", "a1", "a2"];
+                pos_colors := [];
+                for i_local in [1..3] do
+                    if IsRootBlack(pos_roots[i_local]) then
+                        Add(pos_colors, 1);
+                    else
+                        Add(pos_colors, 0);
+                    fi;
+                od;
+                for i_local in [1..2] do
+                    for j_local in [i_local + 1..3] do
+                        if pos_colors[i_local] <> 1 or pos_colors[j_local] <> 1 then
+                            continue;
+                        fi;
+                        if InnerProduct(pos_roots[i_local], pos_roots[j_local]) <> 0 then
+                            continue;
+                        fi;
+                        type_info := ClassifyRootSystem([pos_roots[i_local], pos_roots[j_local]], InnerProduct);
+                        if type_info.type_str <> desired_type then
+                            continue;
+                        fi;
+                        root_strs := [pos_root_strs[i_local], pos_root_strs[j_local]];
+                        key := Concatenation(root_strs[1], "|", root_strs[2]);
+                        if Position(seen, key) <> fail then
+                            continue;
+                        fi;
+                        Add(seen, key);
+                        idx_count := idx_count + 1;
+                        Add(results, rec(
+                            idx := idx_count,
+                            roots_list := root_strs,
+                            all_roots_list := pos_root_strs,
+                            all_colors_list := ShallowCopy(pos_colors),
+                            pos_labels := [pos_labels_local[i_local], pos_labels_local[j_local]],
+                            all_pos_labels := pos_labels_local,
+                            colors_list := [1, 1],
+                            components := type_info.components,
+                            black_nodes := 2,
+                            white_nodes := 0,
+                            type := type_info.type_str,
+                            w_alpha2 := root_strs[1],
+                            neg_w_theta := root_strs[2]
+                        ));
+                    od;
+                od;
             od;
             return results;
         fi;
@@ -383,11 +452,19 @@ FindG2Subsystems := function(custom_roots, custom_colors)
         if c1 <> c2 then
             subsystem := [w_alpha2, neg_w_theta];
             type_info := ClassifyRootSystem(subsystem, InnerProduct);
+            mid_color := 0;
+            if IsRootBlack(w_alpha1) then
+                mid_color := 1;
+            fi;
             Add(results, rec(
                 idx := idx,
                 w_alpha2 := FormatRoot(w_alpha2),
                 neg_w_theta := FormatRoot(neg_w_theta),
                 roots_list := [FormatRoot(w_alpha2), FormatRoot(neg_w_theta)],
+                all_roots_list := [FormatRoot(neg_w_theta), FormatRoot(w_alpha1), FormatRoot(w_alpha2)],
+                all_colors_list := [c2, mid_color, c1],
+                pos_labels := ["a2", "a0"],
+                all_pos_labels := ["a0", "a1", "a2"],
                 colors_list := [c1, c2],
                 components := type_info.components,
                 black_nodes := black_nodes,

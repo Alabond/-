@@ -206,14 +206,26 @@ PrintNoticedOrbits_Generic := function(real_form_type, params, subsystem_roots)
     local orbits, o, ab_str, i, total_edges, row, expanded_roots, n_base;
     if IsBoundGlobal("GlobalAmbientType") and ValueGlobal("GlobalAmbientType") = "F4" and subsystem_roots <> fail then
         Print("    >>> 模块 3 输出: 实形式直传模块4\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")("    >>> 模块 3 输出: 实形式直传模块4\n");
+        fi;
         Print("        使用模块2实形式: RealForm=", real_form_type, ", Params=", params, "\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")(Concatenation("        使用模块2实形式: RealForm=", real_form_type, ", Params=", String(params), "\n"));
+        fi;
         if IsBoundGlobal("GlobalModule4CurrentRealFormInfo") then
             Unbind(GlobalModule4CurrentRealFormInfo);
         fi;
         GlobalModule4CurrentRealFormInfo := rec(type := real_form_type, params := params);
         Print("        直接进入模块4，由 theta-orbit 路径枚举 noticed 轨道\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")("        直接进入模块4，由 theta-orbit 路径枚举 noticed 轨道\n");
+        fi;
         if IsBoundGlobal("GlobalAmbientType") and ValueGlobal("GlobalAmbientType") = "F4" then
             Print("        [模块4重载] 重新加载 F4 专用 SL2 Builder\n");
+            if IsBoundGlobal("AppendRetainedMirrorText") then
+                ValueGlobal("AppendRetainedMirrorText")("        [模块4重载] 重新加载 F4 专用 SL2 Builder\n");
+            fi;
             Read("../05_SL2_Triple_Construction/SL2_Triple_Builder.g");
         fi;
         if IsBoundGlobal("PrintSL2TripleUnified") then
@@ -230,17 +242,44 @@ PrintNoticedOrbits_Generic := function(real_form_type, params, subsystem_roots)
     
     if Length(orbits) = 0 then
         Print("    >>> 模块 3 输出: Noticed Orbit 分析\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")("    >>> 模块 3 输出: Noticed Orbit 分析\n");
+        fi;
         Print("        未发现 Noticed Nilpotent 轨道。\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")("        未发现 Noticed Nilpotent 轨道。\n");
+        fi;
     else
         Print("    >>> 模块 3 输出: Noticed Orbit 分析\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")("    >>> 模块 3 输出: Noticed Orbit 分析\n");
+        fi;
         Print("        查询参数: RealForm=", real_form_type, ", Params=", params, "\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")(Concatenation("        查询参数: RealForm=", real_form_type, ", Params=", String(params), "\n"));
+        fi;
         Print("        共发现 ", Length(orbits), " 个 Noticed Nilpotent 轨道。\n");
+        if IsBoundGlobal("AppendRetainedMirrorText") then
+            ValueGlobal("AppendRetainedMirrorText")(Concatenation("        共发现 ", String(Length(orbits)), " 个 Noticed Nilpotent 轨道。\n"));
+        fi;
         
         for o in orbits do
             Print("        --------------------------------------\n");
+            if IsBoundGlobal("AppendRetainedMirrorText") then
+                ValueGlobal("AppendRetainedMirrorText")("        --------------------------------------\n");
+            fi;
             Print("        轨道信息:\n");
+            if IsBoundGlobal("AppendRetainedMirrorText") then
+                ValueGlobal("AppendRetainedMirrorText")("        轨道信息:\n");
+            fi;
             Print("          划分 (Partition): ", o.partition, "\n");
+            if IsBoundGlobal("AppendRetainedMirrorText") then
+                ValueGlobal("AppendRetainedMirrorText")(Concatenation("          划分 (Partition): ", String(o.partition), "\n"));
+            fi;
             Print("          ab-diagram: ", o.ab_diagram, "\n");
+            if IsBoundGlobal("AppendRetainedMirrorText") then
+                ValueGlobal("AppendRetainedMirrorText")(Concatenation("          ab-diagram: ", String(o.ab_diagram), "\n"));
+            fi;
             
             if subsystem_roots <> fail then
                 # 将字符串列表转换为单行字符串（用换行符分隔）
@@ -253,6 +292,9 @@ PrintNoticedOrbits_Generic := function(real_form_type, params, subsystem_roots)
                 # 调用 Builder
                 if IsBoundGlobal("GlobalAmbientType") and ValueGlobal("GlobalAmbientType") = "F4" then
                     Print("        [模块4重载] 重新加载 F4 专用 SL2 Builder\n");
+                    if IsBoundGlobal("AppendRetainedMirrorText") then
+                        ValueGlobal("AppendRetainedMirrorText")("        [模块4重载] 重新加载 F4 专用 SL2 Builder\n");
+                    fi;
                     Read("../05_SL2_Triple_Construction/SL2_Triple_Builder.g");
                 fi;
                 if IsBoundGlobal("PrintSL2Triple") then
@@ -291,6 +333,9 @@ PrintNoticedOrbits_Generic := function(real_form_type, params, subsystem_roots)
                 fi;
             fi;
             Print("\n");
+            if IsBoundGlobal("AppendRetainedMirrorText") then
+                ValueGlobal("AppendRetainedMirrorText")("\n");
+            fi;
         od;
     fi;
 end;;
