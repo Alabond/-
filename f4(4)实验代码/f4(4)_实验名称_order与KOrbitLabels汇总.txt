@@ -1,5 +1,5 @@
 实验名称 + order + SUMMARY Module5 KOrbitLabels 汇总
-
+其中标签的四个数字分别代表标准单根系中a0，a2，a3，a4这四个根的weight
 1) 实验名称: F4(4) 实验 -> 选取[a0,a2,a4]，并全部涂黑
    order: 2
    KOrbitLabels: [ [ "2200", 1 ], [ "0002", 1 ], [ "4000", 1 ] ]
