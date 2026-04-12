@@ -189,9 +189,13 @@ FindF4_B4_Subsystems := function(custom_roots, custom_colors)
     end;
 
     BuildRecord := function(one_state, labels, ids, override_colors)
-        local roots_out, roots_vecs, one_idx, out_i, local_colors, local_black, local_white, c, black_labels, cls, comp_info;
+        local roots_out, roots_vecs, all_roots_out, one_idx, out_i, local_colors, local_black, local_white, c, black_labels, cls, comp_info;
         roots_out := [];
         roots_vecs := [];
+        all_roots_out := [];
+        for one_idx in [1..Length(one_state)] do
+            Add(all_roots_out, F4_FormatRoot(one_state[one_idx]));
+        od;
         for one_idx in ids do
             Add(roots_vecs, ShallowCopy(one_state[one_idx]));
             Add(roots_out, F4_FormatRoot(one_state[one_idx]));
@@ -228,6 +232,7 @@ FindF4_B4_Subsystems := function(custom_roots, custom_colors)
         fi;
         return rec(
             roots_list := roots_out,
+            all_roots_list := all_roots_out,
             roots_vecs := roots_vecs,
             colors_list := local_colors,
             black_nodes := local_black,
@@ -235,7 +240,8 @@ FindF4_B4_Subsystems := function(custom_roots, custom_colors)
             black_labels := black_labels,
             type := cls.type_str,
             components := comp_info,
-            pos_labels := labels
+            pos_labels := labels,
+            all_pos_labels := ShallowCopy(all_pos_labels)
         );
     end;
 
@@ -317,6 +323,7 @@ FindF4_B4_Subsystems := function(custom_roots, custom_colors)
                 Add(results, rec(
                     idx := idx,
                     roots_list := type_info.roots_list,
+                    all_roots_list := type_info.all_roots_list,
                     roots_vecs := type_info.roots_vecs,
                     colors_list := colors_list,
                     components := type_info.components,
@@ -324,7 +331,8 @@ FindF4_B4_Subsystems := function(custom_roots, custom_colors)
                     white_nodes := white_count,
                     black_labels := type_info.black_labels,
                     type := type_info.type,
-                    pos_labels := type_info.pos_labels
+                    pos_labels := type_info.pos_labels,
+                    all_pos_labels := type_info.all_pos_labels
                 ));
             fi;
         od;
@@ -350,6 +358,7 @@ FindF4_B4_Subsystems := function(custom_roots, custom_colors)
         Add(results, rec(
             idx := 0,
             roots_list := type_info.roots_list,
+            all_roots_list := type_info.all_roots_list,
             roots_vecs := type_info.roots_vecs,
             colors_list := type_info.colors_list,
             components := type_info.components,
@@ -357,7 +366,8 @@ FindF4_B4_Subsystems := function(custom_roots, custom_colors)
             white_nodes := type_info.white_nodes,
             black_labels := type_info.black_labels,
             type := type_info.type,
-            pos_labels := type_info.pos_labels
+            pos_labels := type_info.pos_labels,
+            all_pos_labels := type_info.all_pos_labels
         ));
         return results;
     fi;

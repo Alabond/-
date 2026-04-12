@@ -328,23 +328,41 @@ PadRight := function(s, w)
     return t;
 end;;
 
+FormatRootDisplayWithPositions := function(labels, roots)
+    local result, i;
+    if not IsList(labels) or not IsList(roots) or Length(labels) <> Length(roots) then
+        return String(roots);
+    fi;
+    result := "[ ";
+    for i in [1..Length(labels)] do
+        if i > 1 then
+            result := Concatenation(result, ", ");
+        fi;
+        result := Concatenation(result, labels[i], "=", roots[i]);
+    od;
+    return Concatenation(result, " ]");
+end;;
+
 # 打印筛选结果概览
 Print("\n筛选结果概览:\n");
 header := Concatenation(
     PadRight("索引", 6), "| ",
-    PadRight("Roots", 34), "| ", 
+    PadRight("Roots", 90), "| ", 
     PadRight("颜色(B/W)", 20), "| ",  # 增加宽度以容纳位置信息
     PadRight("类型", 10)
 );
 Print(header, "\n");
-Print("--------------------------------------------------------------------------\n");
+Print("----------------------------------------------------------------------------------------------------------------------------------------\n");
 
 for s in subsystems do
     color_desc := Concatenation(String(s.black_nodes), "B / ", String(s.white_nodes), "W");
     
-    # 格式化根列表显示
     roots_display := "";
-    if IsBound(s.roots_list) then
+    if IsBound(s.all_pos_labels) and IsBound(s.all_roots_list) then
+        roots_display := FormatRootDisplayWithPositions(s.all_pos_labels, s.all_roots_list);
+    elif IsBound(s.pos_labels) and IsBound(s.roots_list) then
+        roots_display := FormatRootDisplayWithPositions(s.pos_labels, s.roots_list);
+    elif IsBound(s.roots_list) then
         roots_display := String(s.roots_list);
     else
         roots_display := Concatenation(s.w_alpha2, ", ", s.neg_w_theta);
@@ -382,7 +400,7 @@ for s in subsystems do
     display_type := ResolveSubsystemDisplayType(s);
     Print(
         PadRight(String(s.idx), 6), "| ",
-        PadRight(roots_display, 34), "| ",
+        PadRight(roots_display, 90), "| ",
         PadRight(Concatenation(color_desc, black_pos_desc), 20), "| ",
         PadRight(display_type, 10), "\n"
     );
@@ -584,6 +602,10 @@ for s in subsystems do
     fi;
     display_type := ResolveSubsystemDisplayType(s);
     Print("    类型: ", display_type, "\n");
+    
+    if IsBound(s.all_pos_labels) and IsBound(s.all_roots_list) then
+        Print("    五个位置对应根: ", FormatRootDisplayWithPositions(s.all_pos_labels, s.all_roots_list), "\n");
+    fi;
     
     if IsBound(s.roots_list) then
         Print("    根基: ", s.roots_list, "\n");

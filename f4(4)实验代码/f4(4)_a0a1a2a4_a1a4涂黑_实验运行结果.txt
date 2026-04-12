@@ -4,98 +4,6 @@ LOAD 01_Subsystem_Generation
 LOAD 04_Orbit_Analysis/Noticed_Orbits
 LOAD 03_Real_Form_Inference
 LOAD 05_SL2_Triple_Construction
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:227
-    coeffs := SolveRationalLinearSystem(gram, rhs);
-              ^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1110
-    key_of := v -> FormatRootF4(v);
-                   ^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1152
-        data := ParseTerm(t);
-                ^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1159
-            Add(roots, Concatenation(String(data.coeff), "@", FormatRootF4(wv)\
-));
-                                                              ^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1192
-        return SortedList(List(vecs, v -> FormatRootF4(v)));
-                                          ^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1198
-        return Concatenation(FormatRootF4(images[1]), "|", FormatRootF4(images\
-[2]), "|", FormatRootF4(images[3]), "|", FormatRootF4(images[4]));
-                             ^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1198
-        return Concatenation(FormatRootF4(images[1]), "|", FormatRootF4(images\
-[2]), "|", FormatRootF4(images[3]), "|", FormatRootF4(images[4]));
-                                                           ^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1198
-        return Concatenation(FormatRootF4(images[1]), "|", FormatRootF4(images\
-[2]), "|", FormatRootF4(images[3]), "|", FormatRootF4(images[4]));
-                                                                              \
-           ^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1198
-        return Concatenation(FormatRootF4(images[1]), "|", FormatRootF4(images\
-[2]), "|", FormatRootF4(images[3]), "|", FormatRootF4(images[4]));
-                                                                              \
-                                         ^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:2848
-    composite_single_like := (IsBoundGlobal("GlobalF4CompositeOutputStyle") an\
-d ValueGlobal("GlobalF4CompositeOutputStyle") = "single_like");
-    ^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:2886
-        if not composite_single_like then
-               ^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:2896
-        if not composite_single_like then
-               ^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:2911
-            if not composite_single_like then
-                   ^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:2915
-            if not composite_single_like then
-                   ^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:2927
-            if not composite_single_like then
-                   ^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:2949
-        if not composite_single_like then
-               ^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:2960
-            if not composite_single_like then
-                   ^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:2969
-            if not composite_single_like then
-                   ^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:2988
-        if not composite_single_like then
-               ^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:3022
-    if composite_single_like then
-       ^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:3031
-        if composite_single_like then
-           ^^^^^^^^^^^^^^^^^^^^^
 START
 
 ==================================================
@@ -110,392 +18,394 @@ START
   发现 192 个子系统配置。
 
 筛选结果概览:
-索引| Roots                             | 颜色(B/W)         | 类型    
---------------------------------------------------------------------------
-1     | [ "-a2-2a3-2a4", "-a1-2a2-2a3", "a2", "a1+a2+a3+a4" ]| 2B / 2W [a1,a4]\
-     | A1 + A3   
-2     | [ "-a2-2a3-2a4", "-a1-a2-2a3", "-a2", "a1+a2+a3+a4" ]| 2B / 2W [a1,a4]\
-     | A1 + A3   
-3     | [ "-a2-2a3-2a4", "-a1-2a2-2a3", "a2+2a3", "a1+a2+2a3+a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-4     | [ "-a2-2a3", "-a1-2a2-2a3-2a4", "a2", "a1+a2+a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-5     | [ "-a2-2a3-2a4", "-a1-2a2-2a3", "a2", "-a1-a2-a3-a4" ]| 2B / 2W [a1,a4\
-]     | A1 + A3   
-6     | [ "-a2-2a3-2a4", "-a1-a2", "-a2-2a3", "a1+a2+2a3+a4" ]| 2B / 2W [a1,a4\
-]     | A1 + A3   
-7     | [ "-a2-2a3", "-a1-a2-2a3-2a4", "-a2", "a1+a2+a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-8     | [ "-a2-2a3-2a4", "-a1-a2-2a3", "-a2", "-a1-a2-a3-a4" ]| 2B / 2W [a1,a4\
-]     | A1 + A3   
-9     | [ "-a2-2a3-2a4", "-a1-a2-2a3", "a2+2a3", "a1+2a2+2a3+a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-10    | [ "-a2-2a3", "-a1-2a2-2a3-2a4", "a2+2a3+2a4", "a1+a2+2a3+a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-11    | [ "-a2", "-a1-2a2-4a3-2a4", "a2+2a3", "a1+a2+a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-12    | [ "-a2-2a3", "-a1-2a2-2a3-2a4", "a2", "-a1-a2-a3" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-13    | [ "-a2-2a3-2a4", "-a1-2a2-2a3", "a2+2a3", "-a1-a2-2a3-a4" ]| 2B / 2W [\
-a1,a4]     | A1 + A3   
-14    | [ "-a2-2a3-2a4", "-a1", "-a2-2a3", "a1+2a2+2a3+a4" ]| 2B / 2W [a1,a4] \
-    | A1 + A3   
-15    | [ "-a2-2a3", "-a1-a2", "-a2-2a3-2a4", "a1+a2+2a3+a4" ]| 2B / 2W [a1,a4\
-]     | A1 + A3   
-16    | [ "-a2", "-a1-a2-2a3-2a4", "-a2-2a3", "a1+a2+a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-17    | [ "-a2-2a3", "-a1-a2-2a3-2a4", "-a2", "-a1-a2-a3" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-18    | [ "-a2-2a3-2a4", "-a1-a2", "-a2-2a3", "-a1-a2-2a3-a4" ]| 2B / 2W [a1,a\
-4]     | A1 + A3   
-19    | [ "-a2-2a3-2a4", "-a1-a2", "a2", "a1+2a2+3a3+a4" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-20    | [ "-a2-2a3", "-a1-a2-2a3-2a4", "a2+2a3+2a4", "a1+2a2+2a3+a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-21    | [ "-a2", "-a1-2a2-4a3-2a4", "a2+2a3+2a4", "a1+a2+a3+a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-22    | [ "a2", "-a1-3a2-4a3-2a4", "a2+2a3", "a1+a2+a3" ]| 2B / 2W [a1,a4]    \
- | A1 + A3   
-23    | [ "-a2", "-a1-2a2-4a3-2a4", "a2+2a3", "-a1-a2-a3" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-24    | [ "-a2-2a3-2a4", "-a1-a2-2a3", "a2+2a3", "-a1-2a2-2a3-a4" ]| 2B / 2W [\
-a1,a4]     | A1 + A3   
-25    | [ "-a2-2a3", "-a1-2a2-2a3-2a4", "a2+2a3+2a4", "-a1-a2-2a3-a4" ]| 2B / \
-2W [a1,a4]     | A1 + A3   
-26    | [ "-a2-2a3-2a4", "-a1", "-a2", "a1+2a2+3a3+a4" ]| 2B / 2W [a1,a4]     \
-| A1 + A3   
-27    | [ "-a2-2a3", "-a1", "-a2-2a3-2a4", "a1+2a2+2a3+a4" ]| 2B / 2W [a1,a4] \
-    | A1 + A3   
-28    | [ "-a2", "-a1-a2-2a3", "-a2-2a3-2a4", "a1+a2+a3+a4" ]| 2B / 2W [a1,a4]\
-     | A1 + A3   
-29    | [ "a2", "-a1-2a2-2a3-2a4", "-a2-2a3", "a1+a2+a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-30    | [ "-a2", "-a1-a2-2a3-2a4", "-a2-2a3", "-a1-a2-a3" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-31    | [ "-a2-2a3-2a4", "-a1", "-a2-2a3", "-a1-2a2-2a3-a4" ]| 2B / 2W [a1,a4]\
-     | A1 + A3   
-32    | [ "-a2-2a3", "-a1-a2", "-a2-2a3-2a4", "-a1-a2-2a3-a4" ]| 2B / 2W [a1,a\
-4]     | A1 + A3   
-33    | [ "-a2-2a3", "-a1-a2", "a2", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]     |\
- A1 + A3   
-34    | [ "-a2", "-a1-a2-2a3-2a4", "a2+2a3+2a4", "a1+2a2+3a3+a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-35    | [ "a2", "-a1-3a2-4a3-2a4", "a2+2a3+2a4", "a1+a2+a3+a4" ]| 2B / 2W [a1,\
-a4]     | A1 + A3   
-36    | [ "a2+2a3", "-a1-3a2-4a3-2a4", "a2", "a1+a2+a3" ]| 2B / 2W [a1,a4]    \
- | A1 + A3   
-37    | [ "a2", "-a1-3a2-4a3-2a4", "a2+2a3", "-a1-a2-a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-38    | [ "-a2", "-a1-2a2-4a3-2a4", "a2+2a3+2a4", "-a1-a2-a3-a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-39    | [ "-a2-2a3-2a4", "-a1-a2", "a2", "-a1-2a2-3a3-a4" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-40    | [ "-a2-2a3", "-a1-a2-2a3-2a4", "a2+2a3+2a4", "-a1-2a2-2a3-a4" ]| 2B / \
-2W [a1,a4]     | A1 + A3   
-41    | [ "-a2-2a3-2a4", "a1+a2+2a3+2a4", "a2", "a1+2a2+3a3+a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-42    | [ "-a2-2a3", "-a1", "-a2", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]     | A\
-1 + A3   
-43    | [ "-a2", "-a1", "-a2-2a3-2a4", "a1+2a2+3a3+a4" ]| 2B / 2W [a1,a4]     \
-| A1 + A3   
-44    | [ "a2", "-a1-2a2-2a3", "-a2-2a3-2a4", "a1+a2+a3+a4" ]| 2B / 2W [a1,a4]\
-     | A1 + A3   
-45    | [ "a2+2a3", "-a1-2a2-4a3-2a4", "-a2", "a1+a2+a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-46    | [ "a2", "-a1-2a2-2a3-2a4", "-a2-2a3", "-a1-a2-a3" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-47    | [ "-a2", "-a1-a2-2a3", "-a2-2a3-2a4", "-a1-a2-a3-a4" ]| 2B / 2W [a1,a4\
-]     | A1 + A3   
-48    | [ "-a2-2a3-2a4", "-a1", "-a2", "-a1-2a2-3a3-a4" ]| 2B / 2W [a1,a4]    \
- | A1 + A3   
-49    | [ "-a2-2a3", "-a1", "-a2-2a3-2a4", "-a1-2a2-2a3-a4" ]| 2B / 2W [a1,a4]\
-     | A1 + A3   
-50    | [ "-a2", "-a1-a2-2a3", "a2+2a3", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-51    | [ "a2", "-a1-2a2-2a3-2a4", "a2+2a3+2a4", "a1+2a2+3a3+a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-52    | [ "a2+2a3", "-a1-3a2-4a3-2a4", "a2+2a3+2a4", "a1+a2+2a3+a4" ]| 2B / 2W\
- [a1,a4]     | A1 + A3   
-53    | [ "a2+2a3+2a4", "-a1-3a2-4a3-2a4", "a2", "a1+a2+a3+a4" ]| 2B / 2W [a1,\
-a4]     | A1 + A3   
-54    | [ "a2+2a3", "-a1-3a2-4a3-2a4", "a2", "-a1-a2-a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-55    | [ "a2", "-a1-3a2-4a3-2a4", "a2+2a3+2a4", "-a1-a2-a3-a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-56    | [ "-a2-2a3", "-a1-a2", "a2", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4]     \
-| A1 + A3   
-57    | [ "-a2", "-a1-a2-2a3-2a4", "a2+2a3+2a4", "-a1-2a2-3a3-a4" ]| 2B / 2W [\
-a1,a4]     | A1 + A3   
-58    | [ "-a2-2a3-2a4", "a1+2a2+2a3+2a4", "-a2", "a1+2a2+3a3+a4" ]| 2B / 2W [\
-a1,a4]     | A1 + A3   
-59    | [ "-a2-2a3", "a1+a2+2a3", "a2", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-60    | [ "-a2-2a3-2a4", "a1+a2+2a3+2a4", "a2+2a3", "a1+2a2+2a3+a4" ]| 2B / 2W\
- [a1,a4]     | A1 + A3   
-61    | [ "-a2-2a3-2a4", "a1+a2+2a3+2a4", "a2", "-a1-2a2-3a3-a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-62    | [ "-a2", "-a1", "-a2-2a3", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]     | A\
-1 + A3   
-63    | [ "a2", "-a1-a2", "-a2-2a3-2a4", "a1+2a2+3a3+a4" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-64    | [ "a2+2a3", "-a1-2a2-2a3", "-a2-2a3-2a4", "a1+a2+2a3+a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-65    | [ "a2+2a3+2a4", "-a1-2a2-4a3-2a4", "-a2", "a1+a2+a3+a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-66    | [ "a2+2a3", "-a1-2a2-4a3-2a4", "-a2", "-a1-a2-a3" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-67    | [ "a2", "-a1-2a2-2a3", "-a2-2a3-2a4", "-a1-a2-a3-a4" ]| 2B / 2W [a1,a4\
-]     | A1 + A3   
-68    | [ "-a2-2a3", "-a1", "-a2", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4]     | \
-A1 + A3   
-69    | [ "-a2", "-a1", "-a2-2a3-2a4", "-a1-2a2-3a3-a4" ]| 2B / 2W [a1,a4]    \
- | A1 + A3   
-70    | [ "a2", "-a1-2a2-2a3", "a2+2a3", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-71    | [ "a2+2a3", "-a1-2a2-4a3-2a4", "a2+2a3+2a4", "a1+2a2+2a3+a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-72    | [ "a2+2a3+2a4", "-a1-3a2-4a3-2a4", "a2+2a3", "a1+a2+2a3+a4" ]| 2B / 2W\
- [a1,a4]     | A1 + A3   
-73    | [ "a2+2a3+2a4", "-a1-3a2-4a3-2a4", "a2", "-a1-a2-a3-a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-74    | [ "a2+2a3", "-a1-3a2-4a3-2a4", "a2+2a3+2a4", "-a1-a2-2a3-a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-75    | [ "-a2", "-a1-a2-2a3", "a2+2a3", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4] \
-    | A1 + A3   
-76    | [ "a2", "-a1-2a2-2a3-2a4", "a2+2a3+2a4", "-a1-2a2-3a3-a4" ]| 2B / 2W [\
-a1,a4]     | A1 + A3   
-77    | [ "-a2-2a3", "a1+2a2+2a3", "-a2", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4] \
-    | A1 + A3   
-78    | [ "-a2-2a3-2a4", "a1+2a2+4a3+2a4", "-a2-2a3", "a1+2a2+2a3+a4" ]| 2B / \
-2W [a1,a4]     | A1 + A3   
-79    | [ "-a2-2a3-2a4", "a1+2a2+2a3+2a4", "-a2", "-a1-2a2-3a3-a4" ]| 2B / 2W \
-[a1,a4]     | A1 + A3   
-80    | [ "-a2", "a1+a2", "a2+2a3", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]     | \
-A1 + A3   
-81    | [ "-a2-2a3-2a4", "a1+2a2+2a3+2a4", "a2+2a3", "a1+a2+2a3+a4" ]| 2B / 2W\
- [a1,a4]     | A1 + A3   
-82    | [ "-a2-2a3", "a1+a2+2a3", "a2+2a3+2a4", "a1+2a2+2a3+a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-83    | [ "-a2-2a3-2a4", "a1+a2+2a3+2a4", "a2+2a3", "-a1-2a2-2a3-a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-84    | [ "-a2-2a3", "a1+a2+2a3", "a2", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-85    | [ "a2", "-a1-a2", "-a2-2a3", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]     |\
- A1 + A3   
-86    | [ "a2+2a3", "-a1-a2-2a3", "-a2-2a3-2a4", "a1+2a2+2a3+a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-87    | [ "a2+2a3+2a4", "-a1-2a2-2a3-2a4", "-a2-2a3", "a1+a2+2a3+a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-88    | [ "a2+2a3+2a4", "-a1-2a2-4a3-2a4", "-a2", "-a1-a2-a3-a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-89    | [ "a2+2a3", "-a1-2a2-2a3", "-a2-2a3-2a4", "-a1-a2-2a3-a4" ]| 2B / 2W [\
-a1,a4]     | A1 + A3   
-90    | [ "-a2", "-a1", "-a2-2a3", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4]     | \
-A1 + A3   
-91    | [ "a2", "-a1-a2", "-a2-2a3-2a4", "-a1-2a2-3a3-a4" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-92    | [ "a2+2a3", "-a1-2a2-2a3", "a2", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-93    | [ "a2+2a3+2a4", "-a1-2a2-4a3-2a4", "a2+2a3", "a1+2a2+2a3+a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-94    | [ "a2+2a3+2a4", "-a1-3a2-4a3-2a4", "a2+2a3", "-a1-a2-2a3-a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-95    | [ "a2+2a3", "-a1-2a2-4a3-2a4", "a2+2a3+2a4", "-a1-2a2-2a3-a4" ]| 2B / \
-2W [a1,a4]     | A1 + A3   
-96    | [ "a2", "-a1-2a2-2a3", "a2+2a3", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4] \
-    | A1 + A3   
-97    | [ "-a2", "a1+2a2+2a3", "-a2-2a3", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4] \
-    | A1 + A3   
-98    | [ "-a2-2a3-2a4", "a1+3a2+4a3+2a4", "-a2-2a3", "a1+a2+2a3+a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-99    | [ "-a2-2a3", "a1+2a2+4a3+2a4", "-a2-2a3-2a4", "a1+2a2+2a3+a4" ]| 2B / \
-2W [a1,a4]     | A1 + A3   
-100   | [ "-a2-2a3-2a4", "a1+2a2+4a3+2a4", "-a2-2a3", "-a1-2a2-2a3-a4" ]| 2B /\
- 2W [a1,a4]     | A1 + A3   
-101   | [ "-a2-2a3", "a1+2a2+2a3", "-a2", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4]\
-     | A1 + A3   
-102   | [ "a2", "a1", "a2+2a3", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]     | A1 +\
- A3   
-103   | [ "-a2", "a1+a2", "a2+2a3+2a4", "a1+2a2+3a3+a4" ]| 2B / 2W [a1,a4]    \
- | A1 + A3   
-104   | [ "-a2-2a3-2a4", "a1+2a2+4a3+2a4", "a2", "a1+a2+a3+a4" ]| 2B / 2W [a1,\
-a4]     | A1 + A3   
-105   | [ "-a2-2a3", "a1+2a2+2a3", "a2+2a3+2a4", "a1+a2+2a3+a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-106   | [ "-a2-2a3-2a4", "a1+2a2+2a3+2a4", "a2+2a3", "-a1-a2-2a3-a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-107   | [ "-a2-2a3", "a1+a2+2a3", "a2+2a3+2a4", "-a1-2a2-2a3-a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-108   | [ "-a2", "a1+a2", "a2+2a3", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4]     |\
- A1 + A3   
-109   | [ "a2+2a3", "-a1-a2-2a3", "-a2", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-110   | [ "a2+2a3+2a4", "-a1-a2-2a3-2a4", "-a2-2a3", "a1+2a2+2a3+a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-111   | [ "a2+2a3+2a4", "-a1-2a2-2a3-2a4", "-a2-2a3", "-a1-a2-2a3-a4" ]| 2B / \
-2W [a1,a4]     | A1 + A3   
-112   | [ "a2+2a3", "-a1-a2-2a3", "-a2-2a3-2a4", "-a1-2a2-2a3-a4" ]| 2B / 2W [\
-a1,a4]     | A1 + A3   
-113   | [ "a2", "-a1-a2", "-a2-2a3", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4]     \
-| A1 + A3   
-114   | [ "a2+2a3+2a4", "-a1-2a2-2a3-2a4", "a2", "a1+2a2+3a3+a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-115   | [ "a2+2a3+2a4", "-a1-2a2-4a3-2a4", "a2+2a3", "-a1-2a2-2a3-a4" ]| 2B / \
-2W [a1,a4]     | A1 + A3   
-116   | [ "a2+2a3", "-a1-2a2-2a3", "a2", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4] \
-    | A1 + A3   
-117   | [ "a2", "a1+a2+2a3", "-a2-2a3", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-118   | [ "-a2", "a1+2a2+2a3+2a4", "-a2-2a3-2a4", "a1+2a2+3a3+a4" ]| 2B / 2W [\
-a1,a4]     | A1 + A3   
-119   | [ "-a2-2a3-2a4", "a1+3a2+4a3+2a4", "-a2", "a1+a2+a3+a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-120   | [ "-a2-2a3", "a1+3a2+4a3+2a4", "-a2-2a3-2a4", "a1+a2+2a3+a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-121   | [ "-a2-2a3-2a4", "a1+3a2+4a3+2a4", "-a2-2a3", "-a1-a2-2a3-a4" ]| 2B / \
-2W [a1,a4]     | A1 + A3   
-122   | [ "-a2-2a3", "a1+2a2+4a3+2a4", "-a2-2a3-2a4", "-a1-2a2-2a3-a4" ]| 2B /\
- 2W [a1,a4]     | A1 + A3   
-123   | [ "-a2", "a1+2a2+2a3", "-a2-2a3", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4]\
-     | A1 + A3   
-124   | [ "a2+2a3", "a1", "a2", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]     | A1 +\
- A3   
-125   | [ "a2", "a1", "a2+2a3+2a4", "a1+2a2+3a3+a4" ]| 2B / 2W [a1,a4]     | A\
-1 + A3   
-126   | [ "-a2-2a3", "a1+2a2+4a3+2a4", "a2", "a1+a2+a3" ]| 2B / 2W [a1,a4]    \
- | A1 + A3   
-127   | [ "-a2", "a1+2a2+2a3", "a2+2a3+2a4", "a1+a2+a3+a4" ]| 2B / 2W [a1,a4] \
-    | A1 + A3   
-128   | [ "-a2-2a3-2a4", "a1+2a2+4a3+2a4", "a2", "-a1-a2-a3-a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-129   | [ "-a2-2a3", "a1+2a2+2a3", "a2+2a3+2a4", "-a1-a2-2a3-a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-130   | [ "-a2", "a1+a2", "a2+2a3+2a4", "-a1-2a2-3a3-a4" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-131   | [ "a2", "a1", "a2+2a3", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4]     | A1 \
-+ A3   
-132   | [ "a2+2a3+2a4", "-a1-a2-2a3-2a4", "-a2", "a1+2a2+3a3+a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-133   | [ "a2+2a3+2a4", "-a1-a2-2a3-2a4", "-a2-2a3", "-a1-2a2-2a3-a4" ]| 2B / \
-2W [a1,a4]     | A1 + A3   
-134   | [ "a2+2a3", "-a1-a2-2a3", "-a2", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4] \
-    | A1 + A3   
-135   | [ "a2+2a3+2a4", "-a1-2a2-2a3-2a4", "a2", "-a1-2a2-3a3-a4" ]| 2B / 2W [\
-a1,a4]     | A1 + A3   
-136   | [ "a2+2a3", "a1+a2", "-a2", "a1+2a2+3a3+2a4" ]| 2B / 2W [a1,a4]     | \
-A1 + A3   
-137   | [ "a2", "a1+a2+2a3+2a4", "-a2-2a3-2a4", "a1+2a2+3a3+a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-138   | [ "-a2-2a3", "a1+3a2+4a3+2a4", "-a2", "a1+a2+a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-139   | [ "-a2", "a1+3a2+4a3+2a4", "-a2-2a3-2a4", "a1+a2+a3+a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-140   | [ "-a2-2a3-2a4", "a1+3a2+4a3+2a4", "-a2", "-a1-a2-a3-a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-141   | [ "-a2-2a3", "a1+3a2+4a3+2a4", "-a2-2a3-2a4", "-a1-a2-2a3-a4" ]| 2B / \
-2W [a1,a4]     | A1 + A3   
-142   | [ "-a2", "a1+2a2+2a3+2a4", "-a2-2a3-2a4", "-a1-2a2-3a3-a4" ]| 2B / 2W \
-[a1,a4]     | A1 + A3   
-143   | [ "a2", "a1+a2+2a3", "-a2-2a3", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-144   | [ "a2+2a3+2a4", "a1", "a2", "a1+2a2+3a3+a4" ]| 2B / 2W [a1,a4]     | A\
-1 + A3   
-145   | [ "a2+2a3", "a1", "a2+2a3+2a4", "a1+2a2+2a3+a4" ]| 2B / 2W [a1,a4]    \
- | A1 + A3   
-146   | [ "-a2", "a1+2a2+2a3+2a4", "a2+2a3", "a1+a2+a3" ]| 2B / 2W [a1,a4]    \
- | A1 + A3   
-147   | [ "a2", "a1+a2+2a3", "a2+2a3+2a4", "a1+a2+a3+a4" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-148   | [ "-a2-2a3", "a1+2a2+4a3+2a4", "a2", "-a1-a2-a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-149   | [ "-a2", "a1+2a2+2a3", "a2+2a3+2a4", "-a1-a2-a3-a4" ]| 2B / 2W [a1,a4]\
-     | A1 + A3   
-150   | [ "a2", "a1", "a2+2a3+2a4", "-a1-2a2-3a3-a4" ]| 2B / 2W [a1,a4]     | \
-A1 + A3   
-151   | [ "a2+2a3", "a1", "a2", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4]     | A1 \
-+ A3   
-152   | [ "a2+2a3+2a4", "-a1-a2-2a3-2a4", "-a2", "-a1-2a2-3a3-a4" ]| 2B / 2W [\
-a1,a4]     | A1 + A3   
-153   | [ "a2+2a3+2a4", "a1+a2", "-a2", "a1+2a2+3a3+a4" ]| 2B / 2W [a1,a4]    \
- | A1 + A3   
-154   | [ "a2+2a3", "a1+a2+2a3+2a4", "-a2-2a3-2a4", "a1+2a2+2a3+a4" ]| 2B / 2W\
- [a1,a4]     | A1 + A3   
-155   | [ "-a2", "a1+3a2+4a3+2a4", "-a2-2a3", "a1+a2+a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-156   | [ "a2", "a1+2a2+4a3+2a4", "-a2-2a3-2a4", "a1+a2+a3+a4" ]| 2B / 2W [a1,\
-a4]     | A1 + A3   
-157   | [ "-a2-2a3", "a1+3a2+4a3+2a4", "-a2", "-a1-a2-a3" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-158   | [ "-a2", "a1+3a2+4a3+2a4", "-a2-2a3-2a4", "-a1-a2-a3-a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-159   | [ "a2", "a1+a2+2a3+2a4", "-a2-2a3-2a4", "-a1-2a2-3a3-a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-160   | [ "a2+2a3", "a1+a2", "-a2", "-a1-2a2-3a3-2a4" ]| 2B / 2W [a1,a4]     |\
- A1 + A3   
-161   | [ "a2+2a3+2a4", "a1", "a2+2a3", "a1+2a2+2a3+a4" ]| 2B / 2W [a1,a4]    \
- | A1 + A3   
-162   | [ "a2+2a3", "a1+a2", "a2+2a3+2a4", "a1+a2+2a3+a4" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-163   | [ "a2", "a1+a2+2a3+2a4", "a2+2a3", "a1+a2+a3" ]| 2B / 2W [a1,a4]     |\
- A1 + A3   
-164   | [ "-a2", "a1+2a2+2a3+2a4", "a2+2a3", "-a1-a2-a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-165   | [ "a2", "a1+a2+2a3", "a2+2a3+2a4", "-a1-a2-a3-a4" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-166   | [ "a2+2a3", "a1", "a2+2a3+2a4", "-a1-2a2-2a3-a4" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-167   | [ "a2+2a3+2a4", "a1", "a2", "-a1-2a2-3a3-a4" ]| 2B / 2W [a1,a4]     | \
-A1 + A3   
-168   | [ "a2+2a3+2a4", "a1+a2+2a3", "-a2-2a3", "a1+2a2+2a3+a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-169   | [ "a2+2a3", "a1+2a2+2a3+2a4", "-a2-2a3-2a4", "a1+a2+2a3+a4" ]| 2B / 2W\
- [a1,a4]     | A1 + A3   
-170   | [ "a2", "a1+2a2+4a3+2a4", "-a2-2a3", "a1+a2+a3" ]| 2B / 2W [a1,a4]    \
- | A1 + A3   
-171   | [ "-a2", "a1+3a2+4a3+2a4", "-a2-2a3", "-a1-a2-a3" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-172   | [ "a2", "a1+2a2+4a3+2a4", "-a2-2a3-2a4", "-a1-a2-a3-a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-173   | [ "a2+2a3", "a1+a2+2a3+2a4", "-a2-2a3-2a4", "-a1-2a2-2a3-a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-174   | [ "a2+2a3+2a4", "a1+a2", "-a2", "-a1-2a2-3a3-a4" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-175   | [ "a2+2a3+2a4", "a1+a2", "a2+2a3", "a1+a2+2a3+a4" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-176   | [ "a2+2a3", "a1+a2+2a3+2a4", "a2", "a1+a2+a3" ]| 2B / 2W [a1,a4]     |\
- A1 + A3   
-177   | [ "a2", "a1+a2+2a3+2a4", "a2+2a3", "-a1-a2-a3" ]| 2B / 2W [a1,a4]     \
-| A1 + A3   
-178   | [ "a2+2a3", "a1+a2", "a2+2a3+2a4", "-a1-a2-2a3-a4" ]| 2B / 2W [a1,a4] \
-    | A1 + A3   
-179   | [ "a2+2a3+2a4", "a1", "a2+2a3", "-a1-2a2-2a3-a4" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-180   | [ "a2+2a3+2a4", "a1+2a2+2a3", "-a2-2a3", "a1+a2+2a3+a4" ]| 2B / 2W [a1\
-,a4]     | A1 + A3   
-181   | [ "a2+2a3", "a1+2a2+2a3+2a4", "-a2", "a1+a2+a3" ]| 2B / 2W [a1,a4]    \
- | A1 + A3   
-182   | [ "a2", "a1+2a2+4a3+2a4", "-a2-2a3", "-a1-a2-a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-183   | [ "a2+2a3", "a1+2a2+2a3+2a4", "-a2-2a3-2a4", "-a1-a2-2a3-a4" ]| 2B / 2\
-W [a1,a4]     | A1 + A3   
-184   | [ "a2+2a3+2a4", "a1+a2+2a3", "-a2-2a3", "-a1-2a2-2a3-a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-185   | [ "a2+2a3+2a4", "a1+a2+2a3", "a2", "a1+a2+a3+a4" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-186   | [ "a2+2a3", "a1+a2+2a3+2a4", "a2", "-a1-a2-a3" ]| 2B / 2W [a1,a4]     \
-| A1 + A3   
-187   | [ "a2+2a3+2a4", "a1+a2", "a2+2a3", "-a1-a2-2a3-a4" ]| 2B / 2W [a1,a4] \
-    | A1 + A3   
-188   | [ "a2+2a3+2a4", "a1+2a2+2a3", "-a2", "a1+a2+a3+a4" ]| 2B / 2W [a1,a4] \
-    | A1 + A3   
-189   | [ "a2+2a3", "a1+2a2+2a3+2a4", "-a2", "-a1-a2-a3" ]| 2B / 2W [a1,a4]   \
-  | A1 + A3   
-190   | [ "a2+2a3+2a4", "a1+2a2+2a3", "-a2-2a3", "-a1-a2-2a3-a4" ]| 2B / 2W [a\
-1,a4]     | A1 + A3   
-191   | [ "a2+2a3+2a4", "a1+a2+2a3", "a2", "-a1-a2-a3-a4" ]| 2B / 2W [a1,a4]  \
-   | A1 + A3   
-192   | [ "a2+2a3+2a4", "a1+2a2+2a3", "-a2", "-a1-a2-a3-a4" ]| 2B / 2W [a1,a4]\
-     | A1 + A3   
+索引| Roots                                                                 \
+                    | 颜色(B/W)         | 类型    
+------------------------------------------------------------------------------\
+----------------------------------------------------------
+1     | [ a0=-a2-2a3-2a4, a1=-a1-2a2-2a3, a2=a2, a3=a3, a4=a1+a2+a3+a4 ]      \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+2     | [ a0=-a2-2a3-2a4, a1=-a1-a2-2a3, a2=-a2, a3=a2+a3, a4=a1+a2+a3+a4 ]   \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+3     | [ a0=-a2-2a3-2a4, a1=-a1-2a2-2a3, a2=a2+2a3, a3=-a3, a4=a1+a2+2a3+a4 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+4     | [ a0=-a2-2a3, a1=-a1-2a2-2a3-2a4, a2=a2, a3=a3+a4, a4=a1+a2+a3 ]      \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+5     | [ a0=-a2-2a3-2a4, a1=-a1-2a2-2a3, a2=a2, a3=a1+a2+2a3+a4, a4=-a1-a2-a3\
+-a4 ]               | 2B / 2W [a1,a4]     | A1 + A3   
+6     | [ a0=-a2-2a3-2a4, a1=-a1-a2, a2=-a2-2a3, a3=a2+a3, a4=a1+a2+2a3+a4 ]  \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+7     | [ a0=-a2-2a3, a1=-a1-a2-2a3-2a4, a2=-a2, a3=a2+a3+a4, a4=a1+a2+a3 ]   \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+8     | [ a0=-a2-2a3-2a4, a1=-a1-a2-2a3, a2=-a2, a3=a1+2a2+2a3+a4, a4=-a1-a2-a\
+3-a4 ]              | 2B / 2W [a1,a4]     | A1 + A3   
+9     | [ a0=-a2-2a3-2a4, a1=-a1-a2-2a3, a2=a2+2a3, a3=-a2-a3, a4=a1+2a2+2a3+a\
+4 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+10    | [ a0=-a2-2a3, a1=-a1-2a2-2a3-2a4, a2=a2+2a3+2a4, a3=-a3-a4, a4=a1+a2+2\
+a3+a4 ]             | 2B / 2W [a1,a4]     | A1 + A3   
+11    | [ a0=-a2, a1=-a1-2a2-4a3-2a4, a2=a2+2a3, a3=a4, a4=a1+a2+a3 ]         \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+12    | [ a0=-a2-2a3, a1=-a1-2a2-2a3-2a4, a2=a2, a3=a1+a2+2a3+a4, a4=-a1-a2-a3\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+13    | [ a0=-a2-2a3-2a4, a1=-a1-2a2-2a3, a2=a2+2a3, a3=a1+a2+a3+a4, a4=-a1-a2\
+-2a3-a4 ]           | 2B / 2W [a1,a4]     | A1 + A3   
+14    | [ a0=-a2-2a3-2a4, a1=-a1, a2=-a2-2a3, a3=a3, a4=a1+2a2+2a3+a4 ]       \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+15    | [ a0=-a2-2a3, a1=-a1-a2, a2=-a2-2a3-2a4, a3=a2+a3+a4, a4=a1+a2+2a3+a4 \
+]                   | 2B / 2W [a1,a4]     | A1 + A3   
+16    | [ a0=-a2, a1=-a1-a2-2a3-2a4, a2=-a2-2a3, a3=a2+2a3+a4, a4=a1+a2+a3 ]  \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+17    | [ a0=-a2-2a3, a1=-a1-a2-2a3-2a4, a2=-a2, a3=a1+2a2+2a3+a4, a4=-a1-a2-a\
+3 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+18    | [ a0=-a2-2a3-2a4, a1=-a1-a2, a2=-a2-2a3, a3=a1+2a2+3a3+a4, a4=-a1-a2-2\
+a3-a4 ]             | 2B / 2W [a1,a4]     | A1 + A3   
+19    | [ a0=-a2-2a3-2a4, a1=-a1-a2, a2=a2, a3=-a2-a3, a4=a1+2a2+3a3+a4 ]     \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+20    | [ a0=-a2-2a3, a1=-a1-a2-2a3-2a4, a2=a2+2a3+2a4, a3=-a2-a3-a4, a4=a1+2a\
+2+2a3+a4 ]          | 2B / 2W [a1,a4]     | A1 + A3   
+21    | [ a0=-a2, a1=-a1-2a2-4a3-2a4, a2=a2+2a3+2a4, a3=-a4, a4=a1+a2+a3+a4 ] \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+22    | [ a0=a2, a1=-a1-3a2-4a3-2a4, a2=a2+2a3, a3=a4, a4=a1+a2+a3 ]          \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+23    | [ a0=-a2, a1=-a1-2a2-4a3-2a4, a2=a2+2a3, a3=a1+a2+a3+a4, a4=-a1-a2-a3 \
+]                   | 2B / 2W [a1,a4]     | A1 + A3   
+24    | [ a0=-a2-2a3-2a4, a1=-a1-a2-2a3, a2=a2+2a3, a3=a1+a2+a3+a4, a4=-a1-2a2\
+-2a3-a4 ]           | 2B / 2W [a1,a4]     | A1 + A3   
+25    | [ a0=-a2-2a3, a1=-a1-2a2-2a3-2a4, a2=a2+2a3+2a4, a3=a1+a2+a3, a4=-a1-a\
+2-2a3-a4 ]          | 2B / 2W [a1,a4]     | A1 + A3   
+26    | [ a0=-a2-2a3-2a4, a1=-a1, a2=-a2, a3=-a3, a4=a1+2a2+3a3+a4 ]          \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+27    | [ a0=-a2-2a3, a1=-a1, a2=-a2-2a3-2a4, a3=a3+a4, a4=a1+2a2+2a3+a4 ]    \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+28    | [ a0=-a2, a1=-a1-a2-2a3, a2=-a2-2a3-2a4, a3=a2+2a3+a4, a4=a1+a2+a3+a4 \
+]                   | 2B / 2W [a1,a4]     | A1 + A3   
+29    | [ a0=a2, a1=-a1-2a2-2a3-2a4, a2=-a2-2a3, a3=a2+2a3+a4, a4=a1+a2+a3 ]  \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+30    | [ a0=-a2, a1=-a1-a2-2a3-2a4, a2=-a2-2a3, a3=a1+2a2+3a3+a4, a4=-a1-a2-a\
+3 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+31    | [ a0=-a2-2a3-2a4, a1=-a1, a2=-a2-2a3, a3=a1+2a2+3a3+a4, a4=-a1-2a2-2a3\
+-a4 ]               | 2B / 2W [a1,a4]     | A1 + A3   
+32    | [ a0=-a2-2a3, a1=-a1-a2, a2=-a2-2a3-2a4, a3=a1+2a2+3a3+2a4, a4=-a1-a2-\
+2a3-a4 ]            | 2B / 2W [a1,a4]     | A1 + A3   
+33    | [ a0=-a2-2a3, a1=-a1-a2, a2=a2, a3=-a2-a3-a4, a4=a1+2a2+3a3+2a4 ]     \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+34    | [ a0=-a2, a1=-a1-a2-2a3-2a4, a2=a2+2a3+2a4, a3=-a2-2a3-a4, a4=a1+2a2+3\
+a3+a4 ]             | 2B / 2W [a1,a4]     | A1 + A3   
+35    | [ a0=a2, a1=-a1-3a2-4a3-2a4, a2=a2+2a3+2a4, a3=-a4, a4=a1+a2+a3+a4 ]  \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+36    | [ a0=a2+2a3, a1=-a1-3a2-4a3-2a4, a2=a2, a3=a3+a4, a4=a1+a2+a3 ]       \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+37    | [ a0=a2, a1=-a1-3a2-4a3-2a4, a2=a2+2a3, a3=a1+a2+a3+a4, a4=-a1-a2-a3 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+38    | [ a0=-a2, a1=-a1-2a2-4a3-2a4, a2=a2+2a3+2a4, a3=a1+a2+a3, a4=-a1-a2-a3\
+-a4 ]               | 2B / 2W [a1,a4]     | A1 + A3   
+39    | [ a0=-a2-2a3-2a4, a1=-a1-a2, a2=a2, a3=a1+a2+2a3+a4, a4=-a1-2a2-3a3-a4\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+40    | [ a0=-a2-2a3, a1=-a1-a2-2a3-2a4, a2=a2+2a3+2a4, a3=a1+a2+a3, a4=-a1-2a\
+2-2a3-a4 ]          | 2B / 2W [a1,a4]     | A1 + A3   
+41    | [ a0=-a2-2a3-2a4, a1=a1+a2+2a3+2a4, a2=a2, a3=-a1-2a2-2a3-a4, a4=a1+2a\
+2+3a3+a4 ]          | 2B / 2W [a1,a4]     | A1 + A3   
+42    | [ a0=-a2-2a3, a1=-a1, a2=-a2, a3=-a3-a4, a4=a1+2a2+3a3+2a4 ]          \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+43    | [ a0=-a2, a1=-a1, a2=-a2-2a3-2a4, a3=a4, a4=a1+2a2+3a3+a4 ]           \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+44    | [ a0=a2, a1=-a1-2a2-2a3, a2=-a2-2a3-2a4, a3=a2+2a3+a4, a4=a1+a2+a3+a4 \
+]                   | 2B / 2W [a1,a4]     | A1 + A3   
+45    | [ a0=a2+2a3, a1=-a1-2a2-4a3-2a4, a2=-a2, a3=a2+a3+a4, a4=a1+a2+a3 ]   \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+46    | [ a0=a2, a1=-a1-2a2-2a3-2a4, a2=-a2-2a3, a3=a1+2a2+3a3+a4, a4=-a1-a2-a\
+3 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+47    | [ a0=-a2, a1=-a1-a2-2a3, a2=-a2-2a3-2a4, a3=a1+2a2+3a3+2a4, a4=-a1-a2-\
+a3-a4 ]             | 2B / 2W [a1,a4]     | A1 + A3   
+48    | [ a0=-a2-2a3-2a4, a1=-a1, a2=-a2, a3=a1+2a2+2a3+a4, a4=-a1-2a2-3a3-a4 \
+]                   | 2B / 2W [a1,a4]     | A1 + A3   
+49    | [ a0=-a2-2a3, a1=-a1, a2=-a2-2a3-2a4, a3=a1+2a2+3a3+2a4, a4=-a1-2a2-2a\
+3-a4 ]              | 2B / 2W [a1,a4]     | A1 + A3   
+50    | [ a0=-a2, a1=-a1-a2-2a3, a2=a2+2a3, a3=-a2-2a3-a4, a4=a1+2a2+3a3+2a4 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+51    | [ a0=a2, a1=-a1-2a2-2a3-2a4, a2=a2+2a3+2a4, a3=-a2-2a3-a4, a4=a1+2a2+3\
+a3+a4 ]             | 2B / 2W [a1,a4]     | A1 + A3   
+52    | [ a0=a2+2a3, a1=-a1-3a2-4a3-2a4, a2=a2+2a3+2a4, a3=-a3-a4, a4=a1+a2+2a\
+3+a4 ]              | 2B / 2W [a1,a4]     | A1 + A3   
+53    | [ a0=a2+2a3+2a4, a1=-a1-3a2-4a3-2a4, a2=a2, a3=a3, a4=a1+a2+a3+a4 ]   \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+54    | [ a0=a2+2a3, a1=-a1-3a2-4a3-2a4, a2=a2, a3=a1+a2+2a3+a4, a4=-a1-a2-a3 \
+]                   | 2B / 2W [a1,a4]     | A1 + A3   
+55    | [ a0=a2, a1=-a1-3a2-4a3-2a4, a2=a2+2a3+2a4, a3=a1+a2+a3, a4=-a1-a2-a3-\
+a4 ]                | 2B / 2W [a1,a4]     | A1 + A3   
+56    | [ a0=-a2-2a3, a1=-a1-a2, a2=a2, a3=a1+a2+2a3+a4, a4=-a1-2a2-3a3-2a4 ] \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+57    | [ a0=-a2, a1=-a1-a2-2a3-2a4, a2=a2+2a3+2a4, a3=a1+a2+a3, a4=-a1-2a2-3a\
+3-a4 ]              | 2B / 2W [a1,a4]     | A1 + A3   
+58    | [ a0=-a2-2a3-2a4, a1=a1+2a2+2a3+2a4, a2=-a2, a3=-a1-a2-2a3-a4, a4=a1+2\
+a2+3a3+a4 ]         | 2B / 2W [a1,a4]     | A1 + A3   
+59    | [ a0=-a2-2a3, a1=a1+a2+2a3, a2=a2, a3=-a1-2a2-2a3-a4, a4=a1+2a2+3a3+2a\
+4 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+60    | [ a0=-a2-2a3-2a4, a1=a1+a2+2a3+2a4, a2=a2+2a3, a3=-a1-2a2-3a3-a4, a4=a\
+1+2a2+2a3+a4 ]      | 2B / 2W [a1,a4]     | A1 + A3   
+61    | [ a0=-a2-2a3-2a4, a1=a1+a2+2a3+2a4, a2=a2, a3=a3, a4=-a1-2a2-3a3-a4 ] \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+62    | [ a0=-a2, a1=-a1, a2=-a2-2a3, a3=-a4, a4=a1+2a2+3a3+2a4 ]             \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+63    | [ a0=a2, a1=-a1-a2, a2=-a2-2a3-2a4, a3=a4, a4=a1+2a2+3a3+a4 ]         \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+64    | [ a0=a2+2a3, a1=-a1-2a2-2a3, a2=-a2-2a3-2a4, a3=a2+a3+a4, a4=a1+a2+2a3\
++a4 ]               | 2B / 2W [a1,a4]     | A1 + A3   
+65    | [ a0=a2+2a3+2a4, a1=-a1-2a2-4a3-2a4, a2=-a2, a3=a2+a3, a4=a1+a2+a3+a4 \
+]                   | 2B / 2W [a1,a4]     | A1 + A3   
+66    | [ a0=a2+2a3, a1=-a1-2a2-4a3-2a4, a2=-a2, a3=a1+2a2+2a3+a4, a4=-a1-a2-a\
+3 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+67    | [ a0=a2, a1=-a1-2a2-2a3, a2=-a2-2a3-2a4, a3=a1+2a2+3a3+2a4, a4=-a1-a2-\
+a3-a4 ]             | 2B / 2W [a1,a4]     | A1 + A3   
+68    | [ a0=-a2-2a3, a1=-a1, a2=-a2, a3=a1+2a2+2a3+a4, a4=-a1-2a2-3a3-2a4 ]  \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+69    | [ a0=-a2, a1=-a1, a2=-a2-2a3-2a4, a3=a1+2a2+3a3+2a4, a4=-a1-2a2-3a3-a4\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+70    | [ a0=a2, a1=-a1-2a2-2a3, a2=a2+2a3, a3=-a2-2a3-a4, a4=a1+2a2+3a3+2a4 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+71    | [ a0=a2+2a3, a1=-a1-2a2-4a3-2a4, a2=a2+2a3+2a4, a3=-a2-a3-a4, a4=a1+2a\
+2+2a3+a4 ]          | 2B / 2W [a1,a4]     | A1 + A3   
+72    | [ a0=a2+2a3+2a4, a1=-a1-3a2-4a3-2a4, a2=a2+2a3, a3=-a3, a4=a1+a2+2a3+a\
+4 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+73    | [ a0=a2+2a3+2a4, a1=-a1-3a2-4a3-2a4, a2=a2, a3=a1+a2+2a3+a4, a4=-a1-a2\
+-a3-a4 ]            | 2B / 2W [a1,a4]     | A1 + A3   
+74    | [ a0=a2+2a3, a1=-a1-3a2-4a3-2a4, a2=a2+2a3+2a4, a3=a1+a2+a3, a4=-a1-a2\
+-2a3-a4 ]           | 2B / 2W [a1,a4]     | A1 + A3   
+75    | [ a0=-a2, a1=-a1-a2-2a3, a2=a2+2a3, a3=a1+a2+a3+a4, a4=-a1-2a2-3a3-2a4\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+76    | [ a0=a2, a1=-a1-2a2-2a3-2a4, a2=a2+2a3+2a4, a3=a1+a2+a3, a4=-a1-2a2-3a\
+3-a4 ]              | 2B / 2W [a1,a4]     | A1 + A3   
+77    | [ a0=-a2-2a3, a1=a1+2a2+2a3, a2=-a2, a3=-a1-a2-2a3-a4, a4=a1+2a2+3a3+2\
+a4 ]                | 2B / 2W [a1,a4]     | A1 + A3   
+78    | [ a0=-a2-2a3-2a4, a1=a1+2a2+4a3+2a4, a2=-a2-2a3, a3=-a1-a2-a3-a4, a4=a\
+1+2a2+2a3+a4 ]      | 2B / 2W [a1,a4]     | A1 + A3   
+79    | [ a0=-a2-2a3-2a4, a1=a1+2a2+2a3+2a4, a2=-a2, a3=a2+a3, a4=-a1-2a2-3a3-\
+a4 ]                | 2B / 2W [a1,a4]     | A1 + A3   
+80    | [ a0=-a2, a1=a1+a2, a2=a2+2a3, a3=-a1-2a2-3a3-a4, a4=a1+2a2+3a3+2a4 ] \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+81    | [ a0=-a2-2a3-2a4, a1=a1+2a2+2a3+2a4, a2=a2+2a3, a3=-a1-2a2-3a3-a4, a4=\
+a1+a2+2a3+a4 ]      | 2B / 2W [a1,a4]     | A1 + A3   
+82    | [ a0=-a2-2a3, a1=a1+a2+2a3, a2=a2+2a3+2a4, a3=-a1-2a2-3a3-2a4, a4=a1+2\
+a2+2a3+a4 ]         | 2B / 2W [a1,a4]     | A1 + A3   
+83    | [ a0=-a2-2a3-2a4, a1=a1+a2+2a3+2a4, a2=a2+2a3, a3=-a3, a4=-a1-2a2-2a3-\
+a4 ]                | 2B / 2W [a1,a4]     | A1 + A3   
+84    | [ a0=-a2-2a3, a1=a1+a2+2a3, a2=a2, a3=a3+a4, a4=-a1-2a2-3a3-2a4 ]     \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+85    | [ a0=a2, a1=-a1-a2, a2=-a2-2a3, a3=-a4, a4=a1+2a2+3a3+2a4 ]           \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+86    | [ a0=a2+2a3, a1=-a1-a2-2a3, a2=-a2-2a3-2a4, a3=a3+a4, a4=a1+2a2+2a3+a4\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+87    | [ a0=a2+2a3+2a4, a1=-a1-2a2-2a3-2a4, a2=-a2-2a3, a3=a2+a3, a4=a1+a2+2a\
+3+a4 ]              | 2B / 2W [a1,a4]     | A1 + A3   
+88    | [ a0=a2+2a3+2a4, a1=-a1-2a2-4a3-2a4, a2=-a2, a3=a1+2a2+2a3+a4, a4=-a1-\
+a2-a3-a4 ]          | 2B / 2W [a1,a4]     | A1 + A3   
+89    | [ a0=a2+2a3, a1=-a1-2a2-2a3, a2=-a2-2a3-2a4, a3=a1+2a2+3a3+2a4, a4=-a1\
+-a2-2a3-a4 ]        | 2B / 2W [a1,a4]     | A1 + A3   
+90    | [ a0=-a2, a1=-a1, a2=-a2-2a3, a3=a1+2a2+3a3+a4, a4=-a1-2a2-3a3-2a4 ]  \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+91    | [ a0=a2, a1=-a1-a2, a2=-a2-2a3-2a4, a3=a1+2a2+3a3+2a4, a4=-a1-2a2-3a3-\
+a4 ]                | 2B / 2W [a1,a4]     | A1 + A3   
+92    | [ a0=a2+2a3, a1=-a1-2a2-2a3, a2=a2, a3=-a2-a3-a4, a4=a1+2a2+3a3+2a4 ] \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+93    | [ a0=a2+2a3+2a4, a1=-a1-2a2-4a3-2a4, a2=a2+2a3, a3=-a2-a3, a4=a1+2a2+2\
+a3+a4 ]             | 2B / 2W [a1,a4]     | A1 + A3   
+94    | [ a0=a2+2a3+2a4, a1=-a1-3a2-4a3-2a4, a2=a2+2a3, a3=a1+a2+a3+a4, a4=-a1\
+-a2-2a3-a4 ]        | 2B / 2W [a1,a4]     | A1 + A3   
+95    | [ a0=a2+2a3, a1=-a1-2a2-4a3-2a4, a2=a2+2a3+2a4, a3=a1+a2+a3, a4=-a1-2a\
+2-2a3-a4 ]          | 2B / 2W [a1,a4]     | A1 + A3   
+96    | [ a0=a2, a1=-a1-2a2-2a3, a2=a2+2a3, a3=a1+a2+a3+a4, a4=-a1-2a2-3a3-2a4\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+97    | [ a0=-a2, a1=a1+2a2+2a3, a2=-a2-2a3, a3=-a1-a2-a3-a4, a4=a1+2a2+3a3+2a\
+4 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+98    | [ a0=-a2-2a3-2a4, a1=a1+3a2+4a3+2a4, a2=-a2-2a3, a3=-a1-a2-a3-a4, a4=a\
+1+a2+2a3+a4 ]       | 2B / 2W [a1,a4]     | A1 + A3   
+99    | [ a0=-a2-2a3, a1=a1+2a2+4a3+2a4, a2=-a2-2a3-2a4, a3=-a1-a2-a3, a4=a1+2\
+a2+2a3+a4 ]         | 2B / 2W [a1,a4]     | A1 + A3   
+100   | [ a0=-a2-2a3-2a4, a1=a1+2a2+4a3+2a4, a2=-a2-2a3, a3=a2+a3, a4=-a1-2a2-\
+2a3-a4 ]            | 2B / 2W [a1,a4]     | A1 + A3   
+101   | [ a0=-a2-2a3, a1=a1+2a2+2a3, a2=-a2, a3=a2+a3+a4, a4=-a1-2a2-3a3-2a4 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+102   | [ a0=a2, a1=a1, a2=a2+2a3, a3=-a1-2a2-3a3-a4, a4=a1+2a2+3a3+2a4 ]     \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+103   | [ a0=-a2, a1=a1+a2, a2=a2+2a3+2a4, a3=-a1-2a2-3a3-2a4, a4=a1+2a2+3a3+a\
+4 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+104   | [ a0=-a2-2a3-2a4, a1=a1+2a2+4a3+2a4, a2=a2, a3=-a1-2a2-2a3-a4, a4=a1+a\
+2+a3+a4 ]           | 2B / 2W [a1,a4]     | A1 + A3   
+105   | [ a0=-a2-2a3, a1=a1+2a2+2a3, a2=a2+2a3+2a4, a3=-a1-2a2-3a3-2a4, a4=a1+\
+a2+2a3+a4 ]         | 2B / 2W [a1,a4]     | A1 + A3   
+106   | [ a0=-a2-2a3-2a4, a1=a1+2a2+2a3+2a4, a2=a2+2a3, a3=-a2-a3, a4=-a1-a2-2\
+a3-a4 ]             | 2B / 2W [a1,a4]     | A1 + A3   
+107   | [ a0=-a2-2a3, a1=a1+a2+2a3, a2=a2+2a3+2a4, a3=-a3-a4, a4=-a1-2a2-2a3-a\
+4 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+108   | [ a0=-a2, a1=a1+a2, a2=a2+2a3, a3=a4, a4=-a1-2a2-3a3-2a4 ]            \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+109   | [ a0=a2+2a3, a1=-a1-a2-2a3, a2=-a2, a3=-a3-a4, a4=a1+2a2+3a3+2a4 ]    \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+110   | [ a0=a2+2a3+2a4, a1=-a1-a2-2a3-2a4, a2=-a2-2a3, a3=a3, a4=a1+2a2+2a3+a\
+4 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+111   | [ a0=a2+2a3+2a4, a1=-a1-2a2-2a3-2a4, a2=-a2-2a3, a3=a1+2a2+3a3+a4, a4=\
+-a1-a2-2a3-a4 ]     | 2B / 2W [a1,a4]     | A1 + A3   
+112   | [ a0=a2+2a3, a1=-a1-a2-2a3, a2=-a2-2a3-2a4, a3=a1+2a2+3a3+2a4, a4=-a1-\
+2a2-2a3-a4 ]        | 2B / 2W [a1,a4]     | A1 + A3   
+113   | [ a0=a2, a1=-a1-a2, a2=-a2-2a3, a3=a1+2a2+3a3+a4, a4=-a1-2a2-3a3-2a4 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+114   | [ a0=a2+2a3+2a4, a1=-a1-2a2-2a3-2a4, a2=a2, a3=-a2-a3, a4=a1+2a2+3a3+a\
+4 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+115   | [ a0=a2+2a3+2a4, a1=-a1-2a2-4a3-2a4, a2=a2+2a3, a3=a1+a2+a3+a4, a4=-a1\
+-2a2-2a3-a4 ]       | 2B / 2W [a1,a4]     | A1 + A3   
+116   | [ a0=a2+2a3, a1=-a1-2a2-2a3, a2=a2, a3=a1+a2+2a3+a4, a4=-a1-2a2-3a3-2a\
+4 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+117   | [ a0=a2, a1=a1+a2+2a3, a2=-a2-2a3, a3=-a1-a2-a3-a4, a4=a1+2a2+3a3+2a4 \
+]                   | 2B / 2W [a1,a4]     | A1 + A3   
+118   | [ a0=-a2, a1=a1+2a2+2a3+2a4, a2=-a2-2a3-2a4, a3=-a1-a2-a3, a4=a1+2a2+3\
+a3+a4 ]             | 2B / 2W [a1,a4]     | A1 + A3   
+119   | [ a0=-a2-2a3-2a4, a1=a1+3a2+4a3+2a4, a2=-a2, a3=-a1-a2-2a3-a4, a4=a1+a\
+2+a3+a4 ]           | 2B / 2W [a1,a4]     | A1 + A3   
+120   | [ a0=-a2-2a3, a1=a1+3a2+4a3+2a4, a2=-a2-2a3-2a4, a3=-a1-a2-a3, a4=a1+a\
+2+2a3+a4 ]          | 2B / 2W [a1,a4]     | A1 + A3   
+121   | [ a0=-a2-2a3-2a4, a1=a1+3a2+4a3+2a4, a2=-a2-2a3, a3=a3, a4=-a1-a2-2a3-\
+a4 ]                | 2B / 2W [a1,a4]     | A1 + A3   
+122   | [ a0=-a2-2a3, a1=a1+2a2+4a3+2a4, a2=-a2-2a3-2a4, a3=a2+a3+a4, a4=-a1-2\
+a2-2a3-a4 ]         | 2B / 2W [a1,a4]     | A1 + A3   
+123   | [ a0=-a2, a1=a1+2a2+2a3, a2=-a2-2a3, a3=a2+2a3+a4, a4=-a1-2a2-3a3-2a4 \
+]                   | 2B / 2W [a1,a4]     | A1 + A3   
+124   | [ a0=a2+2a3, a1=a1, a2=a2, a3=-a1-2a2-2a3-a4, a4=a1+2a2+3a3+2a4 ]     \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+125   | [ a0=a2, a1=a1, a2=a2+2a3+2a4, a3=-a1-2a2-3a3-2a4, a4=a1+2a2+3a3+a4 ] \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+126   | [ a0=-a2-2a3, a1=a1+2a2+4a3+2a4, a2=a2, a3=-a1-2a2-2a3-a4, a4=a1+a2+a3\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+127   | [ a0=-a2, a1=a1+2a2+2a3, a2=a2+2a3+2a4, a3=-a1-2a2-3a3-2a4, a4=a1+a2+a\
+3+a4 ]              | 2B / 2W [a1,a4]     | A1 + A3   
+128   | [ a0=-a2-2a3-2a4, a1=a1+2a2+4a3+2a4, a2=a2, a3=-a2-a3, a4=-a1-a2-a3-a4\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+129   | [ a0=-a2-2a3, a1=a1+2a2+2a3, a2=a2+2a3+2a4, a3=-a2-a3-a4, a4=-a1-a2-2a\
+3-a4 ]              | 2B / 2W [a1,a4]     | A1 + A3   
+130   | [ a0=-a2, a1=a1+a2, a2=a2+2a3+2a4, a3=-a4, a4=-a1-2a2-3a3-a4 ]        \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+131   | [ a0=a2, a1=a1, a2=a2+2a3, a3=a4, a4=-a1-2a2-3a3-2a4 ]                \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+132   | [ a0=a2+2a3+2a4, a1=-a1-a2-2a3-2a4, a2=-a2, a3=-a3, a4=a1+2a2+3a3+a4 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+133   | [ a0=a2+2a3+2a4, a1=-a1-a2-2a3-2a4, a2=-a2-2a3, a3=a1+2a2+3a3+a4, a4=-\
+a1-2a2-2a3-a4 ]     | 2B / 2W [a1,a4]     | A1 + A3   
+134   | [ a0=a2+2a3, a1=-a1-a2-2a3, a2=-a2, a3=a1+2a2+2a3+a4, a4=-a1-2a2-3a3-2\
+a4 ]                | 2B / 2W [a1,a4]     | A1 + A3   
+135   | [ a0=a2+2a3+2a4, a1=-a1-2a2-2a3-2a4, a2=a2, a3=a1+a2+2a3+a4, a4=-a1-2a\
+2-3a3-a4 ]          | 2B / 2W [a1,a4]     | A1 + A3   
+136   | [ a0=a2+2a3, a1=a1+a2, a2=-a2, a3=-a1-a2-2a3-a4, a4=a1+2a2+3a3+2a4 ]  \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+137   | [ a0=a2, a1=a1+a2+2a3+2a4, a2=-a2-2a3-2a4, a3=-a1-a2-a3, a4=a1+2a2+3a3\
++a4 ]               | 2B / 2W [a1,a4]     | A1 + A3   
+138   | [ a0=-a2-2a3, a1=a1+3a2+4a3+2a4, a2=-a2, a3=-a1-a2-2a3-a4, a4=a1+a2+a3\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+139   | [ a0=-a2, a1=a1+3a2+4a3+2a4, a2=-a2-2a3-2a4, a3=-a1-a2-a3, a4=a1+a2+a3\
++a4 ]               | 2B / 2W [a1,a4]     | A1 + A3   
+140   | [ a0=-a2-2a3-2a4, a1=a1+3a2+4a3+2a4, a2=-a2, a3=-a3, a4=-a1-a2-a3-a4 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+141   | [ a0=-a2-2a3, a1=a1+3a2+4a3+2a4, a2=-a2-2a3-2a4, a3=a3+a4, a4=-a1-a2-2\
+a3-a4 ]             | 2B / 2W [a1,a4]     | A1 + A3   
+142   | [ a0=-a2, a1=a1+2a2+2a3+2a4, a2=-a2-2a3-2a4, a3=a2+2a3+a4, a4=-a1-2a2-\
+3a3-a4 ]            | 2B / 2W [a1,a4]     | A1 + A3   
+143   | [ a0=a2, a1=a1+a2+2a3, a2=-a2-2a3, a3=a2+2a3+a4, a4=-a1-2a2-3a3-2a4 ] \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+144   | [ a0=a2+2a3+2a4, a1=a1, a2=a2, a3=-a1-2a2-2a3-a4, a4=a1+2a2+3a3+a4 ]  \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+145   | [ a0=a2+2a3, a1=a1, a2=a2+2a3+2a4, a3=-a1-2a2-3a3-2a4, a4=a1+2a2+2a3+a\
+4 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+146   | [ a0=-a2, a1=a1+2a2+2a3+2a4, a2=a2+2a3, a3=-a1-2a2-3a3-a4, a4=a1+a2+a3\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+147   | [ a0=a2, a1=a1+a2+2a3, a2=a2+2a3+2a4, a3=-a1-2a2-3a3-2a4, a4=a1+a2+a3+\
+a4 ]                | 2B / 2W [a1,a4]     | A1 + A3   
+148   | [ a0=-a2-2a3, a1=a1+2a2+4a3+2a4, a2=a2, a3=-a2-a3-a4, a4=-a1-a2-a3 ]  \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+149   | [ a0=-a2, a1=a1+2a2+2a3, a2=a2+2a3+2a4, a3=-a2-2a3-a4, a4=-a1-a2-a3-a4\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+150   | [ a0=a2, a1=a1, a2=a2+2a3+2a4, a3=-a4, a4=-a1-2a2-3a3-a4 ]            \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+151   | [ a0=a2+2a3, a1=a1, a2=a2, a3=a3+a4, a4=-a1-2a2-3a3-2a4 ]             \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+152   | [ a0=a2+2a3+2a4, a1=-a1-a2-2a3-2a4, a2=-a2, a3=a1+2a2+2a3+a4, a4=-a1-2\
+a2-3a3-a4 ]         | 2B / 2W [a1,a4]     | A1 + A3   
+153   | [ a0=a2+2a3+2a4, a1=a1+a2, a2=-a2, a3=-a1-a2-2a3-a4, a4=a1+2a2+3a3+a4 \
+]                   | 2B / 2W [a1,a4]     | A1 + A3   
+154   | [ a0=a2+2a3, a1=a1+a2+2a3+2a4, a2=-a2-2a3-2a4, a3=-a1-a2-a3, a4=a1+2a2\
++2a3+a4 ]           | 2B / 2W [a1,a4]     | A1 + A3   
+155   | [ a0=-a2, a1=a1+3a2+4a3+2a4, a2=-a2-2a3, a3=-a1-a2-a3-a4, a4=a1+a2+a3 \
+]                   | 2B / 2W [a1,a4]     | A1 + A3   
+156   | [ a0=a2, a1=a1+2a2+4a3+2a4, a2=-a2-2a3-2a4, a3=-a1-a2-a3, a4=a1+a2+a3+\
+a4 ]                | 2B / 2W [a1,a4]     | A1 + A3   
+157   | [ a0=-a2-2a3, a1=a1+3a2+4a3+2a4, a2=-a2, a3=-a3-a4, a4=-a1-a2-a3 ]    \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+158   | [ a0=-a2, a1=a1+3a2+4a3+2a4, a2=-a2-2a3-2a4, a3=a4, a4=-a1-a2-a3-a4 ] \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+159   | [ a0=a2, a1=a1+a2+2a3+2a4, a2=-a2-2a3-2a4, a3=a2+2a3+a4, a4=-a1-2a2-3a\
+3-a4 ]              | 2B / 2W [a1,a4]     | A1 + A3   
+160   | [ a0=a2+2a3, a1=a1+a2, a2=-a2, a3=a2+a3+a4, a4=-a1-2a2-3a3-2a4 ]      \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+161   | [ a0=a2+2a3+2a4, a1=a1, a2=a2+2a3, a3=-a1-2a2-3a3-a4, a4=a1+2a2+2a3+a4\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+162   | [ a0=a2+2a3, a1=a1+a2, a2=a2+2a3+2a4, a3=-a1-2a2-3a3-2a4, a4=a1+a2+2a3\
++a4 ]               | 2B / 2W [a1,a4]     | A1 + A3   
+163   | [ a0=a2, a1=a1+a2+2a3+2a4, a2=a2+2a3, a3=-a1-2a2-3a3-a4, a4=a1+a2+a3 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+164   | [ a0=-a2, a1=a1+2a2+2a3+2a4, a2=a2+2a3, a3=-a2-2a3-a4, a4=-a1-a2-a3 ] \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+165   | [ a0=a2, a1=a1+a2+2a3, a2=a2+2a3+2a4, a3=-a2-2a3-a4, a4=-a1-a2-a3-a4 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+166   | [ a0=a2+2a3, a1=a1, a2=a2+2a3+2a4, a3=-a3-a4, a4=-a1-2a2-2a3-a4 ]     \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+167   | [ a0=a2+2a3+2a4, a1=a1, a2=a2, a3=a3, a4=-a1-2a2-3a3-a4 ]             \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+168   | [ a0=a2+2a3+2a4, a1=a1+a2+2a3, a2=-a2-2a3, a3=-a1-a2-a3-a4, a4=a1+2a2+\
+2a3+a4 ]            | 2B / 2W [a1,a4]     | A1 + A3   
+169   | [ a0=a2+2a3, a1=a1+2a2+2a3+2a4, a2=-a2-2a3-2a4, a3=-a1-a2-a3, a4=a1+a2\
++2a3+a4 ]           | 2B / 2W [a1,a4]     | A1 + A3   
+170   | [ a0=a2, a1=a1+2a2+4a3+2a4, a2=-a2-2a3, a3=-a1-a2-a3-a4, a4=a1+a2+a3 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+171   | [ a0=-a2, a1=a1+3a2+4a3+2a4, a2=-a2-2a3, a3=-a4, a4=-a1-a2-a3 ]       \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+172   | [ a0=a2, a1=a1+2a2+4a3+2a4, a2=-a2-2a3-2a4, a3=a4, a4=-a1-a2-a3-a4 ]  \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+173   | [ a0=a2+2a3, a1=a1+a2+2a3+2a4, a2=-a2-2a3-2a4, a3=a2+a3+a4, a4=-a1-2a2\
+-2a3-a4 ]           | 2B / 2W [a1,a4]     | A1 + A3   
+174   | [ a0=a2+2a3+2a4, a1=a1+a2, a2=-a2, a3=a2+a3, a4=-a1-2a2-3a3-a4 ]      \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+175   | [ a0=a2+2a3+2a4, a1=a1+a2, a2=a2+2a3, a3=-a1-2a2-3a3-a4, a4=a1+a2+2a3+\
+a4 ]                | 2B / 2W [a1,a4]     | A1 + A3   
+176   | [ a0=a2+2a3, a1=a1+a2+2a3+2a4, a2=a2, a3=-a1-2a2-2a3-a4, a4=a1+a2+a3 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+177   | [ a0=a2, a1=a1+a2+2a3+2a4, a2=a2+2a3, a3=-a2-2a3-a4, a4=-a1-a2-a3 ]   \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+178   | [ a0=a2+2a3, a1=a1+a2, a2=a2+2a3+2a4, a3=-a2-a3-a4, a4=-a1-a2-2a3-a4 ]\
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+179   | [ a0=a2+2a3+2a4, a1=a1, a2=a2+2a3, a3=-a3, a4=-a1-2a2-2a3-a4 ]        \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+180   | [ a0=a2+2a3+2a4, a1=a1+2a2+2a3, a2=-a2-2a3, a3=-a1-a2-a3-a4, a4=a1+a2+\
+2a3+a4 ]            | 2B / 2W [a1,a4]     | A1 + A3   
+181   | [ a0=a2+2a3, a1=a1+2a2+2a3+2a4, a2=-a2, a3=-a1-a2-2a3-a4, a4=a1+a2+a3 \
+]                   | 2B / 2W [a1,a4]     | A1 + A3   
+182   | [ a0=a2, a1=a1+2a2+4a3+2a4, a2=-a2-2a3, a3=-a4, a4=-a1-a2-a3 ]        \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+183   | [ a0=a2+2a3, a1=a1+2a2+2a3+2a4, a2=-a2-2a3-2a4, a3=a3+a4, a4=-a1-a2-2a\
+3-a4 ]              | 2B / 2W [a1,a4]     | A1 + A3   
+184   | [ a0=a2+2a3+2a4, a1=a1+a2+2a3, a2=-a2-2a3, a3=a2+a3, a4=-a1-2a2-2a3-a4\
+ ]                  | 2B / 2W [a1,a4]     | A1 + A3   
+185   | [ a0=a2+2a3+2a4, a1=a1+a2+2a3, a2=a2, a3=-a1-2a2-2a3-a4, a4=a1+a2+a3+a\
+4 ]                 | 2B / 2W [a1,a4]     | A1 + A3   
+186   | [ a0=a2+2a3, a1=a1+a2+2a3+2a4, a2=a2, a3=-a2-a3-a4, a4=-a1-a2-a3 ]    \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+187   | [ a0=a2+2a3+2a4, a1=a1+a2, a2=a2+2a3, a3=-a2-a3, a4=-a1-a2-2a3-a4 ]   \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+188   | [ a0=a2+2a3+2a4, a1=a1+2a2+2a3, a2=-a2, a3=-a1-a2-2a3-a4, a4=a1+a2+a3+\
+a4 ]                | 2B / 2W [a1,a4]     | A1 + A3   
+189   | [ a0=a2+2a3, a1=a1+2a2+2a3+2a4, a2=-a2, a3=-a3-a4, a4=-a1-a2-a3 ]     \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+190   | [ a0=a2+2a3+2a4, a1=a1+2a2+2a3, a2=-a2-2a3, a3=a3, a4=-a1-a2-2a3-a4 ] \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+191   | [ a0=a2+2a3+2a4, a1=a1+a2+2a3, a2=a2, a3=-a2-a3, a4=-a1-a2-a3-a4 ]    \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
+192   | [ a0=a2+2a3+2a4, a1=a1+2a2+2a3, a2=-a2, a3=-a3, a4=-a1-a2-a3-a4 ]     \
+                    | 2B / 2W [a1,a4]     | A1 + A3   
 
 ==================================================
 步骤 2: 自动分析 Noticed Orbits
@@ -504,6 +414,8 @@ W [a1,a4]     | A1 + A3
 >>> 模块 1 输出: 子系统分析 (索引 1)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1-2a2-2a3, a2=a2, a3=a3, a4=\
+a1+a2+a3+a4 ]
     根基: [ "-a2-2a3-2a4", "-a1-2a2-2a3", "a2", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -724,6 +636,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 2)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1-a2-2a3, a2=-a2, a3=a2+a3, \
+a4=a1+a2+a3+a4 ]
     根基: [ "-a2-2a3-2a4", "-a1-a2-2a3", "-a2", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -740,6 +654,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 3)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1-2a2-2a3, a2=a2+2a3, a3=-a3\
+, a4=a1+a2+2a3+a4 ]
     根基: [ "-a2-2a3-2a4", "-a1-2a2-2a3", "a2+2a3", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -756,6 +672,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 4)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1-2a2-2a3-2a4, a2=a2, a3=a3+a4, \
+a4=a1+a2+a3 ]
     根基: [ "-a2-2a3", "-a1-2a2-2a3-2a4", "a2", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -772,6 +690,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 5)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1-2a2-2a3, a2=a2, a3=a1+a2+2\
+a3+a4, a4=-a1-a2-a3-a4 ]
     根基: [ "-a2-2a3-2a4", "-a1-2a2-2a3", "a2", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -788,6 +708,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 6)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1-a2, a2=-a2-2a3, a3=a2+a3, \
+a4=a1+a2+2a3+a4 ]
     根基: [ "-a2-2a3-2a4", "-a1-a2", "-a2-2a3", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -804,6 +726,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 7)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1-a2-2a3-2a4, a2=-a2, a3=a2+a3+a\
+4, a4=a1+a2+a3 ]
     根基: [ "-a2-2a3", "-a1-a2-2a3-2a4", "-a2", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -820,6 +744,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 8)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1-a2-2a3, a2=-a2, a3=a1+2a2+\
+2a3+a4, a4=-a1-a2-a3-a4 ]
     根基: [ "-a2-2a3-2a4", "-a1-a2-2a3", "-a2", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -836,6 +762,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 9)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1-a2-2a3, a2=a2+2a3, a3=-a2-\
+a3, a4=a1+2a2+2a3+a4 ]
     根基: [ "-a2-2a3-2a4", "-a1-a2-2a3", "a2+2a3", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -852,6 +780,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 10)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1-2a2-2a3-2a4, a2=a2+2a3+2a4, a3\
+=-a3-a4, a4=a1+a2+2a3+a4 ]
     根基: [ "-a2-2a3", "-a1-2a2-2a3-2a4", "a2+2a3+2a4", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -868,6 +798,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 11)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1-2a2-4a3-2a4, a2=a2+2a3, a3=a4, a4=\
+a1+a2+a3 ]
     根基: [ "-a2", "-a1-2a2-4a3-2a4", "a2+2a3", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -884,6 +816,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 12)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1-2a2-2a3-2a4, a2=a2, a3=a1+a2+2\
+a3+a4, a4=-a1-a2-a3 ]
     根基: [ "-a2-2a3", "-a1-2a2-2a3-2a4", "a2", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -900,6 +834,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 13)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1-2a2-2a3, a2=a2+2a3, a3=a1+\
+a2+a3+a4, a4=-a1-a2-2a3-a4 ]
     根基: [ "-a2-2a3-2a4", "-a1-2a2-2a3", "a2+2a3", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -916,6 +852,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 14)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1, a2=-a2-2a3, a3=a3, a4=a1+\
+2a2+2a3+a4 ]
     根基: [ "-a2-2a3-2a4", "-a1", "-a2-2a3", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -932,6 +870,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 15)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1-a2, a2=-a2-2a3-2a4, a3=a2+a3+a\
+4, a4=a1+a2+2a3+a4 ]
     根基: [ "-a2-2a3", "-a1-a2", "-a2-2a3-2a4", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -948,6 +888,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 16)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1-a2-2a3-2a4, a2=-a2-2a3, a3=a2+2a3+\
+a4, a4=a1+a2+a3 ]
     根基: [ "-a2", "-a1-a2-2a3-2a4", "-a2-2a3", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -964,6 +906,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 17)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1-a2-2a3-2a4, a2=-a2, a3=a1+2a2+\
+2a3+a4, a4=-a1-a2-a3 ]
     根基: [ "-a2-2a3", "-a1-a2-2a3-2a4", "-a2", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -980,6 +924,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 18)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1-a2, a2=-a2-2a3, a3=a1+2a2+\
+3a3+a4, a4=-a1-a2-2a3-a4 ]
     根基: [ "-a2-2a3-2a4", "-a1-a2", "-a2-2a3", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -996,6 +942,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 19)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1-a2, a2=a2, a3=-a2-a3, a4=a\
+1+2a2+3a3+a4 ]
     根基: [ "-a2-2a3-2a4", "-a1-a2", "a2", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1012,6 +960,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 20)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1-a2-2a3-2a4, a2=a2+2a3+2a4, a3=\
+-a2-a3-a4, a4=a1+2a2+2a3+a4 ]
     根基: [ "-a2-2a3", "-a1-a2-2a3-2a4", "a2+2a3+2a4", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1028,6 +978,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 21)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1-2a2-4a3-2a4, a2=a2+2a3+2a4, a3=-a4\
+, a4=a1+a2+a3+a4 ]
     根基: [ "-a2", "-a1-2a2-4a3-2a4", "a2+2a3+2a4", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1044,6 +996,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 22)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-3a2-4a3-2a4, a2=a2+2a3, a3=a4, a4=a\
+1+a2+a3 ]
     根基: [ "a2", "-a1-3a2-4a3-2a4", "a2+2a3", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1060,6 +1014,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 23)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1-2a2-4a3-2a4, a2=a2+2a3, a3=a1+a2+a\
+3+a4, a4=-a1-a2-a3 ]
     根基: [ "-a2", "-a1-2a2-4a3-2a4", "a2+2a3", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1076,6 +1032,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 24)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1-a2-2a3, a2=a2+2a3, a3=a1+a\
+2+a3+a4, a4=-a1-2a2-2a3-a4 ]
     根基: [ "-a2-2a3-2a4", "-a1-a2-2a3", "a2+2a3", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1092,6 +1050,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 25)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1-2a2-2a3-2a4, a2=a2+2a3+2a4, a3\
+=a1+a2+a3, a4=-a1-a2-2a3-a4 ]
     根基: [ "-a2-2a3", "-a1-2a2-2a3-2a4", "a2+2a3+2a4", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1108,6 +1068,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 26)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1, a2=-a2, a3=-a3, a4=a1+2a2\
++3a3+a4 ]
     根基: [ "-a2-2a3-2a4", "-a1", "-a2", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1124,6 +1086,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 27)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1, a2=-a2-2a3-2a4, a3=a3+a4, a4=\
+a1+2a2+2a3+a4 ]
     根基: [ "-a2-2a3", "-a1", "-a2-2a3-2a4", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1140,6 +1104,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 28)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1-a2-2a3, a2=-a2-2a3-2a4, a3=a2+2a3+\
+a4, a4=a1+a2+a3+a4 ]
     根基: [ "-a2", "-a1-a2-2a3", "-a2-2a3-2a4", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1156,6 +1122,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 29)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-2a2-2a3-2a4, a2=-a2-2a3, a3=a2+2a3+\
+a4, a4=a1+a2+a3 ]
     根基: [ "a2", "-a1-2a2-2a3-2a4", "-a2-2a3", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1172,6 +1140,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 30)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1-a2-2a3-2a4, a2=-a2-2a3, a3=a1+2a2+\
+3a3+a4, a4=-a1-a2-a3 ]
     根基: [ "-a2", "-a1-a2-2a3-2a4", "-a2-2a3", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1188,6 +1158,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 31)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1, a2=-a2-2a3, a3=a1+2a2+3a3\
++a4, a4=-a1-2a2-2a3-a4 ]
     根基: [ "-a2-2a3-2a4", "-a1", "-a2-2a3", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1204,6 +1176,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 32)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1-a2, a2=-a2-2a3-2a4, a3=a1+2a2+\
+3a3+2a4, a4=-a1-a2-2a3-a4 ]
     根基: [ "-a2-2a3", "-a1-a2", "-a2-2a3-2a4", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1220,6 +1194,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 33)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1-a2, a2=a2, a3=-a2-a3-a4, a4=a1\
++2a2+3a3+2a4 ]
     根基: [ "-a2-2a3", "-a1-a2", "a2", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1236,6 +1212,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 34)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1-a2-2a3-2a4, a2=a2+2a3+2a4, a3=-a2-\
+2a3-a4, a4=a1+2a2+3a3+a4 ]
     根基: [ "-a2", "-a1-a2-2a3-2a4", "a2+2a3+2a4", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1252,6 +1230,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 35)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-3a2-4a3-2a4, a2=a2+2a3+2a4, a3=-a4,\
+ a4=a1+a2+a3+a4 ]
     根基: [ "a2", "-a1-3a2-4a3-2a4", "a2+2a3+2a4", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1268,6 +1248,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 36)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-3a2-4a3-2a4, a2=a2, a3=a3+a4, a\
+4=a1+a2+a3 ]
     根基: [ "a2+2a3", "-a1-3a2-4a3-2a4", "a2", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1284,6 +1266,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 37)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-3a2-4a3-2a4, a2=a2+2a3, a3=a1+a2+a3\
++a4, a4=-a1-a2-a3 ]
     根基: [ "a2", "-a1-3a2-4a3-2a4", "a2+2a3", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1300,6 +1284,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 38)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1-2a2-4a3-2a4, a2=a2+2a3+2a4, a3=a1+\
+a2+a3, a4=-a1-a2-a3-a4 ]
     根基: [ "-a2", "-a1-2a2-4a3-2a4", "a2+2a3+2a4", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1316,6 +1302,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 39)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1-a2, a2=a2, a3=a1+a2+2a3+a4\
+, a4=-a1-2a2-3a3-a4 ]
     根基: [ "-a2-2a3-2a4", "-a1-a2", "a2", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1332,6 +1320,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 40)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1-a2-2a3-2a4, a2=a2+2a3+2a4, a3=\
+a1+a2+a3, a4=-a1-2a2-2a3-a4 ]
     根基: [ "-a2-2a3", "-a1-a2-2a3-2a4", "a2+2a3+2a4", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1348,6 +1338,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 41)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+a2+2a3+2a4, a2=a2, a3=-a1-2\
+a2-2a3-a4, a4=a1+2a2+3a3+a4 ]
     根基: [ "-a2-2a3-2a4", "a1+a2+2a3+2a4", "a2", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1364,6 +1356,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 42)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1, a2=-a2, a3=-a3-a4, a4=a1+2a2+\
+3a3+2a4 ]
     根基: [ "-a2-2a3", "-a1", "-a2", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1380,6 +1374,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 43)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1, a2=-a2-2a3-2a4, a3=a4, a4=a1+2a2+\
+3a3+a4 ]
     根基: [ "-a2", "-a1", "-a2-2a3-2a4", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1396,6 +1392,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 44)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-2a2-2a3, a2=-a2-2a3-2a4, a3=a2+2a3+\
+a4, a4=a1+a2+a3+a4 ]
     根基: [ "a2", "-a1-2a2-2a3", "-a2-2a3-2a4", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1412,6 +1410,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 45)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-2a2-4a3-2a4, a2=-a2, a3=a2+a3+a\
+4, a4=a1+a2+a3 ]
     根基: [ "a2+2a3", "-a1-2a2-4a3-2a4", "-a2", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1428,6 +1428,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 46)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-2a2-2a3-2a4, a2=-a2-2a3, a3=a1+2a2+\
+3a3+a4, a4=-a1-a2-a3 ]
     根基: [ "a2", "-a1-2a2-2a3-2a4", "-a2-2a3", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1444,6 +1446,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 47)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1-a2-2a3, a2=-a2-2a3-2a4, a3=a1+2a2+\
+3a3+2a4, a4=-a1-a2-a3-a4 ]
     根基: [ "-a2", "-a1-a2-2a3", "-a2-2a3-2a4", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1460,6 +1464,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 48)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=-a1, a2=-a2, a3=a1+2a2+2a3+a4,\
+ a4=-a1-2a2-3a3-a4 ]
     根基: [ "-a2-2a3-2a4", "-a1", "-a2", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1476,6 +1482,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 49)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1, a2=-a2-2a3-2a4, a3=a1+2a2+3a3\
++2a4, a4=-a1-2a2-2a3-a4 ]
     根基: [ "-a2-2a3", "-a1", "-a2-2a3-2a4", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1492,6 +1500,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 50)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1-a2-2a3, a2=a2+2a3, a3=-a2-2a3-a4, \
+a4=a1+2a2+3a3+2a4 ]
     根基: [ "-a2", "-a1-a2-2a3", "a2+2a3", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1508,6 +1518,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 51)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-2a2-2a3-2a4, a2=a2+2a3+2a4, a3=-a2-\
+2a3-a4, a4=a1+2a2+3a3+a4 ]
     根基: [ "a2", "-a1-2a2-2a3-2a4", "a2+2a3+2a4", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1524,6 +1536,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 52)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-3a2-4a3-2a4, a2=a2+2a3+2a4, a3=\
+-a3-a4, a4=a1+a2+2a3+a4 ]
     根基: [ "a2+2a3", "-a1-3a2-4a3-2a4", "a2+2a3+2a4", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1540,6 +1554,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 53)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-3a2-4a3-2a4, a2=a2, a3=a3, \
+a4=a1+a2+a3+a4 ]
     根基: [ "a2+2a3+2a4", "-a1-3a2-4a3-2a4", "a2", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1556,6 +1572,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 54)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-3a2-4a3-2a4, a2=a2, a3=a1+a2+2a\
+3+a4, a4=-a1-a2-a3 ]
     根基: [ "a2+2a3", "-a1-3a2-4a3-2a4", "a2", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1572,6 +1590,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 55)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-3a2-4a3-2a4, a2=a2+2a3+2a4, a3=a1+a\
+2+a3, a4=-a1-a2-a3-a4 ]
     根基: [ "a2", "-a1-3a2-4a3-2a4", "a2+2a3+2a4", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1588,6 +1608,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 56)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1-a2, a2=a2, a3=a1+a2+2a3+a4, a4\
+=-a1-2a2-3a3-2a4 ]
     根基: [ "-a2-2a3", "-a1-a2", "a2", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1604,6 +1626,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 57)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1-a2-2a3-2a4, a2=a2+2a3+2a4, a3=a1+a\
+2+a3, a4=-a1-2a2-3a3-a4 ]
     根基: [ "-a2", "-a1-a2-2a3-2a4", "a2+2a3+2a4", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1620,6 +1644,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 58)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+2a2+2a3+2a4, a2=-a2, a3=-a1\
+-a2-2a3-a4, a4=a1+2a2+3a3+a4 ]
     根基: [ "-a2-2a3-2a4", "a1+2a2+2a3+2a4", "-a2", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1636,6 +1662,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 59)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+a2+2a3, a2=a2, a3=-a1-2a2-2a3-a\
+4, a4=a1+2a2+3a3+2a4 ]
     根基: [ "-a2-2a3", "a1+a2+2a3", "a2", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1652,6 +1680,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 60)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+a2+2a3+2a4, a2=a2+2a3, a3=-\
+a1-2a2-3a3-a4, a4=a1+2a2+2a3+a4 ]
     根基: [ "-a2-2a3-2a4", "a1+a2+2a3+2a4", "a2+2a3", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1668,6 +1698,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 61)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+a2+2a3+2a4, a2=a2, a3=a3, a\
+4=-a1-2a2-3a3-a4 ]
     根基: [ "-a2-2a3-2a4", "a1+a2+2a3+2a4", "a2", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1684,6 +1716,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 62)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1, a2=-a2-2a3, a3=-a4, a4=a1+2a2+3a3\
++2a4 ]
     根基: [ "-a2", "-a1", "-a2-2a3", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1700,6 +1734,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 63)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-a2, a2=-a2-2a3-2a4, a3=a4, a4=a1+2a\
+2+3a3+a4 ]
     根基: [ "a2", "-a1-a2", "-a2-2a3-2a4", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1716,6 +1752,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 64)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-2a2-2a3, a2=-a2-2a3-2a4, a3=a2+\
+a3+a4, a4=a1+a2+2a3+a4 ]
     根基: [ "a2+2a3", "-a1-2a2-2a3", "-a2-2a3-2a4", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1732,6 +1770,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 65)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-2a2-4a3-2a4, a2=-a2, a3=a2+\
+a3, a4=a1+a2+a3+a4 ]
     根基: [ "a2+2a3+2a4", "-a1-2a2-4a3-2a4", "-a2", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1748,6 +1788,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 66)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-2a2-4a3-2a4, a2=-a2, a3=a1+2a2+\
+2a3+a4, a4=-a1-a2-a3 ]
     根基: [ "a2+2a3", "-a1-2a2-4a3-2a4", "-a2", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1764,6 +1806,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 67)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-2a2-2a3, a2=-a2-2a3-2a4, a3=a1+2a2+\
+3a3+2a4, a4=-a1-a2-a3-a4 ]
     根基: [ "a2", "-a1-2a2-2a3", "-a2-2a3-2a4", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1780,6 +1824,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 68)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=-a1, a2=-a2, a3=a1+2a2+2a3+a4, a4=\
+-a1-2a2-3a3-2a4 ]
     根基: [ "-a2-2a3", "-a1", "-a2", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1796,6 +1842,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 69)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1, a2=-a2-2a3-2a4, a3=a1+2a2+3a3+2a4\
+, a4=-a1-2a2-3a3-a4 ]
     根基: [ "-a2", "-a1", "-a2-2a3-2a4", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1812,6 +1860,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 70)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-2a2-2a3, a2=a2+2a3, a3=-a2-2a3-a4, \
+a4=a1+2a2+3a3+2a4 ]
     根基: [ "a2", "-a1-2a2-2a3", "a2+2a3", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1828,6 +1878,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 71)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-2a2-4a3-2a4, a2=a2+2a3+2a4, a3=\
+-a2-a3-a4, a4=a1+2a2+2a3+a4 ]
     根基: [ "a2+2a3", "-a1-2a2-4a3-2a4", "a2+2a3+2a4", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1844,6 +1896,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 72)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-3a2-4a3-2a4, a2=a2+2a3, a3=\
+-a3, a4=a1+a2+2a3+a4 ]
     根基: [ "a2+2a3+2a4", "-a1-3a2-4a3-2a4", "a2+2a3", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1860,6 +1914,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 73)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-3a2-4a3-2a4, a2=a2, a3=a1+a\
+2+2a3+a4, a4=-a1-a2-a3-a4 ]
     根基: [ "a2+2a3+2a4", "-a1-3a2-4a3-2a4", "a2", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1876,6 +1932,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 74)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-3a2-4a3-2a4, a2=a2+2a3+2a4, a3=\
+a1+a2+a3, a4=-a1-a2-2a3-a4 ]
     根基: [ "a2+2a3", "-a1-3a2-4a3-2a4", "a2+2a3+2a4", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1892,6 +1950,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 75)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1-a2-2a3, a2=a2+2a3, a3=a1+a2+a3+a4,\
+ a4=-a1-2a2-3a3-2a4 ]
     根基: [ "-a2", "-a1-a2-2a3", "a2+2a3", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1908,6 +1968,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 76)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-2a2-2a3-2a4, a2=a2+2a3+2a4, a3=a1+a\
+2+a3, a4=-a1-2a2-3a3-a4 ]
     根基: [ "a2", "-a1-2a2-2a3-2a4", "a2+2a3+2a4", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1924,6 +1986,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 77)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+2a2+2a3, a2=-a2, a3=-a1-a2-2a3-\
+a4, a4=a1+2a2+3a3+2a4 ]
     根基: [ "-a2-2a3", "a1+2a2+2a3", "-a2", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1940,6 +2004,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 78)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+2a2+4a3+2a4, a2=-a2-2a3, a3\
+=-a1-a2-a3-a4, a4=a1+2a2+2a3+a4 ]
     根基: [ "-a2-2a3-2a4", "a1+2a2+4a3+2a4", "-a2-2a3", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1956,6 +2022,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 79)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+2a2+2a3+2a4, a2=-a2, a3=a2+\
+a3, a4=-a1-2a2-3a3-a4 ]
     根基: [ "-a2-2a3-2a4", "a1+2a2+2a3+2a4", "-a2", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1972,6 +2040,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 80)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+a2, a2=a2+2a3, a3=-a1-2a2-3a3-a4, a\
+4=a1+2a2+3a3+2a4 ]
     根基: [ "-a2", "a1+a2", "a2+2a3", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -1988,6 +2058,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 81)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+2a2+2a3+2a4, a2=a2+2a3, a3=\
+-a1-2a2-3a3-a4, a4=a1+a2+2a3+a4 ]
     根基: [ "-a2-2a3-2a4", "a1+2a2+2a3+2a4", "a2+2a3", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2004,6 +2076,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 82)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+a2+2a3, a2=a2+2a3+2a4, a3=-a1-2\
+a2-3a3-2a4, a4=a1+2a2+2a3+a4 ]
     根基: [ "-a2-2a3", "a1+a2+2a3", "a2+2a3+2a4", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2020,6 +2094,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 83)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+a2+2a3+2a4, a2=a2+2a3, a3=-\
+a3, a4=-a1-2a2-2a3-a4 ]
     根基: [ "-a2-2a3-2a4", "a1+a2+2a3+2a4", "a2+2a3", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2036,6 +2112,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 84)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+a2+2a3, a2=a2, a3=a3+a4, a4=-a1\
+-2a2-3a3-2a4 ]
     根基: [ "-a2-2a3", "a1+a2+2a3", "a2", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2052,6 +2130,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 85)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-a2, a2=-a2-2a3, a3=-a4, a4=a1+2a2+3\
+a3+2a4 ]
     根基: [ "a2", "-a1-a2", "-a2-2a3", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2068,6 +2148,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 86)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-a2-2a3, a2=-a2-2a3-2a4, a3=a3+a\
+4, a4=a1+2a2+2a3+a4 ]
     根基: [ "a2+2a3", "-a1-a2-2a3", "-a2-2a3-2a4", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2084,6 +2166,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 87)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-2a2-2a3-2a4, a2=-a2-2a3, a3\
+=a2+a3, a4=a1+a2+2a3+a4 ]
     根基: [ "a2+2a3+2a4", "-a1-2a2-2a3-2a4", "-a2-2a3", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2100,6 +2184,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 88)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-2a2-4a3-2a4, a2=-a2, a3=a1+\
+2a2+2a3+a4, a4=-a1-a2-a3-a4 ]
     根基: [ "a2+2a3+2a4", "-a1-2a2-4a3-2a4", "-a2", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2116,6 +2202,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 89)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-2a2-2a3, a2=-a2-2a3-2a4, a3=a1+\
+2a2+3a3+2a4, a4=-a1-a2-2a3-a4 ]
     根基: [ "a2+2a3", "-a1-2a2-2a3", "-a2-2a3-2a4", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2132,6 +2220,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 90)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=-a1, a2=-a2-2a3, a3=a1+2a2+3a3+a4, a4=\
+-a1-2a2-3a3-2a4 ]
     根基: [ "-a2", "-a1", "-a2-2a3", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2148,6 +2238,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 91)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-a2, a2=-a2-2a3-2a4, a3=a1+2a2+3a3+2\
+a4, a4=-a1-2a2-3a3-a4 ]
     根基: [ "a2", "-a1-a2", "-a2-2a3-2a4", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2164,6 +2256,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 92)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-2a2-2a3, a2=a2, a3=-a2-a3-a4, a\
+4=a1+2a2+3a3+2a4 ]
     根基: [ "a2+2a3", "-a1-2a2-2a3", "a2", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2180,6 +2274,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 93)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-2a2-4a3-2a4, a2=a2+2a3, a3=\
+-a2-a3, a4=a1+2a2+2a3+a4 ]
     根基: [ "a2+2a3+2a4", "-a1-2a2-4a3-2a4", "a2+2a3", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2196,6 +2292,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 94)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-3a2-4a3-2a4, a2=a2+2a3, a3=\
+a1+a2+a3+a4, a4=-a1-a2-2a3-a4 ]
     根基: [ "a2+2a3+2a4", "-a1-3a2-4a3-2a4", "a2+2a3", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2212,6 +2310,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 95)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-2a2-4a3-2a4, a2=a2+2a3+2a4, a3=\
+a1+a2+a3, a4=-a1-2a2-2a3-a4 ]
     根基: [ "a2+2a3", "-a1-2a2-4a3-2a4", "a2+2a3+2a4", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2228,6 +2328,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 96)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-2a2-2a3, a2=a2+2a3, a3=a1+a2+a3+a4,\
+ a4=-a1-2a2-3a3-2a4 ]
     根基: [ "a2", "-a1-2a2-2a3", "a2+2a3", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2244,6 +2346,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 97)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+2a2+2a3, a2=-a2-2a3, a3=-a1-a2-a3-a\
+4, a4=a1+2a2+3a3+2a4 ]
     根基: [ "-a2", "a1+2a2+2a3", "-a2-2a3", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2260,6 +2364,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 98)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+3a2+4a3+2a4, a2=-a2-2a3, a3\
+=-a1-a2-a3-a4, a4=a1+a2+2a3+a4 ]
     根基: [ "-a2-2a3-2a4", "a1+3a2+4a3+2a4", "-a2-2a3", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2276,6 +2382,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 99)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+2a2+4a3+2a4, a2=-a2-2a3-2a4, a3\
+=-a1-a2-a3, a4=a1+2a2+2a3+a4 ]
     根基: [ "-a2-2a3", "a1+2a2+4a3+2a4", "-a2-2a3-2a4", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2292,6 +2400,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 100)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+2a2+4a3+2a4, a2=-a2-2a3, a3\
+=a2+a3, a4=-a1-2a2-2a3-a4 ]
     根基: [ "-a2-2a3-2a4", "a1+2a2+4a3+2a4", "-a2-2a3", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2308,6 +2418,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 101)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+2a2+2a3, a2=-a2, a3=a2+a3+a4, a\
+4=-a1-2a2-3a3-2a4 ]
     根基: [ "-a2-2a3", "a1+2a2+2a3", "-a2", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2324,6 +2436,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 102)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1, a2=a2+2a3, a3=-a1-2a2-3a3-a4, a4=a1\
++2a2+3a3+2a4 ]
     根基: [ "a2", "a1", "a2+2a3", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2340,6 +2454,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 103)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+a2, a2=a2+2a3+2a4, a3=-a1-2a2-3a3-2\
+a4, a4=a1+2a2+3a3+a4 ]
     根基: [ "-a2", "a1+a2", "a2+2a3+2a4", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2356,6 +2472,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 104)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+2a2+4a3+2a4, a2=a2, a3=-a1-\
+2a2-2a3-a4, a4=a1+a2+a3+a4 ]
     根基: [ "-a2-2a3-2a4", "a1+2a2+4a3+2a4", "a2", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2372,6 +2490,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 105)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+2a2+2a3, a2=a2+2a3+2a4, a3=-a1-\
+2a2-3a3-2a4, a4=a1+a2+2a3+a4 ]
     根基: [ "-a2-2a3", "a1+2a2+2a3", "a2+2a3+2a4", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2388,6 +2508,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 106)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+2a2+2a3+2a4, a2=a2+2a3, a3=\
+-a2-a3, a4=-a1-a2-2a3-a4 ]
     根基: [ "-a2-2a3-2a4", "a1+2a2+2a3+2a4", "a2+2a3", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2404,6 +2526,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 107)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+a2+2a3, a2=a2+2a3+2a4, a3=-a3-a\
+4, a4=-a1-2a2-2a3-a4 ]
     根基: [ "-a2-2a3", "a1+a2+2a3", "a2+2a3+2a4", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2420,6 +2544,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 108)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+a2, a2=a2+2a3, a3=a4, a4=-a1-2a2-3a\
+3-2a4 ]
     根基: [ "-a2", "a1+a2", "a2+2a3", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2436,6 +2562,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 109)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-a2-2a3, a2=-a2, a3=-a3-a4, a4=a\
+1+2a2+3a3+2a4 ]
     根基: [ "a2+2a3", "-a1-a2-2a3", "-a2", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2452,6 +2580,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 110)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-a2-2a3-2a4, a2=-a2-2a3, a3=\
+a3, a4=a1+2a2+2a3+a4 ]
     根基: [ "a2+2a3+2a4", "-a1-a2-2a3-2a4", "-a2-2a3", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2468,6 +2598,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 111)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-2a2-2a3-2a4, a2=-a2-2a3, a3\
+=a1+2a2+3a3+a4, a4=-a1-a2-2a3-a4 ]
     根基: [ "a2+2a3+2a4", "-a1-2a2-2a3-2a4", "-a2-2a3", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2484,6 +2616,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 112)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-a2-2a3, a2=-a2-2a3-2a4, a3=a1+2\
+a2+3a3+2a4, a4=-a1-2a2-2a3-a4 ]
     根基: [ "a2+2a3", "-a1-a2-2a3", "-a2-2a3-2a4", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2500,6 +2634,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 113)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=-a1-a2, a2=-a2-2a3, a3=a1+2a2+3a3+a4, a\
+4=-a1-2a2-3a3-2a4 ]
     根基: [ "a2", "-a1-a2", "-a2-2a3", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2516,6 +2652,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 114)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-2a2-2a3-2a4, a2=a2, a3=-a2-\
+a3, a4=a1+2a2+3a3+a4 ]
     根基: [ "a2+2a3+2a4", "-a1-2a2-2a3-2a4", "a2", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2532,6 +2670,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 115)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-2a2-4a3-2a4, a2=a2+2a3, a3=\
+a1+a2+a3+a4, a4=-a1-2a2-2a3-a4 ]
     根基: [ "a2+2a3+2a4", "-a1-2a2-4a3-2a4", "a2+2a3", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2548,6 +2688,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 116)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-2a2-2a3, a2=a2, a3=a1+a2+2a3+a4\
+, a4=-a1-2a2-3a3-2a4 ]
     根基: [ "a2+2a3", "-a1-2a2-2a3", "a2", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2564,6 +2706,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 117)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1+a2+2a3, a2=-a2-2a3, a3=-a1-a2-a3-a4,\
+ a4=a1+2a2+3a3+2a4 ]
     根基: [ "a2", "a1+a2+2a3", "-a2-2a3", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2580,6 +2724,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 118)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+2a2+2a3+2a4, a2=-a2-2a3-2a4, a3=-a1\
+-a2-a3, a4=a1+2a2+3a3+a4 ]
     根基: [ "-a2", "a1+2a2+2a3+2a4", "-a2-2a3-2a4", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2596,6 +2742,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 119)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+3a2+4a3+2a4, a2=-a2, a3=-a1\
+-a2-2a3-a4, a4=a1+a2+a3+a4 ]
     根基: [ "-a2-2a3-2a4", "a1+3a2+4a3+2a4", "-a2", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2612,6 +2760,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 120)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+3a2+4a3+2a4, a2=-a2-2a3-2a4, a3\
+=-a1-a2-a3, a4=a1+a2+2a3+a4 ]
     根基: [ "-a2-2a3", "a1+3a2+4a3+2a4", "-a2-2a3-2a4", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2628,6 +2778,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 121)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+3a2+4a3+2a4, a2=-a2-2a3, a3\
+=a3, a4=-a1-a2-2a3-a4 ]
     根基: [ "-a2-2a3-2a4", "a1+3a2+4a3+2a4", "-a2-2a3", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2644,6 +2796,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 122)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+2a2+4a3+2a4, a2=-a2-2a3-2a4, a3\
+=a2+a3+a4, a4=-a1-2a2-2a3-a4 ]
     根基: [ "-a2-2a3", "a1+2a2+4a3+2a4", "-a2-2a3-2a4", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2660,6 +2814,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 123)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+2a2+2a3, a2=-a2-2a3, a3=a2+2a3+a4, \
+a4=-a1-2a2-3a3-2a4 ]
     根基: [ "-a2", "a1+2a2+2a3", "-a2-2a3", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2676,6 +2832,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 124)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1, a2=a2, a3=-a1-2a2-2a3-a4, a4=a1\
++2a2+3a3+2a4 ]
     根基: [ "a2+2a3", "a1", "a2", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2692,6 +2850,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 125)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1, a2=a2+2a3+2a4, a3=-a1-2a2-3a3-2a4, \
+a4=a1+2a2+3a3+a4 ]
     根基: [ "a2", "a1", "a2+2a3+2a4", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2708,6 +2868,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 126)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+2a2+4a3+2a4, a2=a2, a3=-a1-2a2-\
+2a3-a4, a4=a1+a2+a3 ]
     根基: [ "-a2-2a3", "a1+2a2+4a3+2a4", "a2", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2724,6 +2886,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 127)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+2a2+2a3, a2=a2+2a3+2a4, a3=-a1-2a2-\
+3a3-2a4, a4=a1+a2+a3+a4 ]
     根基: [ "-a2", "a1+2a2+2a3", "a2+2a3+2a4", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2740,6 +2904,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 128)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+2a2+4a3+2a4, a2=a2, a3=-a2-\
+a3, a4=-a1-a2-a3-a4 ]
     根基: [ "-a2-2a3-2a4", "a1+2a2+4a3+2a4", "a2", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2756,6 +2922,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 129)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+2a2+2a3, a2=a2+2a3+2a4, a3=-a2-\
+a3-a4, a4=-a1-a2-2a3-a4 ]
     根基: [ "-a2-2a3", "a1+2a2+2a3", "a2+2a3+2a4", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2772,6 +2940,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 130)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+a2, a2=a2+2a3+2a4, a3=-a4, a4=-a1-2\
+a2-3a3-a4 ]
     根基: [ "-a2", "a1+a2", "a2+2a3+2a4", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2788,6 +2958,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 131)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1, a2=a2+2a3, a3=a4, a4=-a1-2a2-3a3-2a\
+4 ]
     根基: [ "a2", "a1", "a2+2a3", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2804,6 +2976,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 132)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-a2-2a3-2a4, a2=-a2, a3=-a3,\
+ a4=a1+2a2+3a3+a4 ]
     根基: [ "a2+2a3+2a4", "-a1-a2-2a3-2a4", "-a2", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2820,6 +2994,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 133)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-a2-2a3-2a4, a2=-a2-2a3, a3=\
+a1+2a2+3a3+a4, a4=-a1-2a2-2a3-a4 ]
     根基: [ "a2+2a3+2a4", "-a1-a2-2a3-2a4", "-a2-2a3", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2836,6 +3012,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 134)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=-a1-a2-2a3, a2=-a2, a3=a1+2a2+2a3+a\
+4, a4=-a1-2a2-3a3-2a4 ]
     根基: [ "a2+2a3", "-a1-a2-2a3", "-a2", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2852,6 +3030,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 135)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-2a2-2a3-2a4, a2=a2, a3=a1+a\
+2+2a3+a4, a4=-a1-2a2-3a3-a4 ]
     根基: [ "a2+2a3+2a4", "-a1-2a2-2a3-2a4", "a2", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2868,6 +3048,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 136)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1+a2, a2=-a2, a3=-a1-a2-2a3-a4, a4\
+=a1+2a2+3a3+2a4 ]
     根基: [ "a2+2a3", "a1+a2", "-a2", "a1+2a2+3a3+2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2884,6 +3066,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 137)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1+a2+2a3+2a4, a2=-a2-2a3-2a4, a3=-a1-a\
+2-a3, a4=a1+2a2+3a3+a4 ]
     根基: [ "a2", "a1+a2+2a3+2a4", "-a2-2a3-2a4", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2900,6 +3084,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 138)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+3a2+4a3+2a4, a2=-a2, a3=-a1-a2-\
+2a3-a4, a4=a1+a2+a3 ]
     根基: [ "-a2-2a3", "a1+3a2+4a3+2a4", "-a2", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2916,6 +3102,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 139)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+3a2+4a3+2a4, a2=-a2-2a3-2a4, a3=-a1\
+-a2-a3, a4=a1+a2+a3+a4 ]
     根基: [ "-a2", "a1+3a2+4a3+2a4", "-a2-2a3-2a4", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2932,6 +3120,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 140)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3-2a4, a1=a1+3a2+4a3+2a4, a2=-a2, a3=-a3\
+, a4=-a1-a2-a3-a4 ]
     根基: [ "-a2-2a3-2a4", "a1+3a2+4a3+2a4", "-a2", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2948,6 +3138,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 141)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+3a2+4a3+2a4, a2=-a2-2a3-2a4, a3\
+=a3+a4, a4=-a1-a2-2a3-a4 ]
     根基: [ "-a2-2a3", "a1+3a2+4a3+2a4", "-a2-2a3-2a4", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2964,6 +3156,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 142)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+2a2+2a3+2a4, a2=-a2-2a3-2a4, a3=a2+\
+2a3+a4, a4=-a1-2a2-3a3-a4 ]
     根基: [ "-a2", "a1+2a2+2a3+2a4", "-a2-2a3-2a4", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2980,6 +3174,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 143)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1+a2+2a3, a2=-a2-2a3, a3=a2+2a3+a4, a4\
+=-a1-2a2-3a3-2a4 ]
     根基: [ "a2", "a1+a2+2a3", "-a2-2a3", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -2996,6 +3192,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 144)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1, a2=a2, a3=-a1-2a2-2a3-a4, a\
+4=a1+2a2+3a3+a4 ]
     根基: [ "a2+2a3+2a4", "a1", "a2", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3012,6 +3210,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 145)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1, a2=a2+2a3+2a4, a3=-a1-2a2-3a3-2\
+a4, a4=a1+2a2+2a3+a4 ]
     根基: [ "a2+2a3", "a1", "a2+2a3+2a4", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3028,6 +3228,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 146)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+2a2+2a3+2a4, a2=a2+2a3, a3=-a1-2a2-\
+3a3-a4, a4=a1+a2+a3 ]
     根基: [ "-a2", "a1+2a2+2a3+2a4", "a2+2a3", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3044,6 +3246,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 147)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1+a2+2a3, a2=a2+2a3+2a4, a3=-a1-2a2-3a\
+3-2a4, a4=a1+a2+a3+a4 ]
     根基: [ "a2", "a1+a2+2a3", "a2+2a3+2a4", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3060,6 +3264,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 148)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+2a2+4a3+2a4, a2=a2, a3=-a2-a3-a\
+4, a4=-a1-a2-a3 ]
     根基: [ "-a2-2a3", "a1+2a2+4a3+2a4", "a2", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3076,6 +3282,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 149)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+2a2+2a3, a2=a2+2a3+2a4, a3=-a2-2a3-\
+a4, a4=-a1-a2-a3-a4 ]
     根基: [ "-a2", "a1+2a2+2a3", "a2+2a3+2a4", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3092,6 +3300,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 150)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1, a2=a2+2a3+2a4, a3=-a4, a4=-a1-2a2-3\
+a3-a4 ]
     根基: [ "a2", "a1", "a2+2a3+2a4", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3108,6 +3318,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 151)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1, a2=a2, a3=a3+a4, a4=-a1-2a2-3a3\
+-2a4 ]
     根基: [ "a2+2a3", "a1", "a2", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3124,6 +3336,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 152)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=-a1-a2-2a3-2a4, a2=-a2, a3=a1+2\
+a2+2a3+a4, a4=-a1-2a2-3a3-a4 ]
     根基: [ "a2+2a3+2a4", "-a1-a2-2a3-2a4", "-a2", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3140,6 +3354,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 153)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1+a2, a2=-a2, a3=-a1-a2-2a3-a4\
+, a4=a1+2a2+3a3+a4 ]
     根基: [ "a2+2a3+2a4", "a1+a2", "-a2", "a1+2a2+3a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3156,6 +3372,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 154)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1+a2+2a3+2a4, a2=-a2-2a3-2a4, a3=-\
+a1-a2-a3, a4=a1+2a2+2a3+a4 ]
     根基: [ "a2+2a3", "a1+a2+2a3+2a4", "-a2-2a3-2a4", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3172,6 +3390,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 155)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+3a2+4a3+2a4, a2=-a2-2a3, a3=-a1-a2-\
+a3-a4, a4=a1+a2+a3 ]
     根基: [ "-a2", "a1+3a2+4a3+2a4", "-a2-2a3", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3188,6 +3408,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 156)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1+2a2+4a3+2a4, a2=-a2-2a3-2a4, a3=-a1-\
+a2-a3, a4=a1+a2+a3+a4 ]
     根基: [ "a2", "a1+2a2+4a3+2a4", "-a2-2a3-2a4", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3204,6 +3426,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 157)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2-2a3, a1=a1+3a2+4a3+2a4, a2=-a2, a3=-a3-a4,\
+ a4=-a1-a2-a3 ]
     根基: [ "-a2-2a3", "a1+3a2+4a3+2a4", "-a2", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3220,6 +3444,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 158)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+3a2+4a3+2a4, a2=-a2-2a3-2a4, a3=a4,\
+ a4=-a1-a2-a3-a4 ]
     根基: [ "-a2", "a1+3a2+4a3+2a4", "-a2-2a3-2a4", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3236,6 +3462,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 159)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1+a2+2a3+2a4, a2=-a2-2a3-2a4, a3=a2+2a\
+3+a4, a4=-a1-2a2-3a3-a4 ]
     根基: [ "a2", "a1+a2+2a3+2a4", "-a2-2a3-2a4", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3252,6 +3480,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 160)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1+a2, a2=-a2, a3=a2+a3+a4, a4=-a1-\
+2a2-3a3-2a4 ]
     根基: [ "a2+2a3", "a1+a2", "-a2", "-a1-2a2-3a3-2a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3268,6 +3498,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 161)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1, a2=a2+2a3, a3=-a1-2a2-3a3-a\
+4, a4=a1+2a2+2a3+a4 ]
     根基: [ "a2+2a3+2a4", "a1", "a2+2a3", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3284,6 +3516,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 162)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1+a2, a2=a2+2a3+2a4, a3=-a1-2a2-3a\
+3-2a4, a4=a1+a2+2a3+a4 ]
     根基: [ "a2+2a3", "a1+a2", "a2+2a3+2a4", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3300,6 +3534,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 163)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1+a2+2a3+2a4, a2=a2+2a3, a3=-a1-2a2-3a\
+3-a4, a4=a1+a2+a3 ]
     根基: [ "a2", "a1+a2+2a3+2a4", "a2+2a3", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3316,6 +3552,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 164)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+2a2+2a3+2a4, a2=a2+2a3, a3=-a2-2a3-\
+a4, a4=-a1-a2-a3 ]
     根基: [ "-a2", "a1+2a2+2a3+2a4", "a2+2a3", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3332,6 +3570,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 165)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1+a2+2a3, a2=a2+2a3+2a4, a3=-a2-2a3-a4\
+, a4=-a1-a2-a3-a4 ]
     根基: [ "a2", "a1+a2+2a3", "a2+2a3+2a4", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3348,6 +3588,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 166)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1, a2=a2+2a3+2a4, a3=-a3-a4, a4=-a\
+1-2a2-2a3-a4 ]
     根基: [ "a2+2a3", "a1", "a2+2a3+2a4", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3364,6 +3606,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 167)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1, a2=a2, a3=a3, a4=-a1-2a2-3a\
+3-a4 ]
     根基: [ "a2+2a3+2a4", "a1", "a2", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3380,6 +3624,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 168)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1+a2+2a3, a2=-a2-2a3, a3=-a1-a\
+2-a3-a4, a4=a1+2a2+2a3+a4 ]
     根基: [ "a2+2a3+2a4", "a1+a2+2a3", "-a2-2a3", "a1+2a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3396,6 +3642,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 169)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1+2a2+2a3+2a4, a2=-a2-2a3-2a4, a3=\
+-a1-a2-a3, a4=a1+a2+2a3+a4 ]
     根基: [ "a2+2a3", "a1+2a2+2a3+2a4", "-a2-2a3-2a4", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3412,6 +3660,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 170)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1+2a2+4a3+2a4, a2=-a2-2a3, a3=-a1-a2-a\
+3-a4, a4=a1+a2+a3 ]
     根基: [ "a2", "a1+2a2+4a3+2a4", "-a2-2a3", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3428,6 +3678,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 171)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=-a2, a1=a1+3a2+4a3+2a4, a2=-a2-2a3, a3=-a4, a4\
+=-a1-a2-a3 ]
     根基: [ "-a2", "a1+3a2+4a3+2a4", "-a2-2a3", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3444,6 +3696,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 172)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1+2a2+4a3+2a4, a2=-a2-2a3-2a4, a3=a4, \
+a4=-a1-a2-a3-a4 ]
     根基: [ "a2", "a1+2a2+4a3+2a4", "-a2-2a3-2a4", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3460,6 +3714,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 173)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1+a2+2a3+2a4, a2=-a2-2a3-2a4, a3=a\
+2+a3+a4, a4=-a1-2a2-2a3-a4 ]
     根基: [ "a2+2a3", "a1+a2+2a3+2a4", "-a2-2a3-2a4", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3476,6 +3732,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 174)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1+a2, a2=-a2, a3=a2+a3, a4=-a1\
+-2a2-3a3-a4 ]
     根基: [ "a2+2a3+2a4", "a1+a2", "-a2", "-a1-2a2-3a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3492,6 +3750,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 175)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1+a2, a2=a2+2a3, a3=-a1-2a2-3a\
+3-a4, a4=a1+a2+2a3+a4 ]
     根基: [ "a2+2a3+2a4", "a1+a2", "a2+2a3", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3508,6 +3768,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 176)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1+a2+2a3+2a4, a2=a2, a3=-a1-2a2-2a\
+3-a4, a4=a1+a2+a3 ]
     根基: [ "a2+2a3", "a1+a2+2a3+2a4", "a2", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3524,6 +3786,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 177)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1+a2+2a3+2a4, a2=a2+2a3, a3=-a2-2a3-a4\
+, a4=-a1-a2-a3 ]
     根基: [ "a2", "a1+a2+2a3+2a4", "a2+2a3", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3540,6 +3804,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 178)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1+a2, a2=a2+2a3+2a4, a3=-a2-a3-a4,\
+ a4=-a1-a2-2a3-a4 ]
     根基: [ "a2+2a3", "a1+a2", "a2+2a3+2a4", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3556,6 +3822,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 179)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1, a2=a2+2a3, a3=-a3, a4=-a1-2\
+a2-2a3-a4 ]
     根基: [ "a2+2a3+2a4", "a1", "a2+2a3", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3572,6 +3840,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 180)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1+2a2+2a3, a2=-a2-2a3, a3=-a1-\
+a2-a3-a4, a4=a1+a2+2a3+a4 ]
     根基: [ "a2+2a3+2a4", "a1+2a2+2a3", "-a2-2a3", "a1+a2+2a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3588,6 +3858,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 181)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1+2a2+2a3+2a4, a2=-a2, a3=-a1-a2-2\
+a3-a4, a4=a1+a2+a3 ]
     根基: [ "a2+2a3", "a1+2a2+2a3+2a4", "-a2", "a1+a2+a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3604,6 +3876,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 182)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2, a1=a1+2a2+4a3+2a4, a2=-a2-2a3, a3=-a4, a4=\
+-a1-a2-a3 ]
     根基: [ "a2", "a1+2a2+4a3+2a4", "-a2-2a3", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3620,6 +3894,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 183)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1+2a2+2a3+2a4, a2=-a2-2a3-2a4, a3=\
+a3+a4, a4=-a1-a2-2a3-a4 ]
     根基: [ "a2+2a3", "a1+2a2+2a3+2a4", "-a2-2a3-2a4", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3636,6 +3912,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 184)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1+a2+2a3, a2=-a2-2a3, a3=a2+a3\
+, a4=-a1-2a2-2a3-a4 ]
     根基: [ "a2+2a3+2a4", "a1+a2+2a3", "-a2-2a3", "-a1-2a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3652,6 +3930,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 185)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1+a2+2a3, a2=a2, a3=-a1-2a2-2a\
+3-a4, a4=a1+a2+a3+a4 ]
     根基: [ "a2+2a3+2a4", "a1+a2+2a3", "a2", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3668,6 +3948,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 186)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1+a2+2a3+2a4, a2=a2, a3=-a2-a3-a4,\
+ a4=-a1-a2-a3 ]
     根基: [ "a2+2a3", "a1+a2+2a3+2a4", "a2", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3684,6 +3966,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 187)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1+a2, a2=a2+2a3, a3=-a2-a3, a4\
+=-a1-a2-2a3-a4 ]
     根基: [ "a2+2a3+2a4", "a1+a2", "a2+2a3", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3700,6 +3984,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 188)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1+2a2+2a3, a2=-a2, a3=-a1-a2-2\
+a3-a4, a4=a1+a2+a3+a4 ]
     根基: [ "a2+2a3+2a4", "a1+2a2+2a3", "-a2", "a1+a2+a3+a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3716,6 +4002,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 189)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3, a1=a1+2a2+2a3+2a4, a2=-a2, a3=-a3-a4, \
+a4=-a1-a2-a3 ]
     根基: [ "a2+2a3", "a1+2a2+2a3+2a4", "-a2", "-a1-a2-a3" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3732,6 +4020,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 190)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1+2a2+2a3, a2=-a2-2a3, a3=a3, \
+a4=-a1-a2-2a3-a4 ]
     根基: [ "a2+2a3+2a4", "a1+2a2+2a3", "-a2-2a3", "-a1-a2-2a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3748,6 +4038,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 191)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1+a2+2a3, a2=a2, a3=-a2-a3, a4\
+=-a1-a2-a3-a4 ]
     根基: [ "a2+2a3+2a4", "a1+a2+2a3", "a2", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
@@ -3764,6 +4056,8 @@ t_set_ok=true, compact_dominant=true
 >>> 模块 1 输出: 子系统分析 (索引 192)
     实验: F4(4) 实验: 选取[a0,a1,a2,a4] 且 a1,a4 涂黑
     类型: A1 + A3
+    五个位置对应根: [ a0=a2+2a3+2a4, a1=a1+2a2+2a3, a2=-a2, a3=-a3, a4=\
+-a1-a2-a3-a4 ]
     根基: [ "a2+2a3+2a4", "a1+2a2+2a3", "-a2", "-a1-a2-a3-a4" ]
     颜色配置: 2 黑, 2 白
     >>> 模块 2 输出: 实形式推断
