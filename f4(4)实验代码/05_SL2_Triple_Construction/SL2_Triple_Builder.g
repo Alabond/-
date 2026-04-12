@@ -1666,60 +1666,41 @@ ComputeThetaOrbitTriplesForModule4 := function(real_form_info)
     );
 end;;
 
-MirrorRetainedBuilderText := function(text)
-    if IsBoundGlobal("AppendRetainedMirrorText") then
-        ValueGlobal("AppendRetainedMirrorText")(text);
-    fi;
-end;;
 PrintThetaOrbitStep2 := function(theta_data)
     local t;
     if theta_data = fail or not IsRecord(theta_data) or not IsBound(theta_data.ok) or not theta_data.ok then
         if theta_data <> fail and IsRecord(theta_data) and IsBound(theta_data.reason) then
             Print("        [M4-STEP2] Theta-orbit 路径跳过: ", theta_data.reason, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [M4-STEP2] Theta-orbit 路径跳过: ", String(theta_data.reason), "\n"));
         else
             Print("        [M4-STEP2] Theta-orbit 路径跳过\n");
-            MirrorRetainedBuilderText("        [M4-STEP2] Theta-orbit 路径跳过\n");
         fi;
         return;
     fi;
     Print("        [M4-STEP2] NilpotentOrbitsOfThetaRepresentation\n");
-    MirrorRetainedBuilderText("        [M4-STEP2] NilpotentOrbitsOfThetaRepresentation\n");
     Print("        [M4-STEP2] RealForm = ", theta_data.real_form.type, ", Params = ", theta_data.real_form.params, "\n");
-    MirrorRetainedBuilderText(Concatenation("        [M4-STEP2] RealForm = ", theta_data.real_form.type, ", Params = ", String(theta_data.real_form.params), "\n"));
     if IsBound(theta_data.theta_input_mode) then
         Print("        [M4-STEP2] 输入模式 = ", theta_data.theta_input_mode, "\n");
-        MirrorRetainedBuilderText(Concatenation("        [M4-STEP2] 输入模式 = ", String(theta_data.theta_input_mode), "\n"));
     fi;
     if IsBound(theta_data.grading) and theta_data.grading <> fail then
         Print("        [M4-STEP2] grading d = ", theta_data.grading, "\n");
-        MirrorRetainedBuilderText(Concatenation("        [M4-STEP2] grading d = ", String(theta_data.grading), "\n"));
     fi;
     if IsBound(theta_data.kac_weights) and theta_data.kac_weights <> fail then
         Print("        [M4-STEP2] theta Kac weights = ", theta_data.kac_weights, "\n");
-        MirrorRetainedBuilderText(Concatenation("        [M4-STEP2] theta Kac weights = ", String(theta_data.kac_weights), "\n"));
     fi;
     if IsBound(theta_data.center_dim_lk) and theta_data.center_dim_lk <> fail then
         Print("        [M4-STEP2] dim(z(l)∩k) = ", theta_data.center_dim_lk, "\n");
-        MirrorRetainedBuilderText(Concatenation("        [M4-STEP2] dim(z(l)∩k) = ", String(theta_data.center_dim_lk), "\n"));
     fi;
     Print("        [M4-STEP2] theta 轨道总数 = ", Length(theta_data.triples), "\n");
-    MirrorRetainedBuilderText(Concatenation("        [M4-STEP2] theta 轨道总数 = ", String(Length(theta_data.triples)), "\n"));
     Print("        [M4-STEP2] noticed 轨道数 = ", Length(theta_data.noticed_triples), "\n");
-    MirrorRetainedBuilderText(Concatenation("        [M4-STEP2] noticed 轨道数 = ", String(Length(theta_data.noticed_triples)), "\n"));
     for t in theta_data.noticed_triples do
         Print("        [M4-STEP2] orbit#", t.index, ": x=", t.x, ", h=", t.h, ", y=", t.y, "\n");
-        MirrorRetainedBuilderText(Concatenation("        [M4-STEP2] orbit#", String(t.index), ": x=", String(t.x), ", h=", String(t.h), ", y=", String(t.y), "\n"));
         Print("        [M4-STEP2] orbit#", t.index, ": dim(C_e)= ", t.centralizer_dim_lk, ", dim(C_e∩Z)= ", t.center_intersection_dim, ", dim((l∩k)^[x,e,f])= ", t.triple_centralizer_dim_lk, ", dim(z(l)∩k)= ", t.center_dim_lk, ", noticed=", t.noticed, "\n");
-        MirrorRetainedBuilderText(Concatenation("        [M4-STEP2] orbit#", String(t.index), ": dim(C_e)= ", String(t.centralizer_dim_lk), ", dim(C_e∩Z)= ", String(t.center_intersection_dim), ", dim((l∩k)^[x,e,f])= ", String(t.triple_centralizer_dim_lk), ", dim(z(l)∩k)= ", String(t.center_dim_lk), ", noticed=", String(t.noticed), "\n"));
     od;
     if Length(theta_data.noticed_triples) = 0 then
         Print("        [M4-STEP2] 未发现 noticed 轨道\n");
-        MirrorRetainedBuilderText("        [M4-STEP2] 未发现 noticed 轨道\n");
     fi;
     if theta_data.selected <> fail then
         Print("        [M4-STEP2] 选中用于根式输出的 triple: orbit#", theta_data.selected.index, " (noticed=", theta_data.selected.noticed, ")\n");
-        MirrorRetainedBuilderText(Concatenation("        [M4-STEP2] 选中用于根式输出的 triple: orbit#", String(theta_data.selected.index), " (noticed=", String(theta_data.selected.noticed), ")\n"));
     fi;
 end;;
 
@@ -2408,16 +2389,11 @@ PrintSL2TripleUnified := function(ab_diagram_str, type, rank, subsystem_roots, c
         triple := ValueGlobal("BuildCompositeNormalTriple_FromComponents")(ValueGlobal("GlobalCompositeComponentData"));
         if IsBoundGlobal("GlobalF4CompositeOutputStyle") and ValueGlobal("GlobalF4CompositeOutputStyle") = "single_like" then
             Print("        [M4-STEP3] noticed triple 已按组件合成到根形式\n");
-            MirrorRetainedBuilderText("        [M4-STEP3] noticed triple 已按组件合成到根形式\n");
         else
             Print("        [组件求和-RAW] h = ", triple.h, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [组件求和-RAW] h = ", String(triple.h), "\n"));
             Print("        [组件求和-RAW] e = ", triple.e, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [组件求和-RAW] e = ", String(triple.e), "\n"));
             Print("        [组件求和-RAW] f = ", triple.f, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [组件求和-RAW] f = ", String(triple.f), "\n"));
             Print("        [组件求和] 按组件构造并直接求和完成\n");
-            MirrorRetainedBuilderText("        [组件求和] 按组件构造并直接求和完成\n");
         fi;
     elif ambient = "F4" then
         real_form_info := ResolveModule4RealFormInfo(type, rank);
@@ -2430,18 +2406,13 @@ PrintSL2TripleUnified := function(ab_diagram_str, type, rank, subsystem_roots, c
         fi;
         if Length(theta_candidates) > 0 then
             Print("        [M4-STEP3] noticed 候选数 = ", Length(theta_candidates), "\n");
-            MirrorRetainedBuilderText(Concatenation("        [M4-STEP3] noticed 候选数 = ", String(Length(theta_candidates)), "\n"));
             for theta_candidate_idx in [1..Length(theta_candidates)] do
                 theta_candidate_item := theta_candidates[theta_candidate_idx];
                 Print("        [THETA-CANDIDATE#", theta_candidate_idx, "] h = ", theta_candidate_item.triple.h, "\n");
-                MirrorRetainedBuilderText(Concatenation("        [THETA-CANDIDATE#", String(theta_candidate_idx), "] h = ", String(theta_candidate_item.triple.h), "\n"));
                 Print("        [THETA-CANDIDATE#", theta_candidate_idx, "] e = ", theta_candidate_item.triple.e, "\n");
-                MirrorRetainedBuilderText(Concatenation("        [THETA-CANDIDATE#", String(theta_candidate_idx), "] e = ", String(theta_candidate_item.triple.e), "\n"));
                 Print("        [THETA-CANDIDATE#", theta_candidate_idx, "] f = ", theta_candidate_item.triple.f, "\n");
-                MirrorRetainedBuilderText(Concatenation("        [THETA-CANDIDATE#", String(theta_candidate_idx), "] f = ", String(theta_candidate_item.triple.f), "\n"));
                 if IsBound(theta_candidate_item.orbit_index) then
                     Print("        [THETA-CANDIDATE#", theta_candidate_idx, "] 来自 orbit#", theta_candidate_item.orbit_index, "\n");
-                    MirrorRetainedBuilderText(Concatenation("        [THETA-CANDIDATE#", String(theta_candidate_idx), "] 来自 orbit#", String(theta_candidate_item.orbit_index), "\n"));
                 fi;
             od;
         fi;
@@ -2454,32 +2425,23 @@ PrintSL2TripleUnified := function(ab_diagram_str, type, rank, subsystem_roots, c
                 triple.all_triples := List(theta_candidates, x -> rec(h := x.triple.h, e := x.triple.e, f := x.triple.f, orbit_index := x.orbit_index));
             fi;
             Print("        [M4-STEP3] noticed triple 已翻译到根形式\n");
-            MirrorRetainedBuilderText("        [M4-STEP3] noticed triple 已翻译到根形式\n");
             if IsBound(triple.source_x) and IsBound(triple.source_roots) then
                 Print("        [M4-STEP3] 根位匹配: x=", triple.source_x, " => roots=", triple.source_roots, "\n");
-                MirrorRetainedBuilderText(Concatenation("        [M4-STEP3] 根位匹配: x=", String(triple.source_x), " => roots=", String(triple.source_roots), "\n"));
             fi;
             if IsBound(triple.source_x) and IsBound(triple.source_direct_e) then
                 Print("        [M4-STEP3] 候选根式: x=", triple.source_x, " => e=", triple.source_direct_e, "\n");
-                MirrorRetainedBuilderText(Concatenation("        [M4-STEP3] 候选根式: x=", String(triple.source_x), " => e=", String(triple.source_direct_e), "\n"));
             fi;
             if IsBound(triple.source_y) and IsBound(triple.source_direct_f) then
                 Print("        [M4-STEP3] 候选根式: y=", triple.source_y, " => f=", triple.source_direct_f, "\n");
-                MirrorRetainedBuilderText(Concatenation("        [M4-STEP3] 候选根式: y=", String(triple.source_y), " => f=", String(triple.source_direct_f), "\n"));
             fi;
             if IsBound(triple.source_theta_h) and IsBound(triple.source_direct_h) then
                 Print("        [M4-STEP3] 由e,f重建: h=", triple.source_theta_h, " => H=", triple.source_direct_h, "\n");
-                MirrorRetainedBuilderText(Concatenation("        [M4-STEP3] 由e,f重建: h=", String(triple.source_theta_h), " => H=", String(triple.source_direct_h), "\n"));
             fi;
             Print("        [THETA-CANDIDATE] h = ", triple.h, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [THETA-CANDIDATE] h = ", String(triple.h), "\n"));
             Print("        [THETA-CANDIDATE] e = ", triple.e, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [THETA-CANDIDATE] e = ", String(triple.e), "\n"));
             Print("        [THETA-CANDIDATE] f = ", triple.f, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [THETA-CANDIDATE] f = ", String(triple.f), "\n"));
         else
             Print("        [M4-STEP3] noticed triple 根形式翻译失败\n");
-            MirrorRetainedBuilderText("        [M4-STEP3] noticed triple 根形式翻译失败\n");
             triple := rec(h := "0", e := "0", f := "0");
         fi;
     elif ambient = "G2" or is_bdi_type or is_aiii_type then
@@ -2499,39 +2461,28 @@ PrintSL2TripleUnified := function(ab_diagram_str, type, rank, subsystem_roots, c
     e_str := triple.e;
     f_str := triple.f;
     Print("        >>> 模块 4 输出: SL2-Triple 构造 (Candidate)\n");
-    MirrorRetainedBuilderText("        >>> 模块 4 输出: SL2-Triple 构造 (Candidate)\n");
     Print("        SL2-Triple (h, e, f):\n");
-    MirrorRetainedBuilderText("        SL2-Triple (h, e, f):\n");
     Print("          h = ", h_str, "\n");
-    MirrorRetainedBuilderText(Concatenation("          h = ", String(h_str), "\n"));
     Print("          e = ", e_str, "\n");
-    MirrorRetainedBuilderText(Concatenation("          e = ", String(e_str), "\n"));
     Print("          f = ", f_str, "\n");
-    MirrorRetainedBuilderText(Concatenation("          f = ", String(f_str), "\n"));
 
     Print("        [强制校验] 开始 VerifyEFH_NormalConditions…\n");
-    MirrorRetainedBuilderText("        [强制校验] 开始 VerifyEFH_NormalConditions…\n");
     if IsBoundGlobal("VerifyEFH_NormalConditions") then
         efh_ok := ValueGlobal("VerifyEFH_NormalConditions")(h_str, e_str, f_str);
     else
         efh_ok := false;
         Print("        [强制校验] VerifyEFH_NormalConditions 未加载！\n");
-        MirrorRetainedBuilderText("        [强制校验] VerifyEFH_NormalConditions 未加载！\n");
     fi;
     if ambient = "F4" and IsRecord(triple) and IsBound(triple.source) and triple.source = "theta_noticed" then
         theta_obj_check := VerifyThetaSelectedTripleOnLieLevelF4(theta_data);
         if IsRecord(theta_obj_check) and IsBound(theta_obj_check.hx) and IsBound(theta_obj_check.hy) and IsBound(theta_obj_check.xy) then
             Print("        [Theta对象校验] [h,x]=2x: ", theta_obj_check.hx, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [Theta对象校验] [h,x]=2x: ", String(theta_obj_check.hx), "\n"));
             Print("        [Theta对象校验] [h,y]=-2y: ", theta_obj_check.hy, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [Theta对象校验] [h,y]=-2y: ", String(theta_obj_check.hy), "\n"));
             Print("        [Theta对象校验] [x,y]=h: ", theta_obj_check.xy, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [Theta对象校验] [x,y]=h: ", String(theta_obj_check.xy), "\n"));
         fi;
         if IsRecord(theta_obj_check) and IsBound(theta_obj_check.ok) then
             efh_ok := theta_obj_check.ok;
             Print("        [强制校验] 模块4采用 Theta 对象校验结果\n");
-            MirrorRetainedBuilderText("        [强制校验] 模块4采用 Theta 对象校验结果\n");
         fi;
     fi;
     pk_ok := true;
@@ -2539,19 +2490,15 @@ PrintSL2TripleUnified := function(ab_diagram_str, type, rank, subsystem_roots, c
         pk_ok := ValueGlobal("VerifyPK_Subsystem_G2")(h_str, e_str, f_str, normalized_roots, effective_colors);
         if pk_ok then
             Print("        [诊断] P/K 检查: PASS\n");
-            MirrorRetainedBuilderText("        [诊断] P/K 检查: PASS\n");
         else
             Print("        [诊断] P/K 检查: FAIL\n");
-            MirrorRetainedBuilderText("        [诊断] P/K 检查: FAIL\n");
         fi;
     elif ambient = "F4" and IsBoundGlobal("VerifyPK_Subsystem_F4") then
         pk_ok := ValueGlobal("VerifyPK_Subsystem_F4")(h_str, e_str, f_str, normalized_roots, effective_colors);
         if pk_ok then
             Print("        [诊断] P/K 检查: PASS\n");
-            MirrorRetainedBuilderText("        [诊断] P/K 检查: PASS\n");
         else
             Print("        [诊断] P/K 检查: FAIL\n");
-            MirrorRetainedBuilderText("        [诊断] P/K 检查: FAIL\n");
         fi;
     fi;
     if ambient = "F4" and type = "Composite" and (not efh_ok or not pk_ok) then
@@ -2569,20 +2516,15 @@ PrintSL2TripleUnified := function(ab_diagram_str, type, rank, subsystem_roots, c
     fi;
     if diag_ok then
         Print("        模块4判定: Normal\n");
-        MirrorRetainedBuilderText("        模块4判定: Normal\n");
         Print("NORMAL_TRIPLE_CHECK: PASS\n");
-        MirrorRetainedBuilderText("NORMAL_TRIPLE_CHECK: PASS\n");
         RecordNormalTripleStats(true);
     else
         Print("        模块4判定: Non-normal\n");
-        MirrorRetainedBuilderText("        模块4判定: Non-normal\n");
         Print("NORMAL_TRIPLE_CHECK: FAIL\n");
-        MirrorRetainedBuilderText("NORMAL_TRIPLE_CHECK: FAIL\n");
         RecordNormalTripleStats(false);
     fi;
 
     Print("\n");
-    MirrorRetainedBuilderText("\n");
     if not IsBoundGlobal("PrintKOrbitInfo_F4") and not IsBoundGlobal("PrintKOrbitInfo") and IsBoundGlobal("Read") then
         Read("../03_Orbit_Analysis/K_Orbit_Classifier.g");
     fi;
@@ -2602,39 +2544,29 @@ PrintSL2TripleUnified := function(ab_diagram_str, type, rank, subsystem_roots, c
         if ambient = "F4" then
             if m5_count < raw_m5_count then
                 Print("        [M4-WK-FILTER] 过滤后 noticed triple 数: ", raw_m5_count, " -> ", m5_count, "\n");
-                MirrorRetainedBuilderText(Concatenation("        [M4-WK-FILTER] 过滤后 noticed triple 数: ", String(raw_m5_count), " -> ", String(m5_count), "\n"));
             else
                 Print("        [M4-WK-FILTER] 无可过滤的 noticed triple\n");
-                MirrorRetainedBuilderText("        [M4-WK-FILTER] 无可过滤的 noticed triple\n");
             fi;
         fi;
         if is_composite then
             if IsBoundGlobal("GlobalF4CompositeOutputStyle") and ValueGlobal("GlobalF4CompositeOutputStyle") = "single_like" then
                 Print("        [M5-PROPAGATE] 向模块5传递 noticed triple 数 = ", m5_count, "\n");
-                MirrorRetainedBuilderText(Concatenation("        [M5-PROPAGATE] 向模块5传递 noticed triple 数 = ", String(m5_count), "\n"));
             else
                 Print("        [M5-PROPAGATE] 向模块5传递组合 triple 数 = ", m5_count, "\n");
-                MirrorRetainedBuilderText(Concatenation("        [M5-PROPAGATE] 向模块5传递组合 triple 数 = ", String(m5_count), "\n"));
             fi;
         else
             Print("        [M5-PROPAGATE] 向模块5传递 noticed triple 数 = ", m5_count, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [M5-PROPAGATE] 向模块5传递 noticed triple 数 = ", String(m5_count), "\n"));
         fi;
         for k in [1..m5_count] do
             m5_item := triple.all_triples[k];
             Print("        [M5-PROPAGATE#", k, "] h = ", m5_item.h, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [M5-PROPAGATE#", String(k), "] h = ", String(m5_item.h), "\n"));
             Print("        [M5-PROPAGATE#", k, "] e = ", m5_item.e, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [M5-PROPAGATE#", String(k), "] e = ", String(m5_item.e), "\n"));
             Print("        [M5-PROPAGATE#", k, "] f = ", m5_item.f, "\n");
-            MirrorRetainedBuilderText(Concatenation("        [M5-PROPAGATE#", String(k), "] f = ", String(m5_item.f), "\n"));
             if IsBound(m5_item.component_orbit_choice) then
                 Print("        [M5-PROPAGATE#", k, "] 组件orbit选择 = ", m5_item.component_orbit_choice, "\n");
-                MirrorRetainedBuilderText(Concatenation("        [M5-PROPAGATE#", String(k), "] 组件orbit选择 = ", String(m5_item.component_orbit_choice), "\n"));
             fi;
             if IsBound(m5_item.orbit_index) then
                 Print("        [M5-PROPAGATE#", k, "] 来源 orbit#", m5_item.orbit_index, "\n");
-                MirrorRetainedBuilderText(Concatenation("        [M5-PROPAGATE#", String(k), "] 来源 orbit#", String(m5_item.orbit_index), "\n"));
             fi;
             DispatchKOrbitOutput(ambient, type, m5_item.h, m5_item.e, m5_item.f);
         od;
@@ -5776,7 +5708,7 @@ end;;
 
 # 校验函数：打印 [e,f]=h 是否成立；以及简单的 [h,e]=2e、[h,f]=-2f 系数检查
 VerifyEFH_NormalConditions := function(h_str, e_str, f_str)
-    local h_map, e_terms, f_terms, i, n, accum, pair, root, ch, sumv, ok, pr, he_ok, hf_ok, parser, alpha_h, cond, logf, S, h_terms, eval_alpha, has_higher, ParseTermEFH, h_norm, e_norm, f_norm, h_coeffs, MirrorEFHText;
+    local h_map, e_terms, f_terms, i, n, accum, pair, root, ch, sumv, ok, pr, he_ok, hf_ok, parser, alpha_h, cond, logf, S, h_terms, eval_alpha, has_higher, ParseTermEFH, h_norm, e_norm, f_norm, h_coeffs;
     if IsBoundGlobal("GlobalOutFile") then
         logf := ValueGlobal("GlobalOutFile");
     elif IsBoundGlobal("GlobalOutputDir") then
@@ -5784,11 +5716,6 @@ VerifyEFH_NormalConditions := function(h_str, e_str, f_str)
     else
         logf := "F4_pipeline_output.txt";
     fi;
-    MirrorEFHText := function(text)
-        if IsBoundGlobal("AppendRetainedMirrorText") then
-            ValueGlobal("AppendRetainedMirrorText")(text);
-        fi;
-    end;
     h_norm := NormalizeExprForSplitTermsF4(h_str);
     e_norm := NormalizeExprForSplitTermsF4(e_str);
     f_norm := NormalizeExprForSplitTermsF4(f_str);
@@ -5906,10 +5833,8 @@ VerifyEFH_NormalConditions := function(h_str, e_str, f_str)
         if root <> f_terms[i][1] then
             # 根名不一致，无法匹配，直接失败
             Print("        [诊断] 第 ", i, " 项根不匹配: E=", e_terms[i][1], " F=", f_terms[i][1], "\n");
-            MirrorEFHText(Concatenation("        [诊断] 第 ", String(i), " 项根不匹配: E=", e_terms[i][1], " F=", f_terms[i][1], "\n"));
             AppendTo(logf, Concatenation("        [诊断] 第 ", String(i), " 项根不匹配: E=", e_terms[i][1], " F=", f_terms[i][1], "\n"));
             Print("EFH_CHECK: FAIL\n");
-            MirrorEFHText("EFH_CHECK: FAIL\n");
             AppendTo(logf, "EFH_CHECK: FAIL\n");
             return false;
         fi;
@@ -5952,17 +5877,13 @@ VerifyEFH_NormalConditions := function(h_str, e_str, f_str)
     od;
     if ok then
         Print("        校验: [e,f]=h: PASS\n");
-        MirrorEFHText("        校验: [e,f]=h: PASS\n");
         AppendTo(logf, "        校验: [e,f]=h: PASS\n");
         Print("EFH_CHECK: PASS\n");
-        MirrorEFHText("EFH_CHECK: PASS\n");
         AppendTo(logf, "EFH_CHECK: PASS\n");
     else
         Print("        校验: [e,f]=h: FAIL\n");
-        MirrorEFHText("        校验: [e,f]=h: FAIL\n");
         AppendTo(logf, "        校验: [e,f]=h: FAIL\n");
         Print("EFH_CHECK: FAIL\n");
-        MirrorEFHText("EFH_CHECK: FAIL\n");
         AppendTo(logf, "EFH_CHECK: FAIL\n");
     fi;
     he_ok := true;
@@ -6036,11 +5957,9 @@ VerifyEFH_NormalConditions := function(h_str, e_str, f_str)
             fi;
             if cond then
                 Print("        [诊断] E 根 ", e_terms[i][1], " 的 α(h)=", alpha_h, " : PASS\n");
-                MirrorEFHText(Concatenation("        [诊断] E 根 ", e_terms[i][1], " 的 α(h)=", String(alpha_h), " : PASS\n"));
                 AppendTo(logf, Concatenation("        [诊断] E 根 ", e_terms[i][1], " 的 α(h)=", String(alpha_h), " : PASS\n"));
             else
                 Print("        [诊断] E 根 ", e_terms[i][1], " 的 α(h)=", alpha_h, " : FAIL\n");
-                MirrorEFHText(Concatenation("        [诊断] E 根 ", e_terms[i][1], " 的 α(h)=", String(alpha_h), " : FAIL\n"));
                 AppendTo(logf, Concatenation("        [诊断] E 根 ", e_terms[i][1], " 的 α(h)=", String(alpha_h), " : FAIL\n"));
                 he_ok := false;
                 break;
@@ -6055,11 +5974,9 @@ VerifyEFH_NormalConditions := function(h_str, e_str, f_str)
             fi;
             if cond then
                 Print("        [诊断] F 根 ", f_terms[i][1], " 的 α(h)=", -alpha_h, " => 检查 -α(h)=-2: PASS\n");
-                MirrorEFHText(Concatenation("        [诊断] F 根 ", f_terms[i][1], " 的 α(h)=", String(-alpha_h), " => 检查 -α(h)=-2: PASS\n"));
                 AppendTo(logf, Concatenation("        [诊断] F 根 ", f_terms[i][1], " 的 α(h)=", String(-alpha_h), " => 检查 -α(h)=-2: PASS\n"));
             else
                 Print("        [诊断] F 根 ", f_terms[i][1], " 的 α(h)=", -alpha_h, " => 检查 -α(h)=-2: FAIL\n");
-                MirrorEFHText(Concatenation("        [诊断] F 根 ", f_terms[i][1], " 的 α(h)=", String(-alpha_h), " => 检查 -α(h)=-2: FAIL\n"));
                 AppendTo(logf, Concatenation("        [诊断] F 根 ", f_terms[i][1], " 的 α(h)=", String(-alpha_h), " => 检查 -α(h)=-2: FAIL\n"));
                 hf_ok := false;
                 break;
@@ -6067,20 +5984,16 @@ VerifyEFH_NormalConditions := function(h_str, e_str, f_str)
         od;
         if he_ok then
             Print("        校验: [h,e]=2e: PASS\n");
-            MirrorEFHText("        校验: [h,e]=2e: PASS\n");
             AppendTo(logf, "        校验: [h,e]=2e: PASS\n");
         else
             Print("        校验: [h,e]=2e: FAIL\n");
-            MirrorEFHText("        校验: [h,e]=2e: FAIL\n");
             AppendTo(logf, "        校验: [h,e]=2e: FAIL\n");
         fi;
         if hf_ok then
             Print("        校验: [h,f]=-2f: PASS\n");
-            MirrorEFHText("        校验: [h,f]=-2f: PASS\n");
             AppendTo(logf, "        校验: [h,f]=-2f: PASS\n");
         else
             Print("        校验: [h,f]=-2f: FAIL\n");
-            MirrorEFHText("        校验: [h,f]=-2f: FAIL\n");
             AppendTo(logf, "        校验: [h,f]=-2f: FAIL\n");
         fi;
         if ok and he_ok and hf_ok then

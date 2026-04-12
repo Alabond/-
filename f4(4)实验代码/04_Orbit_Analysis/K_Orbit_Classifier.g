@@ -1275,17 +1275,8 @@ PrintKOrbitInfo_F4 := function(triple_or_h, colors_list)
         chk := ValidateF4TripleRecord(triple_or_h);
         if not chk.ok then
             Print("        >>> 模块 5 输出: K-Orbit 分类\n");
-            if IsBoundGlobal("AppendRetainedMirrorText") then
-                ValueGlobal("AppendRetainedMirrorText")("        >>> 模块 5 输出: K-Orbit 分类\n");
-            fi;
             Print("        K-Orbit Classification (F4(4)):\n");
-            if IsBoundGlobal("AppendRetainedMirrorText") then
-                ValueGlobal("AppendRetainedMirrorText")("        K-Orbit Classification (F4(4)):\n");
-            fi;
             Print("          triple 结构校验失败: ", chk.reason, "\n");
-            if IsBoundGlobal("AppendRetainedMirrorText") then
-                ValueGlobal("AppendRetainedMirrorText")(Concatenation("          triple 结构校验失败: ", String(chk.reason), "\n"));
-            fi;
             return;
         fi;
         h_str := triple_or_h.h;
@@ -1294,17 +1285,8 @@ PrintKOrbitInfo_F4 := function(triple_or_h, colors_list)
     fi;
     c := ParseHString_F4Coeffs(h_str);
     Print("        >>> 模块 5 输出: K-Orbit 分类\n");
-    if IsBoundGlobal("AppendRetainedMirrorText") then
-        ValueGlobal("AppendRetainedMirrorText")("        >>> 模块 5 输出: K-Orbit 分类\n");
-    fi;
     Print("        K-Orbit Classification (F4(4)):\n");
-    if IsBoundGlobal("AppendRetainedMirrorText") then
-        ValueGlobal("AppendRetainedMirrorText")("        K-Orbit Classification (F4(4)):\n");
-    fi;
     Print("          初始 h 系数 (F4 扩展): ", c, "\n");
-    if IsBoundGlobal("AppendRetainedMirrorText") then
-        ValueGlobal("AppendRetainedMirrorText")(Concatenation("          初始 h 系数 (F4 扩展): ", String(c), "\n"));
-    fi;
     DrawF4ExtendedVoganDiagram(triple_or_h, colors_list);
 end;;
 

@@ -1,153 +1,112 @@
 LOAD 02_Subsystem_Classification
 LOAD 04_Orbit_Analysis/K_Orbit_Classifier
 LOAD 01_Subsystem_Generation
-Syntax warning: Unbound global variable in ../01_Subsystem_Generation/G2_Exten\
-ded_Subsystem_Lib.g:24
+Syntax warning: Unbound global variable in ../01_Subsystem_Generation/G2_Extended_Subsystem_Lib.g:24
     S := SimpleRootsAsWeights(R);
          ^^^^^^^^^^^^^^^^^^^^
 LOAD 04_Orbit_Analysis/Noticed_Orbits
-Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits\
-.g:294
-                        GlobalModule4CurrentRealFormInfo := rec(type := real_f\
-orm_type, params := params);
+Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits.g:267
+                        GlobalModule4CurrentRealFormInfo := rec(type := real_form_type, params := params);
                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits\
-.g:297
+Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits.g:270
                             Unbind(GlobalModule4CurrentRealFormInfo);
                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits\
-.g:300
-                        GlobalModule4CurrentRealFormInfo := rec(type := real_f\
-orm_type, params := params);
+Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits.g:273
+                        GlobalModule4CurrentRealFormInfo := rec(type := real_form_type, params := params);
                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits\
-.g:303
+Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits.g:276
                             Unbind(GlobalModule4CurrentRealFormInfo);
                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 LOAD 03_Real_Form_Inference
 LOAD 05_SL2_Triple_Construction
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:28
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:28
         GlobalNormalTripleTotalChecks := 0;
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:31
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:31
         GlobalNormalTriplePassChecks := 0;
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:33
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:33
     GlobalNormalTripleTotalChecks := GlobalNormalTripleTotalChecks + 1;
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:33
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:33
     GlobalNormalTripleTotalChecks := GlobalNormalTripleTotalChecks + 1;
                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:35
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:35
         GlobalNormalTriplePassChecks := GlobalNormalTriplePassChecks + 1;
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:35
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:35
         GlobalNormalTriplePassChecks := GlobalNormalTriplePassChecks + 1;
                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:248
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:248
                 auts := FiniteOrderInnerAutomorphisms("A", rank_a, 2);
                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:258
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:258
             auts := FiniteOrderInnerAutomorphisms("A", rank_a, 2);
                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:321
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:321
         SetInfoLevel(InfoSLA, 1);
                      ^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:323
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:323
     orbs := NilpotentOrbitsOfThetaRepresentation(theta);
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:375
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:375
     if HasKacDiagram(theta) then
        ^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:376
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:376
         kac := KacDiagram(theta).weights;
                ^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:475
-        chain := BuildAIIIChainForG2(ab_diagram_str, subsystem_roots, colors_o\
-pt);
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:459
+        chain := BuildAIIIChainForG2(ab_diagram_str, subsystem_roots, colors_opt);
                  ^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:509
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:493
         h := FormatExprFromMap(h_map, "H"),
              ^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:510
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:494
         e := FormatExprFromMap(e_map, "E"),
              ^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:511
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:495
         f := FormatExprFromMap(f_map, "F"),
              ^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:797
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:781
         PrintGenericHSummary(h_str);
         ^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:854
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:838
         data := ParseTerm(t);
                 ^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:940
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:924
         GlobalCurrentGCJData := fail;
         ^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:941
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:925
         GlobalCurrentThetaOrbitData := fail;
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:942
-        triple := BuildCompositeNormalTriple_FromComponents(ValueGlobal("Globa\
-lCompositeComponentData"));
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:926
+        triple := BuildCompositeNormalTriple_FromComponents(ValueGlobal("GlobalCompositeComponentData"));
                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:953
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:933
         GlobalCurrentGCJData := gcj_data;
         ^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:957
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:937
         GlobalCurrentThetaOrbitData := theta_data;
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:971
-            triple := BuildBDINormalTriple_Linear(ab_diagram_str, type, rank, \
-normalized_roots, effective_colors);
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:947
+            triple := BuildBDINormalTriple_Linear(ab_diagram_str, type, rank, normalized_roots, effective_colors);
                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1245
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1200
         GlobalCurrentGCJData := gcj_data;
         ^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1252
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1207
         GlobalCurrentThetaOrbitData := theta_data;
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1267
-                comp_triple := BuildBDINormalTriple_Linear(comp_ab_str, comp_t\
-ype, comp_rank, normalized_comp_roots, comp_colors);
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1222
+                comp_triple := BuildBDINormalTriple_Linear(comp_ab_str, comp_type, comp_rank, normalized_comp_roots, comp_colors);
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1798
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1753
     has_zero_coeff := false;
     ^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1802
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1757
                 has_zero_coeff := true;
                 ^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_T\
-riple_Builder.g:1807
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1762
                 has_zero_coeff := true;
                 ^^^^^^^^^^^^^^
 START
@@ -168,63 +127,38 @@ START
   Template: [ [ 1, 0 ], [ 0, 1 ] ]
   Target: 2B 0W
   发现 8 个子系统配置。
-Syntax warning: Unbound global variable in Main_Pipeline.g:331
-    GlobalRetainedMirrorExperimentDesc := s.exp_desc;
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in Main_Pipeline.g:335
-        Unbind(GlobalRetainedMirrorExperimentDesc);
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 筛选结果概览:
-索引| Roots                                                                 \
-      | 颜色(B/W)         | 类型    
-------------------------------------------------------------------------------\
-----------------------------------------------------------
-1     | [ a0=-3a1-2a2(C), a1=a1(C), a2=a2(N) ]                                \
-      | 1B / 1W [a2]        | A2        
-2     | [ a0=a2(N), a1=2a1+a2(N), a2=-3a1-2a2(C) ]                            \
-      | 1B / 1W [a0]        | A2        
-3     | [ a0=3a1+a2(N), a1=a1+a2(N), a2=-3a1-2a2(C) ]                         \
-      | 1B / 1W [a0]        | A2        
-4     | [ a0=3a1+2a2(C), a1=a1(C), a2=-3a1-a2(N) ]                            \
-      | 1B / 1W [a2]        | A2        
-5     | [ a0=3a1+2a2(C), a1=-a1(C), a2=-a2(N) ]                               \
-      | 1B / 1W [a2]        | A2        
-6     | [ a0=-a2(N), a1=-2a1-a2(N), a2=3a1+2a2(C) ]                           \
-      | 1B / 1W [a0]        | A2        
-7     | [ a0=-3a1-a2(N), a1=-a1-a2(N), a2=3a1+2a2(C) ]                        \
-      | 1B / 1W [a0]        | A2        
-8     | [ a0=-3a1-2a2(C), a1=-a1(C), a2=3a1+a2(N) ]                           \
-      | 1B / 1W [a2]        | A2        
-1     | [ a0=-3a1-a2(N), a1=a1+a2(N), a2=-a2(N) ]                             \
-      | 2B / 0W [a0,a1]     | A1 + A1   
-2     | [ a0=-a2(N), a1=2a1+a2(N), a2=-3a1-a2(N) ]                            \
-      | 2B / 0W [a0,a1]     | A1 + A1   
-3     | [ a0=a2(N), a1=2a1+a2(N), a2=-3a1-2a2(C) ]                            \
-      | 2B / 0W [a0,a1]     | A1 + A1   
-4     | [ a0=3a1+a2(N), a1=a1+a2(N), a2=-3a1-2a2(C) ]                         \
-      | 2B / 0W [a0,a1]     | A1 + A1   
-5     | [ a0=3a1+a2(N), a1=-a1-a2(N), a2=a2(N) ]                              \
-      | 2B / 0W [a0,a1]     | A1 + A1   
-6     | [ a0=a2(N), a1=-2a1-a2(N), a2=3a1+a2(N) ]                             \
-      | 2B / 0W [a0,a1]     | A1 + A1   
-7     | [ a0=-a2(N), a1=-2a1-a2(N), a2=3a1+2a2(C) ]                           \
-      | 2B / 0W [a0,a1]     | A1 + A1   
-8     | [ a0=-3a1-a2(N), a1=-a1-a2(N), a2=3a1+2a2(C) ]                        \
-      | 2B / 0W [a0,a1]     | A1 + A1   
+索引| Roots                                                                       | 颜色(B/W)         | 类型    
+----------------------------------------------------------------------------------------------------------------------------------------
+1     | [ a0=-3a1-2a2(C), a1=a1(C), a2=a2(N) ]                                      | 1B / 1W [a2]        | A2        
+2     | [ a0=a2(N), a1=2a1+a2(N), a2=-3a1-2a2(C) ]                                  | 1B / 1W [a0]        | A2        
+3     | [ a0=3a1+a2(N), a1=a1+a2(N), a2=-3a1-2a2(C) ]                               | 1B / 1W [a0]        | A2        
+4     | [ a0=3a1+2a2(C), a1=a1(C), a2=-3a1-a2(N) ]                                  | 1B / 1W [a2]        | A2        
+5     | [ a0=3a1+2a2(C), a1=-a1(C), a2=-a2(N) ]                                     | 1B / 1W [a2]        | A2        
+6     | [ a0=-a2(N), a1=-2a1-a2(N), a2=3a1+2a2(C) ]                                 | 1B / 1W [a0]        | A2        
+7     | [ a0=-3a1-a2(N), a1=-a1-a2(N), a2=3a1+2a2(C) ]                              | 1B / 1W [a0]        | A2        
+8     | [ a0=-3a1-2a2(C), a1=-a1(C), a2=3a1+a2(N) ]                                 | 1B / 1W [a2]        | A2        
+1     | [ a0=-3a1-a2(N), a1=a1+a2(N), a2=-a2(N) ]                                   | 2B / 0W [a0,a1]     | A1 + A1   
+2     | [ a0=-a2(N), a1=2a1+a2(N), a2=-3a1-a2(N) ]                                  | 2B / 0W [a0,a1]     | A1 + A1   
+3     | [ a0=a2(N), a1=2a1+a2(N), a2=-3a1-2a2(C) ]                                  | 2B / 0W [a0,a1]     | A1 + A1   
+4     | [ a0=3a1+a2(N), a1=a1+a2(N), a2=-3a1-2a2(C) ]                               | 2B / 0W [a0,a1]     | A1 + A1   
+5     | [ a0=3a1+a2(N), a1=-a1-a2(N), a2=a2(N) ]                                    | 2B / 0W [a0,a1]     | A1 + A1   
+6     | [ a0=a2(N), a1=-2a1-a2(N), a2=3a1+a2(N) ]                                   | 2B / 0W [a0,a1]     | A1 + A1   
+7     | [ a0=-a2(N), a1=-2a1-a2(N), a2=3a1+2a2(C) ]                                 | 2B / 0W [a0,a1]     | A1 + A1   
+8     | [ a0=-3a1-a2(N), a1=-a1-a2(N), a2=3a1+2a2(C) ]                              | 2B / 0W [a0,a1]     | A1 + A1   
 
 ==================================================
 步骤 2: 自动分析 Noticed Orbits
 ==================================================
-Syntax warning: Unbound global variable in Main_Pipeline.g:492
+Syntax warning: Unbound global variable in Main_Pipeline.g:459
         GlobalDeltaJWKOrbitSeen := [];
         ^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in Main_Pipeline.g:495
+Syntax warning: Unbound global variable in Main_Pipeline.g:462
     for item in GlobalDeltaJWKOrbitSeen do
                 ^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in Main_Pipeline.g:500
-    Add(GlobalDeltaJWKOrbitSeen, rec(key := key, first_index := subsystem_inde\
-x));
+Syntax warning: Unbound global variable in Main_Pipeline.g:467
+    Add(GlobalDeltaJWKOrbitSeen, rec(key := key, first_index := subsystem_index));
         ^^^^^^^^^^^^^^^^^^^^^^^
 
 >>> 模块 1 输出: 子系统分析 (索引 1)
@@ -252,12 +186,9 @@ aba
         [COMP#1] 开始模块4组件流程
         [M4-STEP1] (g_c)_J 构造
         [M4-STEP1] J(向量) = [ [ -3, -2 ], [ 0, 1 ] ]
-        [M4-STEP1] Delta_J = [ "-3a1-2a2", "-3a1-a2", "-a2", "3a1+2a2", 
-  "3a1+a2", "a2" ]
+        [M4-STEP1] Delta_J = [ "-3a1-2a2", "-3a1-a2", "-a2", "3a1+2a2", "3a1+a2", "a2" ]
         [M4-STEP1] h_c 基 = [ "H_{a1}", "H_{a2}" ]
-        [M4-STEP1] X_phi(phi∈Delta_J) = 
-[ "X_{[-3a1-2a2]}", "X_{[-3a1-a2]}", "X_{[-a2]}", "X_{[3a1+2a2]}", 
-  "X_{[3a1+a2]}", "X_{[a2]}" ]
+        [M4-STEP1] X_phi(phi∈Delta_J) = [ "X_{[-3a1-2a2]}", "X_{[-3a1-a2]}", "X_{[-a2]}", "X_{[3a1+2a2]}", "X_{[3a1+a2]}", "X_{[a2]}" ]
         [M4-STEP1] dim((g_c)_J) 估计 = 8
         [M4-STEP2] NilpotentOrbitsOfThetaRepresentation
         [M4-STEP2] RealForm = su_pq, Params = [ 2, 1 ]
@@ -265,14 +196,11 @@ aba
         [M4-STEP2] dim(z(l)∩k) = 0
         [M4-STEP2] 轨道数 = 3
         [M4-STEP2] orbit#1: x=v.4, h=(-1)*v.7, y=v.1
-        [M4-STEP2] orbit#1: dim(C_e)= 2, dim(C_e∩Z)= 
-0, dim((l∩k)^[x,e,f])= 1, dim(z(l)∩k)= 0, noticed=false
+        [M4-STEP2] orbit#1: dim(C_e)= 2, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 1, dim(z(l)∩k)= 0, noticed=false
         [M4-STEP2] orbit#2: x=v.3+v.4, h=(2)*v.8, y=(2)*v.1+(2)*v.6
-        [M4-STEP2] orbit#2: dim(C_e)= 1, dim(C_e∩Z)= 
-0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
+        [M4-STEP2] orbit#2: dim(C_e)= 1, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
         [M4-STEP2] orbit#3: x=v.3, h=v.7+v.8, y=v.6
-        [M4-STEP2] orbit#3: dim(C_e)= 2, dim(C_e∩Z)= 
-0, dim((l∩k)^[x,e,f])= 1, dim(z(l)∩k)= 0, noticed=false
+        [M4-STEP2] orbit#3: dim(C_e)= 2, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 1, dim(z(l)∩k)= 0, noticed=false
         [M4-STEP2] 选中 triple: orbit#2 (noticed=true)
         [M4-STEP2] noticed 判定所用 l=(g_c)_J 维数估计 = 8
         [组件求和输入] 来源: noticed triple 根形式翻译
@@ -502,11 +430,9 @@ ab
         [M4-STEP2] dim(z(l)∩k) = 0
         [M4-STEP2] 轨道数 = 2
         [M4-STEP2] orbit#1: x=v.2, h=(-1)*v.3, y=v.1
-        [M4-STEP2] orbit#1: dim(C_e)= 0, dim(C_e∩Z)= 
-0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
+        [M4-STEP2] orbit#1: dim(C_e)= 0, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
         [M4-STEP2] orbit#2: x=v.1, h=v.3, y=v.2
-        [M4-STEP2] orbit#2: dim(C_e)= 0, dim(C_e∩Z)= 
-0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
+        [M4-STEP2] orbit#2: dim(C_e)= 0, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
         [M4-STEP2] 选中 triple: orbit#1 (noticed=true)
         [M4-STEP2] noticed 判定所用 l=(g_c)_J 维数估计 = 4
         [组件求和输入] 来源: noticed triple 根形式翻译
@@ -542,11 +468,9 @@ EFH_CHECK: PASS
         [M4-STEP2] dim(z(l)∩k) = 0
         [M4-STEP2] 轨道数 = 2
         [M4-STEP2] orbit#1: x=v.2, h=(-1)*v.3, y=v.1
-        [M4-STEP2] orbit#1: dim(C_e)= 0, dim(C_e∩Z)= 
-0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
+        [M4-STEP2] orbit#1: dim(C_e)= 0, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
         [M4-STEP2] orbit#2: x=v.1, h=v.3, y=v.2
-        [M4-STEP2] orbit#2: dim(C_e)= 0, dim(C_e∩Z)= 
-0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
+        [M4-STEP2] orbit#2: dim(C_e)= 0, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
         [M4-STEP2] 选中 triple: orbit#1 (noticed=true)
         [M4-STEP2] noticed 判定所用 l=(g_c)_J 维数估计 = 4
         [组件求和输入] 来源: noticed triple 根形式翻译
@@ -805,5 +729,358 @@ NORMAL_TRIPLE_CHECK: PASS
     ==========================================
 SUMMARY Module4 NormalTriple: 2/2
 ASSERT SUMMARY: PASS
+
+==================================================
+模块 2.5 过滤后保留结果追加输出
+==================================================
+
+==================================================
+实验: G2 实验 1: 长-长 一黑一白 -> A2
+==================================================
+筛选结果:
+索引 | 根系与颜色 | 颜色(B/W) | 类型
+--------------------------------------------------
+1 | [ a0=-3a1-2a2(C), a1=a1(C), a2=a2(N) ] | 1B / 1W [a2] | A2
+
+未被过滤掉的索引完整输出:
+>>> 模块 1 输出: 子系统分析 (索引 1)
+    实验: G2 实验 1: 长-长 一黑一白 -> A2
+    类型: A2
+    全部位置对应根: [ a0=-3a1-2a2(C), a1=a1(C), a2=a2(N) ]
+    根基: [ a0=-3a1-2a2(C), a2=a2(N) ]
+    颜色配置: 1 黑, 1 白
+    >>> 检测到复合子系统，包含 1 个组件
+    --- 组件: A2 (根: [ "-3a1-2a2", "a2" ], 颜色: 1B 1W) ---
+        >>> 模块 2 输出: 实形式推断
+        推断实形式: su(2,1)
+        内部参数: Type=su_pq, Params=[ 2, 1 ]
+    >>> 模块 2.5 输出: 按 Δ_J 的 W_k-共轭类取代表
+        保留该 W_k·Δ_J 的代表，进入模块 3
+        >>> 模块 3 输出: Noticed Orbits 匹配
+        发现 1 个 Noticed Orbits
+    >>> 模块 3 输出: 组合轨道分析
+    >>> 组合分析: 共生成 1 个复合轨道配置
+    ------------------------------------------
+    复合轨道信息:
+      总划分: [ 3 ]
+      总 ab-diagram: 
+aba
+        [COMP#1] 开始模块4组件流程
+        [M4-STEP1] (g_c)_J 构造
+        [M4-STEP1] J(向量) = [ [ -3, -2 ], [ 0, 1 ] ]
+        [M4-STEP1] Delta_J = [ "-3a1-2a2", "-3a1-a2", "-a2", "3a1+2a2", "3a1+a2", "a2" ]
+        [M4-STEP1] h_c 基 = [ "H_{a1}", "H_{a2}" ]
+        [M4-STEP1] X_phi(phi∈Delta_J) = [ "X_{[-3a1-2a2]}", "X_{[-3a1-a2]}", "X_{[-a2]}", "X_{[3a1+2a2]}", "X_{[3a1+a2]}", "X_{[a2]}" ]
+        [M4-STEP1] dim((g_c)_J) 估计 = 8
+        [M4-STEP2] NilpotentOrbitsOfThetaRepresentation
+        [M4-STEP2] RealForm = su_pq, Params = [ 2, 1 ]
+        [M4-STEP2] theta Kac weights = [ 1, 1, 0 ]
+        [M4-STEP2] dim(z(l)∩k) = 0
+        [M4-STEP2] 轨道数 = 3
+        [M4-STEP2] orbit#1: x=v.4, h=(-1)*v.7, y=v.1
+        [M4-STEP2] orbit#1: dim(C_e)= 2, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 1, dim(z(l)∩k)= 0, noticed=false
+        [M4-STEP2] orbit#2: x=v.3+v.4, h=(2)*v.8, y=(2)*v.1+(2)*v.6
+        [M4-STEP2] orbit#2: dim(C_e)= 1, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
+        [M4-STEP2] orbit#3: x=v.3, h=v.7+v.8, y=v.6
+        [M4-STEP2] orbit#3: dim(C_e)= 2, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 1, dim(z(l)∩k)= 0, noticed=false
+        [M4-STEP2] 选中 triple: orbit#2 (noticed=true)
+        [M4-STEP2] noticed 判定所用 l=(g_c)_J 维数估计 = 8
+        [组件求和输入] 来源: noticed triple 根形式翻译
+        [COMP#1] noticed 候选数 = 1
+        [组件候选#1] h = 2H_{3a1+a2} + 2H_{a2}
+        [组件候选#1] e = E_{[3a1+a2]} + E_{[a2]}
+        [组件候选#1] f = 2F_{[3a1+a2]} + 2F_{[a2]}
+        [组件候选#1] 来自 orbit#2
+        [组件诊断] 类型=su_pq, 根=[ "-3a1-2a2", "a2" ]
+        [组件诊断] 开始 VerifyEFH_NormalConditions…
+        校验: [e,f]=h: PASS
+EFH_CHECK: PASS
+        [诊断] E 根 3a1+a2 的 α(h)=2 : PASS
+        [诊断] E 根 a2 的 α(h)=2 : PASS
+        [诊断] F 根 3a1+a2 的 α(h)=2 => 检查 -α(h)=-2: PASS
+        [诊断] F 根 a2 的 α(h)=2 => 检查 -α(h)=-2: PASS
+        校验: [h,e]=2e: PASS
+        校验: [h,f]=-2f: PASS
+        [组件诊断] P/K 检查: PASS
+        [组件诊断] NORMAL_TRIPLE_CHECK: PASS
+        [COMPOSITE] 组件候选笛卡尔组合数 = 1
+        [COMPOSITE-RAW#1] h = 2H_{3a1+a2} + 2H_{a2}
+        [COMPOSITE-RAW#1] e = E_{[3a1+a2]} + E_{[a2]}
+        [COMPOSITE-RAW#1] f = 2F_{[3a1+a2]} + 2F_{[a2]}
+        [COMPOSITE-RAW#1] 组件orbit选择 = [ 2 ]
+        [COMPOSITE-RAW] h = 2H_{3a1+a2} + 2H_{a2}
+        [COMPOSITE-RAW] e = E_{[3a1+a2]} + E_{[a2]}
+        [COMPOSITE-RAW] f = 2F_{[3a1+a2]} + 2F_{[a2]}
+        [COMPOSITE] 按组件构造并求和完成
+        >>> 模块 4 输出: SL2-Triple 构造 (Candidate)
+        SL2-Triple (h, e, f):
+          h = 2H_{3a1+a2} + 2H_{a2}
+          e = E_{[3a1+a2]} + E_{[a2]}
+          f = 2F_{[3a1+a2]} + 2F_{[a2]}
+        [强制校验] 开始 VerifyEFH_NormalConditions…
+        校验: [e,f]=h: PASS
+EFH_CHECK: PASS
+        [诊断] E 根 3a1+a2 的 α(h)=2 : PASS
+        [诊断] E 根 a2 的 α(h)=2 : PASS
+        [诊断] F 根 3a1+a2 的 α(h)=2 => 检查 -α(h)=-2: PASS
+        [诊断] F 根 a2 的 α(h)=2 => 检查 -α(h)=-2: PASS
+        校验: [h,e]=2e: PASS
+        校验: [h,f]=-2f: PASS
+        [诊断] P/K 检查: PASS
+        模块4判定: Normal
+NORMAL_TRIPLE_CHECK: PASS
+
+        [M4-WK-FILTER] 无可过滤的 W_k 共轭 triple (固定 Delta_J)
+        [M5-PROPAGATE] 向模块5传递组合 triple 数 = 1
+        [M5-PROPAGATE#1] h = 2H_{3a1+a2} + 2H_{a2}
+        [M5-PROPAGATE#1] e = E_{[3a1+a2]} + E_{[a2]}
+        [M5-PROPAGATE#1] f = 2F_{[3a1+a2]} + 2F_{[a2]}
+        [M5-PROPAGATE#1] 组件orbit选择 = [ 2 ]
+        >>> 模块 5 输出: K-Orbit 分类
+        K-Orbit Classification:
+          初始 h 系数: [ 2, 4 ]
+          变换后 h 系数: [ -2, -4 ]
+  Extended Vogan Diagram (G2 Split):
+  [ ] = Compact, (*) = Non-compact (Painted)
+  注: a0 = -theta（负最高根）
+
+      [ 4 ] a0 (-theta = 负最高根, Long)
+           |
+           | (single bond)
+           |
+      (*) [ -2 ] a2 (Long)
+           ||
+           || (triple bond, arrow to short)
+           \/
+      [ 0 ] a1 (Short)
+
+  Topology Summary:
+  a0(L) --- a2(L) ===> a1(S)
+
+  Compact Roots Weights:
+    a1: 0
+    a0: 4
+  => Compact Dominant! (K-orbit identified)
+
+    ------------------------------------------
+    ==========================================
+--------------------------------------------------
+
+==================================================
+实验: G2 实验 2: 两黑 正交 -> A1 + A1
+==================================================
+筛选结果:
+索引 | 根系与颜色 | 颜色(B/W) | 类型
+--------------------------------------------------
+1 | [ a0=-3a1-a2(N), a1=a1+a2(N), a2=-a2(N) ] | 2B / 0W [a0,a1] | A1 + A1
+
+未被过滤掉的索引完整输出:
+>>> 模块 1 输出: 子系统分析 (索引 1)
+    实验: G2 实验 2: 两黑 正交 -> A1 + A1
+    类型: A1 + A1
+    全部位置对应根: [ a0=-3a1-a2(N), a1=a1+a2(N), a2=-a2(N) ]
+    根基: [ a0=-3a1-a2(N), a1=a1+a2(N) ]
+    颜色配置: 2 黑, 0 白
+    >>> 检测到复合子系统，包含 2 个组件
+    --- 组件: A1 (根: [ "-3a1-a2" ], 颜色: 1B 0W) ---
+        >>> 模块 2 输出: 实形式推断
+        推断实形式: sl(2, R)
+        内部参数: Type=sl_R, Params=[ 1 ]
+    --- 组件: A1 (根: [ "a1+a2" ], 颜色: 1B 0W) ---
+        >>> 模块 2 输出: 实形式推断
+        推断实形式: sl(2, R)
+        内部参数: Type=sl_R, Params=[ 1 ]
+    >>> 模块 2.5 输出: 按 Δ_J 的 W_k-共轭类取代表
+        保留该 W_k·Δ_J 的代表，进入模块 3
+        >>> 模块 3 输出: Noticed Orbits 匹配
+        发现 1 个 Noticed Orbits
+        >>> 模块 3 输出: Noticed Orbits 匹配
+        发现 1 个 Noticed Orbits
+    >>> 模块 3 输出: 组合轨道分析
+    >>> 组合分析: 共生成 1 个复合轨道配置
+    ------------------------------------------
+    复合轨道信息:
+      总划分: [ 2, 2 ]
+      总 ab-diagram: 
+ab
+ab
+        [COMP#1] 开始模块4组件流程
+        [M4-STEP1] (g_c)_J 构造
+        [M4-STEP1] J(向量) = [ [ -3, -1 ] ]
+        [M4-STEP1] Delta_J = [ "-3a1-a2", "3a1+a2" ]
+        [M4-STEP1] h_c 基 = [ "H_{a1}", "H_{a2}" ]
+        [M4-STEP1] X_phi(phi∈Delta_J) = [ "X_{[-3a1-a2]}", "X_{[3a1+a2]}" ]
+        [M4-STEP1] dim((g_c)_J) 估计 = 4
+        [M4-STEP2] NilpotentOrbitsOfThetaRepresentation
+        [M4-STEP2] RealForm = sl_R, Params = [ 1 ]
+        [M4-STEP2] theta Kac weights = [ 1, 1 ]
+        [M4-STEP2] dim(z(l)∩k) = 0
+        [M4-STEP2] 轨道数 = 2
+        [M4-STEP2] orbit#1: x=v.2, h=(-1)*v.3, y=v.1
+        [M4-STEP2] orbit#1: dim(C_e)= 0, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
+        [M4-STEP2] orbit#2: x=v.1, h=v.3, y=v.2
+        [M4-STEP2] orbit#2: dim(C_e)= 0, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
+        [M4-STEP2] 选中 triple: orbit#1 (noticed=true)
+        [M4-STEP2] noticed 判定所用 l=(g_c)_J 维数估计 = 4
+        [组件求和输入] 来源: noticed triple 根形式翻译
+        [COMP#1] noticed 候选数 = 2
+        [组件候选#1] h = H_{-3a1-a2}
+        [组件候选#1] e = E_{[-3a1-a2]}
+        [组件候选#1] f = F_{[-3a1-a2]}
+        [组件候选#1] 来自 orbit#1
+        [组件候选#2] h = H_{3a1+a2}
+        [组件候选#2] e = E_{[3a1+a2]}
+        [组件候选#2] f = F_{[3a1+a2]}
+        [组件候选#2] 来自 orbit#2
+        [组件诊断] 类型=sl_R, 根=[ "-3a1-a2" ]
+        [组件诊断] 开始 VerifyEFH_NormalConditions…
+        校验: [e,f]=h: PASS
+EFH_CHECK: PASS
+        [诊断] E 根 -3a1-a2 的 α(h)=2 : PASS
+        [诊断] F 根 -3a1-a2 的 α(h)=2 => 检查 -α(h)=-2: PASS
+        校验: [h,e]=2e: PASS
+        校验: [h,f]=-2f: PASS
+        [组件诊断] P/K 检查: PASS
+        [组件诊断] NORMAL_TRIPLE_CHECK: PASS
+        [COMP#2] 开始模块4组件流程
+        [M4-STEP1] (g_c)_J 构造
+        [M4-STEP1] J(向量) = [ [ 1, 1 ] ]
+        [M4-STEP1] Delta_J = [ "-a1-a2", "a1+a2" ]
+        [M4-STEP1] h_c 基 = [ "H_{a1}", "H_{a2}" ]
+        [M4-STEP1] X_phi(phi∈Delta_J) = [ "X_{[-a1-a2]}", "X_{[a1+a2]}" ]
+        [M4-STEP1] dim((g_c)_J) 估计 = 4
+        [M4-STEP2] NilpotentOrbitsOfThetaRepresentation
+        [M4-STEP2] RealForm = sl_R, Params = [ 1 ]
+        [M4-STEP2] theta Kac weights = [ 1, 1 ]
+        [M4-STEP2] dim(z(l)∩k) = 0
+        [M4-STEP2] 轨道数 = 2
+        [M4-STEP2] orbit#1: x=v.2, h=(-1)*v.3, y=v.1
+        [M4-STEP2] orbit#1: dim(C_e)= 0, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
+        [M4-STEP2] orbit#2: x=v.1, h=v.3, y=v.2
+        [M4-STEP2] orbit#2: dim(C_e)= 0, dim(C_e∩Z)= 0, dim((l∩k)^[x,e,f])= 0, dim(z(l)∩k)= 0, noticed=true
+        [M4-STEP2] 选中 triple: orbit#1 (noticed=true)
+        [M4-STEP2] noticed 判定所用 l=(g_c)_J 维数估计 = 4
+        [组件求和输入] 来源: noticed triple 根形式翻译
+        [COMP#2] noticed 候选数 = 2
+        [组件候选#1] h = H_{a1+a2}
+        [组件候选#1] e = E_{[a1+a2]}
+        [组件候选#1] f = F_{[a1+a2]}
+        [组件候选#1] 来自 orbit#1
+        [组件候选#2] h = H_{-a1-a2}
+        [组件候选#2] e = E_{[-a1-a2]}
+        [组件候选#2] f = F_{[-a1-a2]}
+        [组件候选#2] 来自 orbit#2
+        [组件诊断] 类型=sl_R, 根=[ "a1+a2" ]
+        [组件诊断] 开始 VerifyEFH_NormalConditions…
+        校验: [e,f]=h: PASS
+EFH_CHECK: PASS
+        [诊断] E 根 a1+a2 的 α(h)=2 : PASS
+        [诊断] F 根 a1+a2 的 α(h)=2 => 检查 -α(h)=-2: PASS
+        校验: [h,e]=2e: PASS
+        校验: [h,f]=-2f: PASS
+        [组件诊断] P/K 检查: PASS
+        [组件诊断] NORMAL_TRIPLE_CHECK: PASS
+        [COMPOSITE] 组件候选笛卡尔组合数 = 4
+        [COMPOSITE-RAW#1] h = H_{-3a1-a2} + H_{a1+a2}
+        [COMPOSITE-RAW#1] e = E_{[-3a1-a2]} + E_{[a1+a2]}
+        [COMPOSITE-RAW#1] f = F_{[-3a1-a2]} + F_{[a1+a2]}
+        [COMPOSITE-RAW#1] 组件orbit选择 = [ 1, 1 ]
+        [COMPOSITE-RAW#2] h = H_{-3a1-a2} + H_{-a1-a2}
+        [COMPOSITE-RAW#2] e = E_{[-3a1-a2]} + E_{[-a1-a2]}
+        [COMPOSITE-RAW#2] f = F_{[-3a1-a2]} + F_{[-a1-a2]}
+        [COMPOSITE-RAW#2] 组件orbit选择 = [ 1, 2 ]
+        [COMPOSITE-RAW#3] h = H_{3a1+a2} + H_{a1+a2}
+        [COMPOSITE-RAW#3] e = E_{[3a1+a2]} + E_{[a1+a2]}
+        [COMPOSITE-RAW#3] f = F_{[3a1+a2]} + F_{[a1+a2]}
+        [COMPOSITE-RAW#3] 组件orbit选择 = [ 2, 1 ]
+        [COMPOSITE-RAW#4] h = H_{3a1+a2} + H_{-a1-a2}
+        [COMPOSITE-RAW#4] e = E_{[3a1+a2]} + E_{[-a1-a2]}
+        [COMPOSITE-RAW#4] f = F_{[3a1+a2]} + F_{[-a1-a2]}
+        [COMPOSITE-RAW#4] 组件orbit选择 = [ 2, 2 ]
+        [COMPOSITE-RAW] h = H_{-3a1-a2} + H_{a1+a2}
+        [COMPOSITE-RAW] e = E_{[-3a1-a2]} + E_{[a1+a2]}
+        [COMPOSITE-RAW] f = F_{[-3a1-a2]} + F_{[a1+a2]}
+        [COMPOSITE] 按组件构造并求和完成
+        >>> 模块 4 输出: SL2-Triple 构造 (Candidate)
+        SL2-Triple (h, e, f):
+          h = H_{-3a1-a2} + H_{a1+a2}
+          e = E_{[-3a1-a2]} + E_{[a1+a2]}
+          f = F_{[-3a1-a2]} + F_{[a1+a2]}
+        [强制校验] 开始 VerifyEFH_NormalConditions…
+        校验: [e,f]=h: PASS
+EFH_CHECK: PASS
+        [诊断] E 根 -3a1-a2 的 α(h)=2 : PASS
+        [诊断] E 根 a1+a2 的 α(h)=2 : PASS
+        [诊断] F 根 -3a1-a2 的 α(h)=2 => 检查 -α(h)=-2: PASS
+        [诊断] F 根 a1+a2 的 α(h)=2 => 检查 -α(h)=-2: PASS
+        校验: [h,e]=2e: PASS
+        校验: [h,f]=-2f: PASS
+        [诊断] P/K 检查: PASS
+        模块4判定: Normal
+NORMAL_TRIPLE_CHECK: PASS
+
+        [M4-WK-FILTER] 按“W_k 共轭且固定 Delta_J”过滤: 4 -> 2
+        [M5-PROPAGATE] 向模块5传递组合 triple 数 = 2
+        [M5-PROPAGATE#1] h = H_{-3a1-a2} + H_{a1+a2}
+        [M5-PROPAGATE#1] e = E_{[-3a1-a2]} + E_{[a1+a2]}
+        [M5-PROPAGATE#1] f = F_{[-3a1-a2]} + F_{[a1+a2]}
+        [M5-PROPAGATE#1] 组件orbit选择 = [ 1, 1 ]
+        >>> 模块 5 输出: K-Orbit 分类
+        K-Orbit Classification:
+          初始 h 系数: [ 0, 2 ]
+          变换后 h 系数: [ 0, -2 ]
+  Extended Vogan Diagram (G2 Split):
+  [ ] = Compact, (*) = Non-compact (Painted)
+  注: a0 = -theta（负最高根）
+
+      [ 2 ] a0 (-theta = 负最高根, Long)
+           |
+           | (single bond)
+           |
+      (*) [ -4 ] a2 (Long)
+           ||
+           || (triple bond, arrow to short)
+           \/
+      [ 2 ] a1 (Short)
+
+  Topology Summary:
+  a0(L) --- a2(L) ===> a1(S)
+
+  Compact Roots Weights:
+    a1: 2
+    a0: 2
+  => Compact Dominant! (K-orbit identified)
+        [M5-PROPAGATE#2] h = H_{-3a1-a2} + H_{-a1-a2}
+        [M5-PROPAGATE#2] e = E_{[-3a1-a2]} + E_{[-a1-a2]}
+        [M5-PROPAGATE#2] f = F_{[-3a1-a2]} + F_{[-a1-a2]}
+        [M5-PROPAGATE#2] 组件orbit选择 = [ 1, 2 ]
+        >>> 模块 5 输出: K-Orbit 分类
+        K-Orbit Classification:
+          初始 h 系数: [ -2, -4 ]
+  Extended Vogan Diagram (G2 Split):
+  [ ] = Compact, (*) = Non-compact (Painted)
+  注: a0 = -theta（负最高根）
+
+      [ 4 ] a0 (-theta = 负最高根, Long)
+           |
+           | (single bond)
+           |
+      (*) [ -2 ] a2 (Long)
+           ||
+           || (triple bond, arrow to short)
+           \/
+      [ 0 ] a1 (Short)
+
+  Topology Summary:
+  a0(L) --- a2(L) ===> a1(S)
+
+  Compact Roots Weights:
+    a1: 0
+    a0: 4
+  => Compact Dominant! (K-orbit identified)
+
+    ------------------------------------------
+    ==========================================
+--------------------------------------------------
 
 全流程分析完成。

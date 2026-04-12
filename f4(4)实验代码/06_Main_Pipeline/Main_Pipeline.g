@@ -14,12 +14,7 @@ if IsBound(GlobalOutFile) then
 fi;
 PrintTo(out_file, "");
 LogTo(out_file);
-MakeRetainedOutputFileName := function(base_file, exp_index)
-    if Length(base_file) >= 4 and base_file{[Length(base_file)-3..Length(base_file)]} = ".txt" then
-        return Concatenation(base_file{[1..Length(base_file)-4]}, "_保留结果_", String(exp_index), ".txt");
-    fi;
-    return Concatenation(base_file, "_保留结果_", String(exp_index), ".txt");
-end;;
+SizeScreen([1000, 5000]);
 
 if not IsBound(GlobalAmbientType) then
     GlobalAmbientType := "F4";
@@ -268,12 +263,9 @@ else
     ];
 fi;
 for i in [1..Length(experiments)] do
-    experiments[i].retained_output_file := MakeRetainedOutputFileName(out_file, i);
     experiments[i].retained_overview_count := 0;
-    experiments[i].retained_detail_header_written := false;
-    experiments[i].retained_detail_buffer := "";
-    PrintTo(experiments[i].retained_output_file, "");
-    AppendTo(experiments[i].retained_output_file, "实验: ", experiments[i].desc, "\n");
+    experiments[i].retained_overview_buffer := "";
+    experiments[i].retained_indices := [];
 od;
 
 all_subsystems := [];
@@ -462,6 +454,19 @@ BuildSubsystemOverviewLine := function(s)
         PadRight(display_type, 10)
     );
 end;;
+BuildRetainedAppendixOverviewLine := function(s)
+    local color_desc, roots_display, black_pos_desc, display_type;
+    color_desc := Concatenation(String(s.black_nodes), "B / ", String(s.white_nodes), "W");
+    roots_display := GetSubsystemRootsDisplay(s);
+    black_pos_desc := GetSubsystemBlackPositionSuffix(s);
+    display_type := ResolveSubsystemDisplayType(s);
+    return Concatenation(
+        String(s.idx), " | ",
+        roots_display, " | ",
+        Concatenation(color_desc, black_pos_desc), " | ",
+        display_type
+    );
+end;;
 GetRetainedExperimentRecord := function(exp_desc)
     local exp_rec;
     for exp_rec in experiments do
@@ -480,123 +485,65 @@ AppendRetainedOverviewLine := function(s)
     if exp_rec = fail then
         return;
     fi;
-    AppendTo(exp_rec.retained_output_file, BuildSubsystemOverviewLine(s), "\n");
+    Add(exp_rec.retained_indices, s.idx);
+    exp_rec.retained_overview_buffer := Concatenation(exp_rec.retained_overview_buffer, BuildRetainedAppendixOverviewLine(s), "\n");
     exp_rec.retained_overview_count := exp_rec.retained_overview_count + 1;
 end;;
-AppendRetainedMirrorText := function(text)
-    if IsBoundGlobal("GlobalRetainedMirrorFile") and ValueGlobal("GlobalRetainedMirrorFile") <> fail then
-        AppendTo(ValueGlobal("GlobalRetainedMirrorFile"), text);
-    fi;
-end;;
-StartRetainedMirror := function(s)
-    local exp_rec, prev_enable, prev_logfile;
-    if not IsBound(s.exp_desc) then
-        return;
-    fi;
-    exp_rec := GetRetainedExperimentRecord(s.exp_desc);
-    if exp_rec = fail then
-        return;
-    fi;
-    prev_enable := fail;
-    prev_logfile := fail;
-    if IsBoundGlobal("GlobalEnableLogFile") then
-        prev_enable := ValueGlobal("GlobalEnableLogFile");
-    fi;
-    if IsBoundGlobal("GlobalLogfileName") then
-        prev_logfile := ValueGlobal("GlobalLogfileName");
-    fi;
-    GlobalRetainedMirrorPrevEnable := prev_enable;
-    GlobalRetainedMirrorPrevLogfile := prev_logfile;
-    GlobalRetainedMirrorFile := exp_rec.retained_output_file;
-    GlobalEnableLogFile := true;
-    GlobalLogfileName := exp_rec.retained_output_file;
-end;;
-StopRetainedMirror := function()
-    if IsBoundGlobal("GlobalRetainedMirrorPrevEnable") then
-        if ValueGlobal("GlobalRetainedMirrorPrevEnable") = fail then
-            GlobalEnableLogFile := false;
-        else
-            GlobalEnableLogFile := ValueGlobal("GlobalRetainedMirrorPrevEnable");
-        fi;
-        Unbind(GlobalRetainedMirrorPrevEnable);
-    fi;
-    if IsBoundGlobal("GlobalRetainedMirrorPrevLogfile") then
-        if ValueGlobal("GlobalRetainedMirrorPrevLogfile") = fail then
-            GlobalLogfileName := fail;
-        else
-            GlobalLogfileName := ValueGlobal("GlobalRetainedMirrorPrevLogfile");
-        fi;
-        Unbind(GlobalRetainedMirrorPrevLogfile);
-    fi;
-    if IsBoundGlobal("GlobalRetainedMirrorFile") then
-        Unbind(GlobalRetainedMirrorFile);
-    fi;
-end;;
-EnsureRetainedDetailHeader := function(exp_desc)
-    local exp_rec;
-    exp_rec := GetRetainedExperimentRecord(exp_desc);
-    if exp_rec = fail then
+ReadWholeTextFile := function(filename)
+    local input, text;
+    input := InputTextFile(filename);
+    if input = fail then
         return fail;
     fi;
-    if not exp_rec.retained_detail_header_written then
-        AppendTo(exp_rec.retained_output_file, "\n保留索引详细结果:\n");
-        exp_rec.retained_detail_header_written := true;
-    fi;
-    return exp_rec.retained_output_file;
+    text := ReadAll(input);
+    CloseStream(input);
+    return text;
 end;;
-AppendRetainedDetailSingle := function(s, info)
-    local retained_file;
-    if not IsBound(s.exp_desc) then
-        return;
-    fi;
-    retained_file := EnsureRetainedDetailHeader(s.exp_desc);
-    if retained_file = fail then
-        return;
-    fi;
-    AppendTo(retained_file, "\n>>> 模块 1 输出: 子系统分析 (索引 ", String(s.idx), ")\n");
-    AppendTo(retained_file, "    实验: ", s.exp_desc, "\n");
-    AppendTo(retained_file, "    类型: ", ResolveSubsystemDisplayType(s), "\n");
-    AppendTo(retained_file, "    五个位置对应根: ", GetSubsystemRootsDisplay(s), "\n");
-    if IsBound(s.pos_labels) and IsBound(s.roots_list) and IsBound(s.colors_list) then
-        AppendTo(retained_file, "    根基: ", FormatAnnotatedRootDisplayWithPositions(s.pos_labels, s.roots_list, s.colors_list), "\n");
-    elif IsBound(s.roots_list) and IsBound(s.colors_list) then
-        AppendTo(retained_file, "    根基: ", FormatAnnotatedRootList(s.roots_list, s.colors_list), "\n");
-    elif IsBound(s.roots_list) then
-        AppendTo(retained_file, "    根基: ", String(s.roots_list), "\n");
-    fi;
-    AppendTo(retained_file, "    颜色配置: ", String(s.black_nodes), " 黑, ", String(s.white_nodes), " 白\n");
-    AppendTo(retained_file, "    >>> 模块 2 输出: 实形式推断\n");
-    AppendTo(retained_file, "        实形式: ", info.desc, "\n");
-    AppendTo(retained_file, "        内部参数: Type=", info.type, ", Params=", String(info.params), "\n");
-    AppendTo(retained_file, "    >>> 模块 2.5 输出: 按 Δ_J 的 W_k-共轭类取代表\n");
-    AppendTo(retained_file, "        保留该 W_k·Δ_J 的代表，进入模块 3\n");
+ComputeRetainedBlockEnd := function(file_text, start_pos)
+    local next_pos, summary_pos, assert_pos, finish_pos, appendix_pos, end_pos, pos;
+    next_pos := PositionSublist(file_text, "\n>>> 模块 1 输出: 子系统分析 (索引 ", start_pos + 1);
+    summary_pos := PositionSublist(file_text, "\nSUMMARY ", start_pos + 1);
+    assert_pos := PositionSublist(file_text, "\nASSERT SUMMARY:", start_pos + 1);
+    finish_pos := PositionSublist(file_text, "\n全流程分析完成。", start_pos + 1);
+    appendix_pos := PositionSublist(file_text, "\n==================================================\n模块 2.5 过滤后保留结果追加输出", start_pos + 1);
+    end_pos := Length(file_text) + 1;
+    for pos in [next_pos, summary_pos, assert_pos, finish_pos, appendix_pos] do
+        if pos <> fail and pos < end_pos then
+            end_pos := pos;
+        fi;
+    od;
+    return end_pos - 1;
 end;;
-AppendRetainedDetailComposite := function(s, comp_infos_list)
-    local retained_file;
-    if not IsBound(s.exp_desc) then
-        return;
-    fi;
-    retained_file := EnsureRetainedDetailHeader(s.exp_desc);
-    if retained_file = fail then
-        return;
-    fi;
-    AppendTo(retained_file, "\n>>> 模块 1 输出: 子系统分析 (索引 ", String(s.idx), ")\n");
-    AppendTo(retained_file, "    实验: ", s.exp_desc, "\n");
-    AppendTo(retained_file, "    类型: ", ResolveSubsystemDisplayType(s), "\n");
-    AppendTo(retained_file, "    五个位置对应根: ", GetSubsystemRootsDisplay(s), "\n");
-    if IsBound(s.pos_labels) and IsBound(s.roots_list) and IsBound(s.colors_list) then
-        AppendTo(retained_file, "    根基: ", FormatAnnotatedRootDisplayWithPositions(s.pos_labels, s.roots_list, s.colors_list), "\n");
-    elif IsBound(s.roots_list) and IsBound(s.colors_list) then
-        AppendTo(retained_file, "    根基: ", FormatAnnotatedRootList(s.roots_list, s.colors_list), "\n");
-    elif IsBound(s.roots_list) then
-        AppendTo(retained_file, "    根基: ", String(s.roots_list), "\n");
-    fi;
-    AppendTo(retained_file, "    颜色配置: ", String(s.black_nodes), " 黑, ", String(s.white_nodes), " 白\n");
-    AppendTo(retained_file, "    >>> 模块 2 输出: 实形式推断\n");
-    AppendTo(retained_file, "        组件实形式: ", String(List(comp_infos_list, x -> x.desc)), "\n");
-    AppendTo(retained_file, "        组件内部参数: ", String(List(comp_infos_list, x -> rec(Type := x.type, Params := x.params))), "\n");
-    AppendTo(retained_file, "    >>> 模块 2.5 输出: 按 Δ_J 的 W_k-共轭类取代表\n");
-    AppendTo(retained_file, "        保留该 W_k·Δ_J 的代表，进入模块 3\n");
+FindNearestBlockStartBefore := function(file_text, marker_pos)
+    local pos;
+    pos := marker_pos;
+    while pos >= 1 do
+        if pos + 3 <= Length(file_text) and file_text{[pos..pos+3]} = ">>> " then
+            return pos;
+        fi;
+        pos := pos - 1;
+    od;
+    return fail;
+end;;
+ExtractNextRetainedBlockByIndex := function(file_text, idx, search_pos)
+    local idx_pos, start_pos, end_pos;
+    while true do
+        idx_pos := PositionSublist(file_text, Concatenation("索引 ", String(idx), ")"), search_pos);
+        if idx_pos = fail then
+            return rec(found := false, next_pos := search_pos);
+        fi;
+        start_pos := FindNearestBlockStartBefore(file_text, idx_pos);
+        if start_pos = fail then
+            search_pos := idx_pos + 1;
+            continue;
+        fi;
+        end_pos := ComputeRetainedBlockEnd(file_text, start_pos);
+        return rec(
+            found := true,
+            block_text := file_text{[start_pos..end_pos]},
+            next_pos := end_pos + 1
+        );
+    od;
 end;;
 
 # 打印筛选结果概览
@@ -609,11 +556,6 @@ header := Concatenation(
 );
 Print(header, "\n");
 Print("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-for exp in experiments do
-    AppendTo(exp.retained_output_file, "\n模块 2.5 保留结果概览:\n");
-    AppendTo(exp.retained_output_file, header, "\n");
-    AppendTo(exp.retained_output_file, "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-od;
 
 for s in subsystems do
     Print(BuildSubsystemOverviewLine(s), "\n");
@@ -964,8 +906,6 @@ for s in subsystems do
             if filter_info.is_new then
                 Print("        保留该 W_k·Δ_J 的代表，进入模块 3\n");
                 AppendRetainedOverviewLine(s);
-                AppendRetainedDetailComposite(s, comp_infos_list);
-                StartRetainedMirror(s);
             else
                 Print(Concatenation("        该 Δ_J 与索引 ", String(filter_info.first_index), " 同属一个 W_k-共轭类，跳过\n"));
             fi;
@@ -974,20 +914,15 @@ for s in subsystems do
         if all_comps_valid and filter_info.is_new then
             if composite_single_like then
                 Print("    >>> 模块 3 输出: 实形式直传模块4\n");
-                AppendRetainedMirrorText("    >>> 模块 3 输出: 实形式直传模块4\n");
                 Print("        使用模块2组件实形式，直接进入模块4\n");
-                AppendRetainedMirrorText("        使用模块2组件实形式，直接进入模块4\n");
             else
                 Print("    >>> 模块 3 输出: 组合轨道分析\n");
-                AppendRetainedMirrorText("    >>> 模块 3 输出: 组合轨道分析\n");
             fi;
             if IsBoundGlobal("GlobalAmbientType") and ValueGlobal("GlobalAmbientType") = "F4" then
                 if not composite_single_like then
                     Print("    >>> 组合分析: F4 复合情形按组件 theta 候选统一直译，不预先枚举模块3复合轨道笛卡尔积\n");
-                    AppendRetainedMirrorText("    >>> 组合分析: F4 复合情形按组件 theta 候选统一直译，不预先枚举模块3复合轨道笛卡尔积\n");
                 fi;
                 Print("    ------------------------------------------\n");
-                AppendRetainedMirrorText("    ------------------------------------------\n");
                 
                 ordered_roots := [];
                 full_ab_str := "";
@@ -1025,16 +960,12 @@ for s in subsystems do
                 
                 if not composite_single_like then
                     Print("    复合轨道信息:\n");
-                    AppendRetainedMirrorText("    复合轨道信息:\n");
                     Print("      总划分(展示用，取各组件首个 noticed orbit): ", full_partition, "\n");
-                    AppendRetainedMirrorText(Concatenation("      总划分(展示用，取各组件首个 noticed orbit): ", String(full_partition), "\n"));
                     Print("      总 ab-diagram(展示用，取各组件首个 noticed orbit): \n", full_ab_str, "\n");
-                    AppendRetainedMirrorText(Concatenation("      总 ab-diagram(展示用，取各组件首个 noticed orbit): \n", full_ab_str, "\n"));
                 fi;
                 
                 total_rank := Length(ordered_roots);
                 Print("    [模块4重载] 重新加载 F4 专用 SL2 Builder\n");
-                AppendRetainedMirrorText("    [模块4重载] 重新加载 F4 专用 SL2 Builder\n");
                 Read("../05_SL2_Triple_Construction/SL2_Triple_Builder.g");
                 if IsBoundGlobal("PrintSL2TripleUnified") then
                     GlobalCompositeComponentData := component_payload;
@@ -1044,14 +975,11 @@ for s in subsystems do
                     PrintSL2Triple(full_ab_str, "Composite", total_rank, ordered_roots);
                 fi;
                 Print("\n    ------------------------------------------\n");
-                AppendRetainedMirrorText("\n    ------------------------------------------\n");
             else
                 # 2. 组合所有组件的 Orbits (笛卡尔积)
                 combined_orbits := CartesianProductList(comp_orbits_list);
                 Print("    >>> 组合分析: 共生成 ", Length(combined_orbits), " 个复合轨道配置\n");
-                AppendRetainedMirrorText(Concatenation("    >>> 组合分析: 共生成 ", String(Length(combined_orbits)), " 个复合轨道配置\n"));
                 Print("    ------------------------------------------\n");
-                AppendRetainedMirrorText("    ------------------------------------------\n");
                 
                 for comb in combined_orbits do
                     # comb 为 [orbit1, orbit2, ...]
@@ -1097,18 +1025,14 @@ for s in subsystems do
                     od;
                     
                     Print("    复合轨道信息:\n");
-                    AppendRetainedMirrorText("    复合轨道信息:\n");
                     Print("      总划分: ", full_partition, "\n");
-                    AppendRetainedMirrorText(Concatenation("      总划分: ", String(full_partition), "\n"));
                     Print("      总 ab-diagram: \n", full_ab_str, "\n");
-                    AppendRetainedMirrorText(Concatenation("      总 ab-diagram: \n", full_ab_str, "\n"));
                     
                     # 调用 Builder (使用重排后的根列表)
                     total_rank := Length(ordered_roots);
                     # 统一入口：由构造器内部按需规范化根，再统一构造 Normal Triple
                     if IsBoundGlobal("GlobalAmbientType") and ValueGlobal("GlobalAmbientType") = "F4" then
                         Print("    [模块4重载] 重新加载 F4 专用 SL2 Builder\n");
-                        AppendRetainedMirrorText("    [模块4重载] 重新加载 F4 专用 SL2 Builder\n");
                         Read("../05_SL2_Triple_Construction/SL2_Triple_Builder.g");
                     fi;
                     if IsBoundGlobal("PrintSL2TripleUnified") then
@@ -1119,10 +1043,8 @@ for s in subsystems do
                         PrintSL2Triple(full_ab_str, "Composite", total_rank, ordered_roots);
                     fi;
                     Print("\n    ------------------------------------------\n");
-                    AppendRetainedMirrorText("\n    ------------------------------------------\n");
                 od;
             fi;
-            StopRetainedMirror();
         fi;
         
     else
@@ -1170,10 +1092,7 @@ for s in subsystems do
                     if filter_info.is_new then
                         Print("        保留该 W_k·Δ_J 的代表，进入模块 3\n");
                         AppendRetainedOverviewLine(s);
-                        AppendRetainedDetailSingle(s, info);
-                        StartRetainedMirror(s);
                         Print("    ------------------------------------------\n");
-                        AppendRetainedMirrorText("    ------------------------------------------\n");
                         
                         # 调用 Noticed Orbits 分析
                         if type_char = "B" and rank = 4 and IsBound(s.colors_list) then
@@ -1183,7 +1102,6 @@ for s in subsystems do
                             ValueGlobal("PrintNoticedOrbits_Generic")(info.type, info.params, subsystem_roots);
                         else
                             Print("    警告: 未加载 Noticed_Orbits 模块，跳过模块 3 输出\n");
-                            AppendRetainedMirrorText("    警告: 未加载 Noticed_Orbits 模块，跳过模块 3 输出\n");
                         fi;
                         AppendPipelineLog("CALL Noticed\n");
                         if IsBound(GlobalColorsListForDiagram) then
@@ -1211,14 +1129,48 @@ for s in subsystems do
         Unbind(GlobalModule2CurrentRealFormInfo);
     fi;
     Print("    ==========================================\n");
-    AppendRetainedMirrorText("    ==========================================\n");
-    StopRetainedMirror();
 od;
-for exp in experiments do
-    if exp.retained_overview_count = 0 then
-        AppendTo(exp.retained_output_file, "无保留结果。\n");
-    fi;
-od;
+EmitRetainedAppendix := function()
+    local exp, source_text, idx, block_info, search_pos;
+    Print("\n==================================================\n");
+    Print("模块 2.5 过滤后保留结果追加输出\n");
+    Print("==================================================\n");
+    source_text := ReadWholeTextFile(out_file);
+    search_pos := 1;
+    for exp in experiments do
+        Print("\n==================================================\n");
+        Print("实验: ", exp.desc, "\n");
+        Print("==================================================\n");
+        Print("筛选结果:\n");
+        if exp.retained_overview_count = 0 then
+            Print("无保留结果。\n");
+        else
+            Print("索引 | 根系与颜色 | 颜色(B/W) | 类型\n");
+            Print("--------------------------------------------------\n");
+            Print(exp.retained_overview_buffer);
+        fi;
+        Print("\n未被过滤掉的索引完整输出:\n");
+        if exp.retained_overview_count = 0 then
+            Print("无。\n");
+        elif source_text = fail then
+            Print("无法读取原始输出文件，未能提取完整输出。\n");
+        else
+            for idx in exp.retained_indices do
+                block_info := ExtractNextRetainedBlockByIndex(source_text, idx, search_pos);
+                if not block_info.found then
+                    Print(">>> 索引 ", idx, " 的完整输出未能提取\n");
+                else
+                    Print(block_info.block_text);
+                    if Length(block_info.block_text) = 0 or block_info.block_text[Length(block_info.block_text)] <> '\n' then
+                        Print("\n");
+                    fi;
+                    search_pos := block_info.next_pos;
+                fi;
+                Print("--------------------------------------------------\n");
+            od;
+        fi;
+    od;
+end;;
 
 if IsBoundGlobal("GlobalNormalTripleTotalChecks") then
     EmitSummary("Module4 NormalTriple", Concatenation(String(GlobalNormalTriplePassChecks), "/", String(GlobalNormalTripleTotalChecks)));
@@ -1331,8 +1283,10 @@ else
         Print("  - ", err, "\n");
         AppendPipelineLog(Concatenation("  - ", err, "\n"));
     od;
+    EmitRetainedAppendix();
     Print("\n全流程分析完成。\n");
     QUIT_GAP(1);
 fi;
+EmitRetainedAppendix();
 Print("\n全流程分析完成。\n");
 quit;
