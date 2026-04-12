@@ -2,6 +2,16 @@
 # 文件: SL2_Triple_Builder.g
 # 描述: 从 ab-diagram 构造 sl2-triple (h, e, f)
 # 参考: 项目内部实验流程与模块化约定
+# 说明: 模块4核心实现，负责从 noticed orbit 的 AB 图出发构造并校验 triple。
+# 核心入口与用途:
+#   - PrintSL2TripleUnified:
+#       统一入口，根据类型/秩/根集合调度具体构造路径并打印结果。
+#   - BuildCompositeNormalTriple_FromComponents:
+#       对可分解子系统按分量构造 triple，再合成并做一致性验证。
+#   - VerifyEFH_NormalConditions / VerifyPK_Subsystem_G2:
+#       对 [e,f]=h、[h,e]=2e、[h,f]=-2f 及 P/P' 条件进行校验。
+#   - FilterCompositeTriplesByWKConjugacyFixingDeltaJG2:
+#       在固定 Δ_J 的 W_k 共轭作用下去重候选 triple。
 #############################################################################
 
 # =============================================================================

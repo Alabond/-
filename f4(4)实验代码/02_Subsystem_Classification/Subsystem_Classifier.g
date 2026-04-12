@@ -3,6 +3,16 @@
 # 描述: 通用子根系类型分类器 (支持 A, B, C, D, G 等类型判定)
 # 作者: Trae AI Assistant
 # 日期: 2026-02-26
+# 说明: 输入一组候选 simple roots 后，先算 Cartan，再按连通分量逐块判型。
+# 函数职责索引:
+#   - UC_ComputeCartanMatrix:
+#       用给定内积函数生成 Cartan 矩阵，是后续所有判型的基础。
+#   - UC_FindConnectedComponents:
+#       从 Cartan 非零耦合关系提取 Dynkin 图连通分量。
+#   - UC_IdentifyComponentType:
+#       对单个连通块进行类型判定，输出 A/B/C/D/G 与 rank 信息。
+#   - ClassifyRootSystem:
+#       对全体根调用上述流程，返回 total_type 与 components 结构。
 #############################################################################
 
 

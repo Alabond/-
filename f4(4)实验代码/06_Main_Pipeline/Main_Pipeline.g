@@ -1,5 +1,23 @@
 #############################################################################
 # 文件: Main_Pipeline.g
+# 描述: F4(4) 主流程执行器，串联模块1~5并负责结果汇总与附加输出。
+# 执行顺序:
+#   1) 读取实验配置并调用模块1得到候选子系统
+#   2) 模块2按连通分量推断实形式并输出组件级信息
+#   3) 模块2.5按 Δ_J 与 W_k 共轭类去重，仅保留代表元
+#   4) 模块3匹配 noticed orbit / AB diagram
+#   5) 模块4构造并校验 sl2-triple，模块5输出 KOrbitLabel 与断言
+# 关键函数用途索引:
+#   - AppendPipelineLog/EmitSummary: 统一日志与汇总输出接口
+#   - ResolveBCTypeByRootLengths/ResolveComponentTypeByRootData:
+#       解决 Bn/Cn 歧义并生成最终展示类型
+#   - InferRealForm_A3_ByPosition / InferRealForm_C3_ByPosition /
+#       InferRealForm_C2_ByPosition: 位置敏感实形式修正
+#   - BuildSubsystemOverviewLine / BuildRetainedAppendixOverviewLine:
+#       构造总览表与“保留结果附录”表格行
+#   - ExtractNextRetainedBlockByIndex: 从原始日志中抓取索引对应完整块
+#   - RegisterDeltaJWKOrbitRepresentativeF4: 模块2.5保留判定入口
+#   - EmitRetainedAppendix: 在原实验结果文件末尾追加保留结果详情
 #############################################################################
 
 Print("BOOT\n");
@@ -73,6 +91,8 @@ EmitSummaryIfGlobal := function(key, global_name)
         EmitSummary(key, ValueGlobal(global_name));
     fi;
 end;;
+# 计算 F4 简单根坐标系下的标准内积。
+# 用途: 类型歧义消解、根长比较、模块2.5反射与共轭计算。
 F4PipelineInnerProduct := function(v1, v2)
     local M, a, b, res;
     M := [
@@ -89,6 +109,8 @@ F4PipelineInnerProduct := function(v1, v2)
     od;
     return res;
 end;;
+# 对 B/C 混合标签用根长分布做二次判定:
+# 长根唯一 -> C 型；短根唯一 -> B 型。
 ResolveBCTypeByRootLengths := function(component_vecs)
     local lens, min_len, max_len, short_count, long_count;
     if not IsList(component_vecs) or Length(component_vecs) < 2 then
@@ -111,6 +133,8 @@ ResolveBCTypeByRootLengths := function(component_vecs)
     return fail;
 end;;
 
+# 将分类模块返回的原始类型转成可展示类型。
+# 例如 "B3/C3" 结合根长分布后会归一到 "B3" 或 "C3"。
 ResolveComponentTypeByRootData := function(raw_type, component_vecs)
     local slash_pos, resolved_bc_type, rank_part;
     slash_pos := Position(raw_type, '/');
@@ -127,6 +151,7 @@ ResolveComponentTypeByRootData := function(raw_type, component_vecs)
     return raw_type;
 end;;
 
+# 读取子系统记录并输出用于表格展示的统一类型字符串。
 ResolveSubsystemDisplayType := function(s)
     local pieces, comp, comp_vecs, idx, resolved_type, result, i;
     if not (IsBound(s.components) and IsList(s.components) and Length(s.components) > 0 and IsBound(s.roots_vecs)) then
@@ -152,6 +177,8 @@ ResolveSubsystemDisplayType := function(s)
     return result;
 end;;
 
+# A3 的位置敏感实形式修正:
+# 使用扩展根位置信息对 su(2,2)/sl(4,R) 等边界情形做更稳定判定。
 InferRealForm_A3_ByPosition := function(component_vecs, component_colors)
     local C, i, j, deg, middle_idx, blacks, whites, minority_idx;
     if Length(component_vecs) <> 3 or Length(component_colors) <> 3 then
@@ -193,6 +220,7 @@ InferRealForm_A3_ByPosition := function(component_vecs, component_colors)
     return rec(type := "su_pq", params := [3, 1], desc := "su(3,1)");
 end;;
 
+# C3 的位置敏感实形式修正，避免仅靠黑白计数造成误判。
 InferRealForm_C3_ByPosition := function(component_vecs, component_colors)
     local lens, max_len, long_idxs, black_idxs;
     if Length(component_vecs) <> 3 or Length(component_colors) <> 3 then
@@ -211,6 +239,7 @@ InferRealForm_C3_ByPosition := function(component_vecs, component_colors)
     return fail;
 end;;
 
+# C2 的位置敏感实形式修正，优先保证与本项目实验约定一致。
 InferRealForm_C2_ByPosition := function(component_vecs, component_colors)
     local lens, max_len, long_idxs, black_idxs;
     if Length(component_vecs) <> 2 or Length(component_colors) <> 2 then
@@ -323,6 +352,7 @@ od;
 subsystems := all_subsystems;
 
 # 文本对齐辅助（右侧填充空格至固定宽度）
+# 用于生成模块2总览表固定列宽，避免日志表头错位。
 PadRight := function(s, w)
     local t, len_s;
     t := s;
@@ -334,6 +364,8 @@ PadRight := function(s, w)
     return t;
 end;;
 
+# 将“位置标签 + 根字符串”格式化成可读展示。
+# 示例: [a0=..., a2=...]。
 FormatRootDisplayWithPositions := function(labels, roots)
     local result, i;
     if not IsList(labels) or not IsList(roots) or Length(labels) <> Length(roots) then
@@ -349,6 +381,9 @@ FormatRootDisplayWithPositions := function(labels, roots)
     return Concatenation(result, " ]");
 end;;
 
+# 根颜色标注:
+# - color=1 => 非紧根 (N)
+# - color=0 => 紧根   (C)
 FormatAnnotatedRoot := function(root_str, color)
     if color = 1 then
         return Concatenation(root_str, "(N)");
@@ -356,6 +391,7 @@ FormatAnnotatedRoot := function(root_str, color)
     return Concatenation(root_str, "(C)");
 end;;
 
+# 对根列表应用 (N)/(C) 注记，输出适合表格的字符串。
 FormatAnnotatedRootList := function(roots, colors)
     local result, i;
     if not IsList(roots) then
@@ -374,6 +410,7 @@ FormatAnnotatedRootList := function(roots, colors)
     return Concatenation(result, " ]");
 end;;
 
+# 组合“位置标签 + 根 + 颜色注记”的完整展示字符串。
 FormatAnnotatedRootDisplayWithPositions := function(labels, roots, colors)
     local result, i;
     if not IsList(labels) or not IsList(roots) or not IsList(colors) then
@@ -391,6 +428,8 @@ FormatAnnotatedRootDisplayWithPositions := function(labels, roots, colors)
     od;
     return Concatenation(result, " ]");
 end;;
+# 兼容不同记录形态的根展示入口。
+# 优先使用 all_pos_labels/all_roots_list/all_colors_list，其次退化到局部字段。
 GetSubsystemRootsDisplay := function(s)
     if IsBound(s.all_pos_labels) and IsBound(s.all_roots_list) and IsBound(s.all_colors_list) then
         return FormatAnnotatedRootDisplayWithPositions(s.all_pos_labels, s.all_roots_list, s.all_colors_list);
@@ -412,6 +451,7 @@ GetSubsystemRootsDisplay := function(s)
     fi;
     return Concatenation(s.w_alpha2, ", ", s.neg_w_theta);
 end;;
+# 提取黑点所在位置标签，追加到颜色摘要中，便于快速核对配置。
 GetSubsystemBlackPositionSuffix := function(s)
     local black_positions, root_labels, pos_str, i, j;
     if not IsBound(s.colors_list) then
@@ -441,6 +481,7 @@ GetSubsystemBlackPositionSuffix := function(s)
     od;
     return Concatenation(" [", pos_str, "]");
 end;;
+# 生成模块2总览行（固定列宽版本）。
 BuildSubsystemOverviewLine := function(s)
     local color_desc, roots_display, black_pos_desc, display_type;
     color_desc := Concatenation(String(s.black_nodes), "B / ", String(s.white_nodes), "W");
@@ -454,6 +495,7 @@ BuildSubsystemOverviewLine := function(s)
         PadRight(display_type, 10)
     );
 end;;
+# 生成模块2.5附录总览行（紧凑版本，不做宽度填充）。
 BuildRetainedAppendixOverviewLine := function(s)
     local color_desc, roots_display, black_pos_desc, display_type;
     color_desc := Concatenation(String(s.black_nodes), "B / ", String(s.white_nodes), "W");
@@ -467,6 +509,7 @@ BuildRetainedAppendixOverviewLine := function(s)
         display_type
     );
 end;;
+# 根据实验描述检索对应实验记录，供附录统计缓冲区写入使用。
 GetRetainedExperimentRecord := function(exp_desc)
     local exp_rec;
     for exp_rec in experiments do
@@ -476,6 +519,7 @@ GetRetainedExperimentRecord := function(exp_desc)
     od;
     return fail;
 end;;
+# 将当前保留子系统追加到对应实验的附录缓存区。
 AppendRetainedOverviewLine := function(s)
     local exp_rec;
     if not IsBound(s.exp_desc) then
@@ -489,6 +533,7 @@ AppendRetainedOverviewLine := function(s)
     exp_rec.retained_overview_buffer := Concatenation(exp_rec.retained_overview_buffer, BuildRetainedAppendixOverviewLine(s), "\n");
     exp_rec.retained_overview_count := exp_rec.retained_overview_count + 1;
 end;;
+# 一次性读取完整输出文件文本，供模块2.5附录提取索引块。
 ReadWholeTextFile := function(filename)
     local input, text;
     input := InputTextFile(filename);
@@ -499,6 +544,8 @@ ReadWholeTextFile := function(filename)
     CloseStream(input);
     return text;
 end;;
+# 计算“某个索引块”的文本终点。
+# 终点锚点包括: 下一条模块1索引、SUMMARY、ASSERT SUMMARY、流程结束标记、附录起始标记。
 ComputeRetainedBlockEnd := function(file_text, start_pos)
     local next_pos, summary_pos, assert_pos, finish_pos, appendix_pos, end_pos, pos;
     next_pos := PositionSublist(file_text, "\n>>> 模块 1 输出: 子系统分析 (索引 ", start_pos + 1);
@@ -514,6 +561,7 @@ ComputeRetainedBlockEnd := function(file_text, start_pos)
     od;
     return end_pos - 1;
 end;;
+# 从索引命中位置向前回溯最近 ">>> " 块起点，解决行折断导致的直接匹配不稳定问题。
 FindNearestBlockStartBefore := function(file_text, marker_pos)
     local pos;
     pos := marker_pos;
@@ -525,6 +573,8 @@ FindNearestBlockStartBefore := function(file_text, marker_pos)
     od;
     return fail;
 end;;
+# 从 search_pos 开始查找“索引 idx)”对应完整日志块并返回。
+# 返回 rec(found, block_text, next_pos) 以支持顺序增量扫描。
 ExtractNextRetainedBlockByIndex := function(file_text, idx, search_pos)
     local idx_pos, start_pos, end_pos;
     while true do

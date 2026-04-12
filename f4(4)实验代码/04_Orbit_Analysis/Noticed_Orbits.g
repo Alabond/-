@@ -2,6 +2,17 @@
 # 文件: Noticed_Orbits.g
 # 描述: 经典实李代数 Noticed Nilpotent Orbits 与 ab-diagram 生成
 # 参考: Noel, "Nilpotent orbits and theta-stable parabolic subalgebras" (1994)
+# 说明: 模块3核心规则库，负责“是否 noticed”判定与 AB 图生成。
+# 函数职责索引:
+#   - IsNoticed_TypeA_Split / IsNoticed_TypeA_SU_PQ / IsNoticed_TypeC_Split /
+#     IsNoticed_TypeBD_Orthogonal:
+#       按实形式类别检查分拆是否满足 noticed 判据。
+#   - GenerateABDiagram_TypeA / GenerateABDiagram_TypeA_StartB:
+#       将通过判定的分拆转为 AB diagram 候选。
+#   - FindNoticedOrbits_Generic:
+#       通用入口，枚举并筛选 noticed 轨道。
+#   - PrintNoticedOrbits_Generic:
+#       模块化输出接口，供主流程直接打印模块3结果。
 #############################################################################
 
 # =============================================================================

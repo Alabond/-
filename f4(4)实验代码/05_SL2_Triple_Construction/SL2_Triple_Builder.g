@@ -1,6 +1,22 @@
 #############################################################################
 # 文件: SL2_Triple_Builder.g
 # 描述: 从 ab-diagram 构造 sl2-triple (h, e, f)
+# 说明: 该文件较大，按“解析/规范化/构造/过滤/验证/显示”六类组织函数。
+# 核心入口函数用途:
+#   - PrintSL2TripleUnified:
+#       模块4主入口。根据类型与实形式路线，统一输出可验证的 h,e,f。
+#   - BuildCompositeNormalTriple_FromComponents:
+#       对可分解子系统按分量分别构造 triple，再合成总体 triple。
+#   - BuildF4ExperimentalTriple:
+#       F4 复合场景的实验性构造路径（包含替代求解与兼容修正）。
+#   - FilterTriplesByWKConjugacyFixingDeltaJF4 /
+#     FilterCompositeTripleFamiliesByKOrbitLabelF4:
+#       对候选 triple 做 W_k(Δ_J 固定) 与 KOrbitLabel 层面的去重过滤。
+#   - VerifyThetaSelectedTripleOnLieLevelF4 /
+#     RefitCompositeTripleF4_PostCheck:
+#       将候选 triple 拉回 Lie 层做一致性复核，必要时回代修正。
+#   - ComputeThetaOrbitTriplesForModule4 / BuildDirectThetaTripleForF4:
+#       计算 θ-轨道候选并尝试直接生成根级 triple。
 #############################################################################
 
 # =============================================================================

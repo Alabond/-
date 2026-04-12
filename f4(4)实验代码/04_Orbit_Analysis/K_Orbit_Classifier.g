@@ -1,6 +1,16 @@
 #############################################################################
 # 文件: K_Orbit_Classifier.g
 # 描述: 基于 G2(2) Extended Vogan Diagram 的 K-Orbit 分类与紧根权重计算
+# 说明: 模块3/模块5共用的 K-orbit 标签计算与归约工具。
+# 核心函数用途:
+#   - ParseRootString / ParseHString:
+#       解析根表达式与 h 表达式，统一成可计算系数向量。
+#   - CalculateWeight / DrawG2VoganDiagram:
+#       基于 h 权重生成 Vogan 信息与中间可视化字符串。
+#   - ReflectH / MakeKDominant:
+#       通过 K-Weyl 反射将 h 归约到 K-dominant 代表。
+#   - PrintKOrbitInfo:
+#       模块化输出入口，返回与打印 KOrbitLabel 相关信息。
 #############################################################################
 
 # =============================================================================

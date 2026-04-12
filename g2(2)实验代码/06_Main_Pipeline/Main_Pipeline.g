@@ -6,6 +6,12 @@
 # 说明: 该文件本身不固定某个具体实验配置，通常由 G2_Pipeline.g 之类的入口
 #       先设置全局变量，再通过 Read("Main_Pipeline.g") 调用。
 # 输出: 当前版本只保留一个完整结果文件，不再单独维护摘要日志文件。
+# 关键函数用途索引:
+#   - GetGlobalOrDefault: 读取可覆盖的全局配置参数
+#   - BuildSubsystemOverviewLine: 生成每个候选子系统的总览行
+#   - RegisterDeltaJWKOrbitRepresentativeG2: 模块2.5保留代表元判定
+#   - ExtractNextRetainedBlockByIndex: 抽取保留索引的完整模块3+输出块
+#   - EmitRetainedAppendix: 在原结果文件末尾追加“过滤后保留结果”章节
 #############################################################################
 
 # 启动标记，方便从日志中观察主流程是否开始执行。
@@ -165,6 +171,7 @@ PadRight := function(s, w)
     return t;
 end;;
 
+# 将“位置标签 + 根字符串”渲染为统一展示格式。
 FormatRootDisplayWithPositions := function(labels, roots)
     local result, i;
     if not IsList(labels) or not IsList(roots) or Length(labels) <> Length(roots) then
@@ -180,6 +187,9 @@ FormatRootDisplayWithPositions := function(labels, roots)
     return Concatenation(result, " ]");
 end;;
 
+# 根颜色标注:
+# - 1 表示非紧根 (N)
+# - 0 表示紧根 (C)
 FormatAnnotatedRoot := function(root_str, color)
     if color = 1 then
         return Concatenation(root_str, "(N)");
@@ -187,6 +197,7 @@ FormatAnnotatedRoot := function(root_str, color)
     return Concatenation(root_str, "(C)");
 end;;
 
+# 对根列表施加颜色注记，返回用于总览表输出的字符串。
 FormatAnnotatedRootList := function(roots, colors)
     local result, i;
     if not IsList(roots) then
@@ -205,6 +216,7 @@ FormatAnnotatedRootList := function(roots, colors)
     return Concatenation(result, " ]");
 end;;
 
+# 组合“位置+根+颜色”的完整展示格式。
 FormatAnnotatedRootDisplayWithPositions := function(labels, roots, colors)
     local result, i;
     if not IsList(labels) or not IsList(roots) or not IsList(colors) then
@@ -222,6 +234,8 @@ FormatAnnotatedRootDisplayWithPositions := function(labels, roots, colors)
     od;
     return Concatenation(result, " ]");
 end;;
+# 统一获取子系统的根展示文本。
+# 兼容不同模块填充的字段结构并按优先级回退。
 GetSubsystemRootsDisplay := function(s)
     if IsBound(s.all_pos_labels) and IsBound(s.all_roots_list) and IsBound(s.all_colors_list) then
         return FormatAnnotatedRootDisplayWithPositions(s.all_pos_labels, s.all_roots_list, s.all_colors_list);
@@ -243,6 +257,7 @@ GetSubsystemRootsDisplay := function(s)
     fi;
     return Concatenation(s.w_alpha2, ", ", s.neg_w_theta);
 end;;
+# 提取黑点位置并格式化为后缀，便于快速核对颜色配置。
 GetSubsystemBlackPositionSuffix := function(s)
     local black_positions, root_labels, pos_str, i, j;
     if not IsBound(s.colors_list) then
@@ -272,6 +287,7 @@ GetSubsystemBlackPositionSuffix := function(s)
     od;
     return Concatenation(" [", pos_str, "]");
 end;;
+# 构造模块2候选总览行（固定列宽）。
 BuildSubsystemOverviewLine := function(s)
     local color_desc, roots_display, black_pos_desc;
     color_desc := Concatenation(String(s.black_nodes), "B / ", String(s.white_nodes), "W");
@@ -284,6 +300,7 @@ BuildSubsystemOverviewLine := function(s)
         PadRight(s.type, 10)
     );
 end;;
+# 构造模块2.5附录总览行（紧凑格式）。
 BuildRetainedAppendixOverviewLine := function(s)
     local color_desc, roots_display, black_pos_desc;
     color_desc := Concatenation(String(s.black_nodes), "B / ", String(s.white_nodes), "W");
@@ -296,6 +313,7 @@ BuildRetainedAppendixOverviewLine := function(s)
         s.type
     );
 end;;
+# 根据实验描述查找对应实验记录。
 GetRetainedExperimentRecord := function(exp_desc)
     local exp_rec;
     for exp_rec in experiments do
@@ -305,6 +323,7 @@ GetRetainedExperimentRecord := function(exp_desc)
     od;
     return fail;
 end;;
+# 将当前子系统登记为“模块2.5保留”并写入实验级缓存。
 AppendRetainedOverviewLine := function(s)
     local exp_rec;
     if not IsBound(s.exp_desc) then
@@ -318,6 +337,7 @@ AppendRetainedOverviewLine := function(s)
     exp_rec.retained_overview_buffer := Concatenation(exp_rec.retained_overview_buffer, BuildRetainedAppendixOverviewLine(s), "\n");
     exp_rec.retained_overview_count := exp_rec.retained_overview_count + 1;
 end;;
+# 读取完整结果文件文本，用于后续按索引回抽模块3+完整块。
 ReadWholeTextFile := function(filename)
     local input, text;
     input := InputTextFile(filename);
@@ -328,6 +348,8 @@ ReadWholeTextFile := function(filename)
     CloseStream(input);
     return text;
 end;;
+# 计算日志块结束位置。
+# 终止条件包括下一条索引块、SUMMARY、ASSERT SUMMARY、流程结束与附录起点。
 ComputeRetainedBlockEnd := function(file_text, start_pos)
     local next_pos, summary_pos, assert_pos, finish_pos, appendix_pos, end_pos, pos;
     next_pos := PositionSublist(file_text, "\n>>> 模块 1 输出: 子系统分析 (索引 ", start_pos + 1);
@@ -343,6 +365,7 @@ ComputeRetainedBlockEnd := function(file_text, start_pos)
     od;
     return end_pos - 1;
 end;;
+# 从索引命中位置向前回溯最近 ">>> " 作为块起点。
 FindNearestBlockStartBefore := function(file_text, marker_pos)
     local pos;
     pos := marker_pos;
@@ -354,6 +377,8 @@ FindNearestBlockStartBefore := function(file_text, marker_pos)
     od;
     return fail;
 end;;
+# 从当前位置开始提取“索引 idx)”对应完整输出块。
+# 返回 found/next_pos 便于多次顺序扫描。
 ExtractNextRetainedBlockByIndex := function(file_text, idx, search_pos)
     local idx_pos, start_pos, end_pos;
     while true do

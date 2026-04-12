@@ -1,3 +1,11 @@
+# 文件说明:
+# - 本文件负责模块5的 K-orbit 相关计算与标签化输出。
+# - 工作流: 解析根/协根/Cartan参数 -> 计算权重 -> K-Weyl 归约 -> 生成标签。
+# 函数职责索引:
+#   - ParseRootString / ParseHString: 字符串输入解析层
+#   - GetCorootCoeffs / CalculateWeight: 权重与协根计算层
+#   - ReflectH / MakeKDominant: K-Weyl 归约层
+#   - PrintKOrbitInfo: 对外输出层（主流程直接调用）
 # 将单个根字符串解析为 G2 简单根坐标。
 # 输入如 "a1+2a2"、"-3a1-a2"，输出统一为 [c1, c2]。
 ParseRootString := function(root_str)

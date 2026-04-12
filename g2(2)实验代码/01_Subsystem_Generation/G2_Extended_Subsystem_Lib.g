@@ -1,3 +1,12 @@
+# 文件说明:
+# - 本文件是模块1核心库，负责在 G2 根系中生成候选子系统并附带颜色信息。
+# - 主入口 FindG2Subsystems(custom_roots, custom_colors) 支持:
+#     1) 扫描模式: 按模板/黑白数量枚举候选
+#     2) 直接模式: 传入根列表直接分类
+# 函数职责索引:
+# - G2_SLAData / G2_AllRoots / G2_WeylImages: 提供根数据与 Weyl 轨道缓存
+# - IsRootBlack / FormatRoot: 根颜色判定与标准字符串输出
+# - FindG2Subsystems: 生成统一记录（roots/colors/type/components），供主流程消费
 # G2 的简单根内积矩阵。
 # 这里采用简单根基下的 Gram 矩阵，用于长度、角度与 Cartan 数据计算。
 G2_InnerProdMatrix := [[2, -3], [-3, 6]];;
