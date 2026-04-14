@@ -300,7 +300,16 @@ od;
 all_subsystems := [];
 
 for exp in experiments do
-    Print("\n>>> 运行实验: ", exp.desc, "\n");
+    exp_order := fail;
+    if GlobalAmbientType = "F4" and IsRecord(exp.roots) and IsBound(exp.roots.selected_pos_labels) and
+       IsBoundGlobal("ComputeF4ExtendedSubsetOrder") then
+        exp_order := ValueGlobal("ComputeF4ExtendedSubsetOrder")(exp.roots.selected_pos_labels);
+    fi;
+    Print("\n>>> 运行实验: ", exp.desc);
+    if exp_order <> fail then
+        Print(" (order = ", exp_order, ")");
+    fi;
+    Print("\n");
     if IsRecord(exp.roots) and exp.roots.mode = "SCAN" then
         Print("  Mode: Scan\n");
         if IsBound(exp.roots.template) then
@@ -311,6 +320,9 @@ for exp in experiments do
         fi;
         if IsBound(exp.roots.selected_pos_labels) then
             Print("  Selected: ", exp.roots.selected_pos_labels, "\n");
+            if exp_order <> fail then
+                Print("  Order: ", exp_order, "\n");
+            fi;
         fi;
         if IsBound(exp.roots.target_black_labels) then
             Print("  Target black labels: ", exp.roots.target_black_labels, "\n");

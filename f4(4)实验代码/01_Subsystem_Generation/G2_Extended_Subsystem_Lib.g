@@ -39,6 +39,37 @@ InnerProduct := function(v1, v2)
            v1[2] * G2_InnerProdMatrix[2][2] * v2[2];
 end;;
 
+# 计算扩展单根系子集 J 对应的 order。
+# 规则来自扩展关系 a0 + 2a1 + 3a2 + 4a3 + 2a4 = 0：
+# 对补集中的位置标签取其 Dynkin 标号 [1,2,3,4,2]，再求最大公约数。
+# 例如 J=[a0,a1,a2] 时，补集为 [a3,a4]，故 order=gcd(4,2)=2。
+ComputeF4ExtendedSubsetOrder := function(labels)
+    local all_pos_labels, affine_marks, complement_labels, lab, coeffs, ord, idx;
+    all_pos_labels := ["a0","a1","a2","a3","a4"];
+    affine_marks := rec(a0 := 1, a1 := 2, a2 := 3, a3 := 4, a4 := 2);
+    if not IsList(labels) or Length(labels) = 0 then
+        return 1;
+    fi;
+    complement_labels := Filtered(all_pos_labels, lab -> Position(labels, lab) = fail);
+    if Length(complement_labels) = 0 then
+        return 1;
+    fi;
+    coeffs := [];
+    for lab in complement_labels do
+        if IsBound(affine_marks.(lab)) then
+            Add(coeffs, affine_marks.(lab));
+        fi;
+    od;
+    if Length(coeffs) = 0 then
+        return 1;
+    fi;
+    ord := coeffs[1];
+    for idx in [2..Length(coeffs)] do
+        ord := GcdInt(ord, coeffs[idx]);
+    od;
+    return ord;
+end;;
+
 # F4(4) Extended Vogan Diagram 子系统生成
 # 基于 Weyl 群变换，可按给定位置与涂黑目标筛选配置
 FindF4_B4_Subsystems := function(custom_roots, custom_colors)
@@ -260,6 +291,7 @@ FindF4_B4_Subsystems := function(custom_roots, custom_colors)
             black_nodes := local_black,
             white_nodes := local_white,
             black_labels := black_labels,
+            subset_order := ComputeF4ExtendedSubsetOrder(labels),
             type := cls.type_str,
             components := comp_info,
             pos_labels := labels,

@@ -117,7 +117,16 @@ all_subsystems := [];
 # 逐个实验配置调用模块 1 进行子系统扫描或直接分类。
 # 每个实验可能返回多个候选子系统，最后统一汇总到 all_subsystems。
 for exp in experiments do
-    Print("\n>>> 运行实验: ", exp.desc, "\n");
+    exp_order := fail;
+    if GlobalAmbientType = "G2" and IsRecord(exp.roots) and IsBound(exp.roots.selected_pos_labels) and
+       IsBoundGlobal("ComputeG2ExtendedSubsetOrder") then
+        exp_order := ValueGlobal("ComputeG2ExtendedSubsetOrder")(exp.roots.selected_pos_labels);
+    fi;
+    Print("\n>>> 运行实验: ", exp.desc);
+    if exp_order <> fail then
+        Print(" (order = ", exp_order, ")");
+    fi;
+    Print("\n");
     if IsRecord(exp.roots) and exp.roots.mode = "SCAN" then
         Print("  Mode: Scan\n");
         if IsBound(exp.roots.template) then
@@ -128,6 +137,9 @@ for exp in experiments do
         fi;
         if IsBound(exp.roots.selected_pos_labels) then
             Print("  Selected: ", exp.roots.selected_pos_labels, "\n");
+            if exp_order <> fail then
+                Print("  Order: ", exp_order, "\n");
+            fi;
         fi;
         if IsBound(exp.roots.target_black_labels) then
             Print("  Target black labels: ", exp.roots.target_black_labels, "\n");
@@ -530,6 +542,9 @@ for s in subsystems do
     fi;
     
     Print("    颜色配置: ", s.black_nodes, " 黑, ", s.white_nodes, " 白\n");
+    if IsBound(s.subset_order) then
+        Print("    Order: ", s.subset_order, "\n");
+    fi;
     
     # 检查是否包含组件信息 (复合子系统)
     if IsBound(s.components) and IsList(s.components) and Length(s.components) > 0 then

@@ -21,6 +21,7 @@ GlobalExperiments := [
         roots := rec(
             mode := "SCAN",
             template := [[0,1], [0,1]],   # 两个长根
+            selected_pos_labels := ["a0", "a2"],
             target_black := 1,
             target_white := 1
         ),

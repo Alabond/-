@@ -20,6 +20,36 @@ InnerProduct := function(v1, v2)
            v1[2] * G2_InnerProdMatrix[2][2] * v2[2];
 end;;
 
+# 计算扩展单根系子集 J 对应的 order。
+# G2 的扩展关系为 a0 + 3a1 + 2a2 = 0，其中 a0 = -theta。
+# 因此对补集中的位置标签取 affine 标号 [1,3,2]，再求最大公约数。
+ComputeG2ExtendedSubsetOrder := function(labels)
+    local all_pos_labels, affine_marks, complement_labels, lab, coeffs, ord, idx;
+    all_pos_labels := ["a0","a1","a2"];
+    affine_marks := rec(a0 := 1, a1 := 3, a2 := 2);
+    if not IsList(labels) or Length(labels) = 0 then
+        return 1;
+    fi;
+    complement_labels := Filtered(all_pos_labels, lab -> Position(labels, lab) = fail);
+    if Length(complement_labels) = 0 then
+        return 1;
+    fi;
+    coeffs := [];
+    for lab in complement_labels do
+        if IsBound(affine_marks.(lab)) then
+            Add(coeffs, affine_marks.(lab));
+        fi;
+    od;
+    if Length(coeffs) = 0 then
+        return 1;
+    fi;
+    ord := coeffs[1];
+    for idx in [2..Length(coeffs)] do
+        ord := GcdInt(ord, coeffs[idx]);
+    od;
+    return ord;
+end;;
+
 G2_SLAData := function()
     local L, R, S, Sinv, pos, roots;
     if IsBoundGlobal("GlobalG2SLAData") then
@@ -198,6 +228,7 @@ FindG2Subsystems := function(custom_roots, custom_colors)
                     all_colors_list := [c2, mid_color, c1],
                     pos_labels := ["a0", "a2"],
                     all_pos_labels := ["a0", "a1", "a2"],
+                    subset_order := ComputeG2ExtendedSubsetOrder(["a0", "a2"]),
                     colors_list := colors_list,
                     components := type_info.components,
                     black_nodes := c1 + c2,
@@ -256,6 +287,7 @@ FindG2Subsystems := function(custom_roots, custom_colors)
                             all_colors_list := ShallowCopy(pos_colors),
                             pos_labels := [pos_labels_local[i_local], pos_labels_local[j_local]],
                             all_pos_labels := pos_labels_local,
+                            subset_order := ComputeG2ExtendedSubsetOrder([pos_labels_local[i_local], pos_labels_local[j_local]]),
                             colors_list := [1, 1],
                             components := type_info.components,
                             black_nodes := 2,
@@ -320,6 +352,7 @@ FindG2Subsystems := function(custom_roots, custom_colors)
                 Add(results, rec(
                     idx := idx_count,
                     roots_list := root_strs,
+                    subset_order := 1,
                     colors_list := colors_list,
                     components := type_info.components,
                     black_nodes := c1 + c2,
@@ -426,6 +459,7 @@ FindG2Subsystems := function(custom_roots, custom_colors)
             w_alpha2 := custom_roots[1],
             neg_w_theta := custom_roots[Length(custom_roots)],
             roots_list := custom_roots,
+            subset_order := 1,
             colors_list := colors_list,
             components := type_info.components,
             black_nodes := black_nodes,
@@ -474,6 +508,7 @@ FindG2Subsystems := function(custom_roots, custom_colors)
                 all_colors_list := [c2, mid_color, c1],
                 pos_labels := ["a2", "a0"],
                 all_pos_labels := ["a0", "a1", "a2"],
+                subset_order := ComputeG2ExtendedSubsetOrder(["a2", "a0"]),
                 colors_list := [c1, c2],
                 components := type_info.components,
                 black_nodes := black_nodes,
