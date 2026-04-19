@@ -5,18 +5,12 @@ Syntax warning: Unbound global variable in ../01_Subsystem_Generation/G2_Extende
     S := SimpleRootsAsWeights(R);
          ^^^^^^^^^^^^^^^^^^^^
 LOAD 04_Orbit_Analysis/Noticed_Orbits
-Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits.g:267
-                        GlobalModule4CurrentRealFormInfo := rec(type := real_form_type, params := params);
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits.g:270
-                            Unbind(GlobalModule4CurrentRealFormInfo);
-                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits.g:273
-                        GlobalModule4CurrentRealFormInfo := rec(type := real_form_type, params := params);
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits.g:276
-                            Unbind(GlobalModule4CurrentRealFormInfo);
-                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits.g:236
+            GlobalModule4CurrentRealFormInfo := rec(type := real_form_type, params := params);
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Syntax warning: Unbound global variable in ../04_Orbit_Analysis/Noticed_Orbits.g:239
+                Unbind(GlobalModule4CurrentRealFormInfo);
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 LOAD 03_Real_Form_Inference
 LOAD 05_SL2_Triple_Construction
 Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:38
@@ -37,78 +31,63 @@ Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Tri
 Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:45
         GlobalNormalTriplePassChecks := GlobalNormalTriplePassChecks + 1;
                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:258
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:233
                 auts := FiniteOrderInnerAutomorphisms("A", rank_a, 2);
                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:268
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:243
             auts := FiniteOrderInnerAutomorphisms("A", rank_a, 2);
                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:331
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:306
         SetInfoLevel(InfoSLA, 1);
                      ^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:333
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:308
     orbs := NilpotentOrbitsOfThetaRepresentation(theta);
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:385
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:360
     if HasKacDiagram(theta) then
        ^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:386
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:361
         kac := KacDiagram(theta).weights;
                ^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:469
-        chain := BuildAIIIChainForG2(ab_diagram_str, subsystem_roots, colors_opt);
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:444
+        chain := BuildAIIIChainForG2(subsystem_roots, colors_opt);
                  ^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:503
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:478
         h := FormatExprFromMap(h_map, "H"),
              ^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:504
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:479
         e := FormatExprFromMap(e_map, "E"),
              ^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:505
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:480
         f := FormatExprFromMap(f_map, "F"),
              ^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:791
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:676
         PrintGenericHSummary(h_str);
         ^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:848
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:733
         data := ParseTerm(t);
                 ^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:934
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:819
         GlobalCurrentGCJData := fail;
         ^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:935
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:820
         GlobalCurrentThetaOrbitData := fail;
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:936
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:821
         triple := BuildCompositeNormalTriple_FromComponents(ValueGlobal("GlobalCompositeComponentData"));
                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:943
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:828
         GlobalCurrentGCJData := gcj_data;
         ^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:947
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:832
         GlobalCurrentThetaOrbitData := theta_data;
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:957
-            triple := BuildBDINormalTriple_Linear(ab_diagram_str, type, rank, normalized_roots, effective_colors);
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1210
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1078
         GlobalCurrentGCJData := gcj_data;
         ^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1217
+Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1085
         GlobalCurrentThetaOrbitData := theta_data;
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1232
-                comp_triple := BuildBDINormalTriple_Linear(comp_ab_str, comp_type, comp_rank, normalized_comp_roots, comp_colors);
-                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1763
-    has_zero_coeff := false;
-    ^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1767
-                has_zero_coeff := true;
-                ^^^^^^^^^^^^^^
-Syntax warning: Unbound global variable in ../05_SL2_Triple_Construction/SL2_Triple_Builder.g:1772
-                has_zero_coeff := true;
-                ^^^^^^^^^^^^^^
 START
 
 ==================================================
@@ -180,12 +159,10 @@ Syntax warning: Unbound global variable in Main_Pipeline.g:504
         >>> 模块 3 输出: Noticed Orbits 匹配
         发现 1 个 Noticed Orbits
     >>> 模块 3 输出: 组合轨道分析
-    >>> 组合分析: 共生成 1 个复合轨道配置
+    >>> 组合分析: 主流程直接使用各组件实形式对应的 theta-orbit 构造，不再拼接 ab-diagram
     ------------------------------------------
     复合轨道信息:
-      总划分: [ 3 ]
-      总 ab-diagram: 
-aba
+      总划分(展示用，取各组件首个 noticed orbit): [ 3 ]
         [COMP#1] 开始模块4组件流程
         [M4-STEP1] (g_c)_J 构造
         [M4-STEP1] J(向量) = [ [ -3, -2 ], [ 0, 1 ] ]
@@ -421,13 +398,10 @@ NORMAL_TRIPLE_CHECK: PASS
         >>> 模块 3 输出: Noticed Orbits 匹配
         发现 1 个 Noticed Orbits
     >>> 模块 3 输出: 组合轨道分析
-    >>> 组合分析: 共生成 1 个复合轨道配置
+    >>> 组合分析: 主流程直接使用各组件实形式对应的 theta-orbit 构造，不再拼接 ab-diagram
     ------------------------------------------
     复合轨道信息:
-      总划分: [ 2, 2 ]
-      总 ab-diagram: 
-ab
-ab
+      总划分(展示用，取各组件首个 noticed orbit): [ 2, 2 ]
         [COMP#1] 开始模块4组件流程
         [M4-STEP1] (g_c)_J 构造
         [M4-STEP1] J(向量) = [ [ -3, -1 ] ]
@@ -778,12 +752,10 @@ ASSERT SUMMARY: PASS
         >>> 模块 3 输出: Noticed Orbits 匹配
         发现 1 个 Noticed Orbits
     >>> 模块 3 输出: 组合轨道分析
-    >>> 组合分析: 共生成 1 个复合轨道配置
+    >>> 组合分析: 主流程直接使用各组件实形式对应的 theta-orbit 构造，不再拼接 ab-diagram
     ------------------------------------------
     复合轨道信息:
-      总划分: [ 3 ]
-      总 ab-diagram: 
-aba
+      总划分(展示用，取各组件首个 noticed orbit): [ 3 ]
         [COMP#1] 开始模块4组件流程
         [M4-STEP1] (g_c)_J 构造
         [M4-STEP1] J(向量) = [ [ -3, -2 ], [ 0, 1 ] ]
@@ -917,13 +889,10 @@ NORMAL_TRIPLE_CHECK: PASS
         >>> 模块 3 输出: Noticed Orbits 匹配
         发现 1 个 Noticed Orbits
     >>> 模块 3 输出: 组合轨道分析
-    >>> 组合分析: 共生成 1 个复合轨道配置
+    >>> 组合分析: 主流程直接使用各组件实形式对应的 theta-orbit 构造，不再拼接 ab-diagram
     ------------------------------------------
     复合轨道信息:
-      总划分: [ 2, 2 ]
-      总 ab-diagram: 
-ab
-ab
+      总划分(展示用，取各组件首个 noticed orbit): [ 2, 2 ]
         [COMP#1] 开始模块4组件流程
         [M4-STEP1] (g_c)_J 构造
         [M4-STEP1] J(向量) = [ [ -3, -1 ] ]

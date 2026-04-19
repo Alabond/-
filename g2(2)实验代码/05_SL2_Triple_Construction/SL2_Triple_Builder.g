@@ -1,15 +1,15 @@
 #############################################################################
 # 文件: SL2_Triple_Builder.g
-# 描述: 从 ab-diagram 构造 sl2-triple (h, e, f)
+# 描述: 基于 theta-orbit 翻译与校验 sl2-triple (h, e, f)
 # 参考: 项目内部实验流程与模块化约定
-# 说明: 模块4核心实现，负责从 noticed orbit 的 AB 图出发构造并校验 triple。
+# 说明: 模块4核心实现，负责从 NilpotentOrbitsOfThetaRepresentation 给出的 noticed orbit 出发构造并校验 triple。
 # 核心入口与用途:
 #   - PrintSL2TripleUnified:
 #       统一入口，根据类型/秩/根集合调度具体构造路径并打印结果。
 #   - BuildCompositeNormalTriple_FromComponents:
 #       对可分解子系统按分量构造 triple，再合成并做一致性验证。
 #   - VerifyEFH_NormalConditions / VerifyPK_Subsystem_G2:
-#       对 [e,f]=h、[h,e]=2e、[h,f]=-2f 及 P/P' 条件进行校验。
+#       对 [e,f]=h、[h,e]=2e、[h,f]=-2f 及子系统相容性进行校验。
 #   - FilterCompositeTriplesByWKConjugacyFixingDeltaJG2:
 #       在固定 Δ_J 的 W_k 共轭作用下去重候选 triple。
 #############################################################################
@@ -49,31 +49,6 @@ end;;
 # =============================================================================
 # 辅助函数
 # =============================================================================
-
-# 解析 ab-diagram 字符串为行列表
-# 约定：
-#   - 行以换行符分隔
-#   - 每行长度 L 表示该 Jordan 块长度
-# 示例：
-#   "aba"     -> ["aba"]
-#   "ab\na"   -> ["ab","a"]
-# 将多行 ab-diagram 字符串拆分成行列表。
-# 例如 "ab\nabab" 会被解析为 [ "ab", "abab" ]。
-ParseABDiagram := function(diagram_str)
-    local rows, row, ch;
-    rows := [];
-    row := "";
-    for ch in diagram_str do
-        if ch = '\n' then
-            Add(rows, row);
-            row := "";
-        else
-            row := Concatenation(row, [ch]);
-        fi;
-    od;
-    if row <> "" then Add(rows, row); fi;
-    return rows;
-end;;
 
 # 将 G2 根字符串解析为二维简单根坐标。
 # 这里只处理 a1、a2 的线性组合，供 G2 专用链构造与校验使用。
@@ -438,7 +413,7 @@ AddRootStringsG2 := function(root_str1, root_str2)
     return FormatRoot(ParseRootStringG2Simple(root_str1) + ParseRootStringG2Simple(root_str2));
 end;;
 
-TranslateSelectedThetaTripleToRootTripleG2 := function(theta_data, ab_diagram_str, subsystem_roots, colors_opt)
+TranslateSelectedThetaTripleToRootTripleG2 := function(theta_data, subsystem_roots, colors_opt)
     local selected, real_form, L, BL, x_coeffs, y_coeffs, slot_map, chain, e_map, f_map, h_map, slot, ex, fy, hh;
     if theta_data = fail or not IsRecord(theta_data) or not IsBound(theta_data.ok) or not theta_data.ok then
         return fail;
@@ -466,7 +441,7 @@ TranslateSelectedThetaTripleToRootTripleG2 := function(theta_data, ab_diagram_st
         ];
     elif real_form.type = "su_pq" and Length(subsystem_roots) >= 2 and IsBound(real_form.params)
          and Length(real_form.params) >= 2 and real_form.params[1] = 2 and real_form.params[2] = 1 then
-        chain := BuildAIIIChainForG2(ab_diagram_str, subsystem_roots, colors_opt);
+        chain := BuildAIIIChainForG2(subsystem_roots, colors_opt);
         if chain = fail or not IsList(chain) or Length(chain) < 2 then
             return fail;
         fi;
@@ -507,7 +482,7 @@ TranslateSelectedThetaTripleToRootTripleG2 := function(theta_data, ab_diagram_st
     );
 end;;
 
-CollectThetaRootTripleCandidatesG2 := function(theta_data, ab_diagram_str, subsystem_roots, colors_opt)
+CollectThetaRootTripleCandidatesG2 := function(theta_data, subsystem_roots, colors_opt)
     local candidates, t, td, one;
     candidates := [];
     if theta_data = fail or not IsRecord(theta_data) or not IsBound(theta_data.ok) or not theta_data.ok then
@@ -518,104 +493,14 @@ CollectThetaRootTripleCandidatesG2 := function(theta_data, ab_diagram_str, subsy
             if IsBound(t.noticed) and t.noticed then
                 td := ShallowCopy(theta_data);
                 td.selected := t;
-                one := TranslateSelectedThetaTripleToRootTripleG2(td, ab_diagram_str, subsystem_roots, colors_opt);
+                one := TranslateSelectedThetaTripleToRootTripleG2(td, subsystem_roots, colors_opt);
                 if one <> fail then
                     Add(candidates, rec(triple := one, orbit_index := t.index));
                 fi;
             fi;
         od;
     fi;
-    if Length(candidates) = 0 and IsBound(theta_data.selected) and theta_data.selected <> fail then
-        one := TranslateSelectedThetaTripleToRootTripleG2(theta_data, ab_diagram_str, subsystem_roots, colors_opt);
-        if one <> fail then
-            Add(candidates, rec(triple := one, orbit_index := theta_data.selected.index));
-        fi;
-    fi;
     return candidates;
-end;;
-
-# 检查 ab-diagram 是否满足项目中的 P' 条件。
-# 该性质用于部分经典型线性构造分支的先验可行性判断。
-HasPropertyPPrime := function(diagram_str)
-    local rows, lens, i, j, li, lj, cnt;
-    rows := ParseABDiagram(diagram_str);
-    lens := List(rows, r -> Length(r));
-    for i in [1..Length(lens)] do
-        li := lens[i];
-        if (li mod 2) = 0 then
-            cnt := 0;
-            for j in [1..Length(lens)] do
-                lj := lens[j];
-                if (lj mod 2) = 1 and lj < li then
-                    cnt := cnt + 1;
-                fi;
-            od;
-            if (cnt mod 2) <> 0 then
-                return false;
-            fi;
-        fi;
-    od;
-    for i in [1..Length(lens)] do
-        li := lens[i];
-        if (li mod 2) = 1 then
-            cnt := 0;
-            for j in [1..Length(lens)] do
-                lj := lens[j];
-                if (lj mod 2) = 0 and lj > li then
-                    cnt := cnt + 1;
-                fi;
-            od;
-            if (cnt mod 2) <> 0 then
-                return false;
-            fi;
-        fi;
-    od;
-    return true;
-end;;
-
-# 检查 ab-diagram 是否满足 P 条件。
-# 主要用于 AIII 相关线性构造路径的必要条件检测。
-HasPropertyP := function(diagram_str)
-    local rows, lens, i, j, li, lj, cnt, k, la, lb;
-    rows := ParseABDiagram(diagram_str);
-    lens := List(rows, r -> Length(r));
-    for i in [1..Length(lens)] do
-        li := lens[i];
-        if (li mod 2) = 0 then
-            cnt := 0;
-            for j in [1..Length(lens)] do
-                lj := lens[j];
-                if (lj mod 2) = 1 and lj < li then
-                    cnt := cnt + 1;
-                fi;
-            od;
-            if (cnt mod 2) <> 0 then
-                return false;
-            fi;
-        fi;
-    od;
-    for i in [1..Length(lens)] do
-        if (lens[i] mod 2) = 1 then
-            for j in [1..Length(lens)] do
-                if (lens[j] mod 2) = 1 and j <> i then
-                    la := lens[i];
-                    lb := lens[j];
-                    cnt := 0;
-                    for k in [1..Length(lens)] do
-                        if (lens[k] mod 2) = 0 then
-                            if (la < lb and la < lens[k] and lens[k] < lb) or (lb < la and lb < lens[k] and lens[k] < la) then
-                                cnt := cnt + 1;
-                            fi;
-                        fi;
-                    od;
-                    if (cnt mod 2) <> 0 then
-                        return false;
-                    fi;
-                fi;
-            od;
-        fi;
-    od;
-    return true;
 end;;
 
 # 统一入口：根据需要规范化根，再复用通用构造
@@ -922,7 +807,7 @@ end;;
 
 # 模块 4 的统一主入口。
 # 负责根列表规范化、线性构造/组件构造、EFH 与 P/K 校验以及 K-orbit 联动输出。
-PrintSL2TripleUnified := function(ab_diagram_str, type, rank, subsystem_roots, colors_opt)
+PrintSL2TripleUnified := function(type, rank, subsystem_roots, colors_opt)
     local normalized_roots, e_str, h_str, f_str, effective_colors, triple, efh_ok, pk_ok, diag_ok, gcj_data, real_form_info, theta_data, is_composite, theta_triple, k, m5_item, m5_count, raw_m5_count;
 
     normalized_roots := NormalizeRootsForNormalTriple(type, rank, subsystem_roots, colors_opt);
@@ -946,16 +831,15 @@ PrintSL2TripleUnified := function(ab_diagram_str, type, rank, subsystem_roots, c
         theta_data := ComputeThetaOrbitTriplesForModule4(real_form_info);
         GlobalCurrentThetaOrbitData := theta_data;
         PrintThetaOrbitStep2(theta_data, gcj_data);
-        theta_triple := TranslateSelectedThetaTripleToRootTripleG2(theta_data, ab_diagram_str, normalized_roots, effective_colors);
-        if theta_triple <> fail then
-            triple := theta_triple;
-            Print("        [M4-STEP3] noticed triple 已翻译到根形式\n");
-            Print("        [THETA-CANDIDATE] h = ", triple.h, "\n");
-            Print("        [THETA-CANDIDATE] e = ", triple.e, "\n");
-            Print("        [THETA-CANDIDATE] f = ", triple.f, "\n");
-        else
-            triple := BuildBDINormalTriple_Linear(ab_diagram_str, type, rank, normalized_roots, effective_colors);
+        theta_triple := TranslateSelectedThetaTripleToRootTripleG2(theta_data, normalized_roots, effective_colors);
+        if theta_triple = fail then
+            Error("G2 主路径要求 theta noticed triple 必须成功翻译到根形式。");
         fi;
+        triple := theta_triple;
+        Print("        [M4-STEP3] noticed triple 已翻译到根形式\n");
+        Print("        [THETA-CANDIDATE] h = ", triple.h, "\n");
+        Print("        [THETA-CANDIDATE] e = ", triple.e, "\n");
+        Print("        [THETA-CANDIDATE] f = ", triple.f, "\n");
     fi;
     h_str := triple.h;
     e_str := triple.e;
@@ -1027,8 +911,7 @@ end;;
 # =============================================================================
 
 # ConstructEElement: 构造幂零元 e
-# 输入: ab-diagram (字符串列表), 子系统类型 (如 "A2")
-# 输出: 字符串描述，形式如 "E_{alpha1} + E_{alpha2} + ..."
+# 当前主流程已改为 theta-orbit 直译，这里保留的是根名称映射说明。
 
 # 映射通用根名称到 G2 子系统中的具体根
 # 输入: 通用索引 (1, 2, ...), G2子系统根列表 (w_alpha2, neg_w_theta)
@@ -1057,10 +940,7 @@ end;;
 
 
 # ConstructHElement: 构造半单元 h
-# 输入: ab-diagram (字符串), 子系统根列表 (字符串形式)
-# 输出: "H_{...} + ..." 形式的字符串
-# 原理: 单个长度为 L 的行，对应特征值序列 L-1, L-3, ..., -(L-1)。
-# 将这些特征值在行内做前缀和，得到各简单根对应的系数 c_k，
+# 当前主流程由 theta-orbit 给出 h,e,f，这里保留的是旧链式解释的背景注释。
 # =============================================================================
 # 主接口：打印 (h, e, f) 并联动 K-Orbit 分类输出
 # =============================================================================
@@ -1172,7 +1052,7 @@ end;;
 # 从多个已拆分的组件数据分别构造三元组并求和。
 # 主要用于复合子系统，把每个组件的局部 normal triple 汇总成全局结果。
 BuildCompositeNormalTriple_FromComponents := function(component_data)
-    local comp, rows, i, comp_ab_str, comp_roots, comp_colors, comp_type, comp_rank, comp_triple,
+    local comp, comp_roots, comp_colors, comp_type, comp_rank, comp_triple,
           h_expr, e_expr, f_expr, normalized_comp_roots, comp_efh_ok, comp_pk_ok, comp_diag_ok,
           gcj_data, comp_real_form_info, theta_data, comp_idx, comp_candidates, candidate, cand_idx,
           all_component_candidates, combined, new_combined, base, item, merged, path, k;
@@ -1183,18 +1063,6 @@ BuildCompositeNormalTriple_FromComponents := function(component_data)
     comp_idx := 0;
     for comp in component_data do
         comp_idx := comp_idx + 1;
-        rows := comp.ab_diagram;
-        if IsString(rows) then
-            comp_ab_str := rows;
-        else
-            comp_ab_str := "";
-            for i in [1..Length(rows)] do
-                if i > 1 then
-                    comp_ab_str := Concatenation(comp_ab_str, "\n");
-                fi;
-                comp_ab_str := Concatenation(comp_ab_str, rows[i]);
-            od;
-        fi;
         comp_roots := comp.roots;
         comp_colors := fail;
         if IsBound(comp.colors) then
@@ -1220,22 +1088,12 @@ BuildCompositeNormalTriple_FromComponents := function(component_data)
         if IsBoundGlobal("GlobalAmbientType") and ValueGlobal("GlobalAmbientType") = "G2" and (comp_type = "su_pq" or PositionSublist(comp_type, "su(") <> fail or PositionSublist(comp_type, "AIII") <> fail) then
             normalized_comp_roots := comp_roots;
         fi;
-        comp_candidates := CollectThetaRootTripleCandidatesG2(theta_data, comp_ab_str, normalized_comp_roots, comp_colors);
+        comp_candidates := CollectThetaRootTripleCandidatesG2(theta_data, normalized_comp_roots, comp_colors);
         if Length(comp_candidates) = 0 then
-            if comp_rank = 1 and Length(normalized_comp_roots) >= 1 then
-                comp_triple := rec(
-                    h := Concatenation("H_{", normalized_comp_roots[1], "}"),
-                    e := Concatenation("E_{[", normalized_comp_roots[1], "]}"),
-                    f := Concatenation("F_{[", normalized_comp_roots[1], "]}")
-                );
-            else
-                comp_triple := BuildBDINormalTriple_Linear(comp_ab_str, comp_type, comp_rank, normalized_comp_roots, comp_colors);
-            fi;
-            comp_candidates := [rec(triple := comp_triple, orbit_index := fail)];
-        else
-            Print("        [组件求和输入] 来源: noticed triple 根形式翻译\n");
-            Print("        [COMP#", comp_idx, "] noticed 候选数 = ", Length(comp_candidates), "\n");
+            Error("G2 复合主路径要求每个组件的 theta noticed triple 都能成功翻译到根形式。");
         fi;
+        Print("        [组件求和输入] 来源: noticed triple 根形式翻译\n");
+        Print("        [COMP#", comp_idx, "] noticed 候选数 = ", Length(comp_candidates), "\n");
         cand_idx := 0;
         for candidate in comp_candidates do
             cand_idx := cand_idx + 1;
@@ -1440,8 +1298,8 @@ end;;
 
 # 为 G2 场景下的 AIII 型输入构造可用根链。
 # 输出的链顺序会被后续线性构造器直接消费。
-BuildAIIIChainForG2 := function(ab_diagram_str, subsystem_roots, colors_opt)
-    local parser, ambient, v1, v2, nc_idx, c_idx, i, nc1, nc2, vec_nc, vec_c, sum_vec, rows, rowstr, k, ch, nextch, edge_dirs, chain, ip, M;
+BuildAIIIChainForG2 := function(subsystem_roots, colors_opt)
+    local parser, ambient, v1, v2, nc_idx, c_idx, i, nc1, nc2, vec_nc, vec_c, sum_vec, ip, M;
     if not IsList(subsystem_roots) or Length(subsystem_roots) <> 2 then
         return fail;
     fi;
@@ -1511,312 +1369,13 @@ BuildAIIIChainForG2 := function(ab_diagram_str, subsystem_roots, colors_opt)
             sum_vec := [ -sum_vec[1], -sum_vec[2] ];
         fi;
     fi;
-    rows := ParseABDiagram(ab_diagram_str);
-    edge_dirs := [];
-    for i in [1..Length(rows)] do
-        rowstr := rows[i];
-        if Length(rowstr) > 1 then
-            for k in [1..Length(rowstr)-1] do
-                ch := rowstr[k];
-                nextch := rowstr[k+1];
-                if ch = 'a' and nextch = 'b' then
-                    Add(edge_dirs, 1);
-                elif ch = 'b' and nextch = 'a' then
-                    Add(edge_dirs, -1);
-                else
-                    Add(edge_dirs, 1);
-                fi;
-            od;
-        fi;
-    od;
-    chain := [];
-    for i in [1..Length(edge_dirs)] do
-        if edge_dirs[i] = 1 then
-            Add(chain, FormatRoot(sum_vec));
-        else
-            Add(chain, FormatRoot(vec_nc));
-        fi;
-    od;
-    return chain;
-end;;
-
-# BDI 线性系统构造：解 A*c = b，使得对所有 e 的根 α_i，α_i(h)=2；h=∑ c_j H_{γ_j}
-# 用线性代数方法构造 BDI/AIII 风格的 normal triple。
-# 该函数是旧实验路径中的核心实现，仍被若干历史辅助逻辑引用。
-BuildBDINormalTriple_Linear := function(ab_diagram_str, type, rank, subsystem_roots, colors_opt)
-    local rows, needed, r, len, k, chain, parser, S, i, j, alpha, gamma, A, b, c, h_expr, e_expr, f_expr, allroots, v, name, seen, num, den, s, ci, sig, rot, chain2, vec1, vec2, sum_vec, root_vecs, root_names, diag_type, is_aiii, edge_dirs, rowstr, ch, nextch, FlipRoot, base_root, lhs, ok;
-    rows := ParseABDiagram(ab_diagram_str);
-    chain := [];
-    is_aiii := (type = "su_pq" or type = "AIII" or PositionSublist(type, "su(") <> fail or PositionSublist(type, "AIII") <> fail);
-    if is_aiii then
-        chain := ShallowCopy(subsystem_roots);
-        if Length(chain) = 0 then
-            chain := ShallowCopy(subsystem_roots);
-        fi;
-    fi;
-    if (not is_aiii) and rank = 2 and Length(subsystem_roots) = 2 and IsList(colors_opt) and Length(colors_opt) = 2 and IsBoundGlobal("ParseRootString") then
-        vec1 := ValueGlobal("ParseRootString")(subsystem_roots[1]);
-        vec2 := ValueGlobal("ParseRootString")(subsystem_roots[2]);
-        if IsList(vec1) and IsList(vec2) and Length(vec1) = 2 and Length(vec2) = 2 then
-            sum_vec := [vec1[1] + vec2[1], vec1[2] + vec2[2]];
-            root_vecs := [vec1, vec2, sum_vec];
-            root_names := [subsystem_roots[1], subsystem_roots[2], FormatRoot(sum_vec)];
-            if IsBoundGlobal("IsRootBlack") then
-                for i in [1..3] do
-                    if ValueGlobal("IsRootBlack")(root_vecs[i]) then
-                        Add(chain, root_names[i]);
-                    fi;
-                od;
-            fi;
-        fi;
-    fi;
-    if Length(chain) = 0 then chain := subsystem_roots; fi;
-    # 统计需要的非紧根数
-    needed := 0;
-    for r in [1..Length(rows)] do
-        len := Length(rows[r]);
-        if len > 1 then needed := needed + (len - 1); fi;
-    od;
-    edge_dirs := [];
-    for r in [1..Length(rows)] do
-        rowstr := rows[r];
-        if Length(rowstr) > 1 then
-            for k in [1..Length(rowstr)-1] do
-                ch := rowstr[k];
-                nextch := rowstr[k+1];
-                if ch = 'a' and nextch = 'b' then
-                    Add(edge_dirs, 1);
-                elif ch = 'b' and nextch = 'a' then
-                    Add(edge_dirs, -1);
-                else
-                    Add(edge_dirs, 1);
-                fi;
-            od;
-        fi;
-    od;
-    if is_aiii and rank = 2 and Length(subsystem_roots) = 2 then
-        if IsBoundGlobal("GlobalAmbientType") and ValueGlobal("GlobalAmbientType") = "G2" then
-            chain2 := BuildAIIIChainForG2(ab_diagram_str, subsystem_roots, colors_opt);
-            if IsList(chain2) and Length(chain2) > 0 then
-                chain := chain2;
-            fi;
-        fi;
-    fi;
-    if needed = 0 then
-        return rec(h := "0", e := "0", f := "0");
-    fi;
-    
-    sig := 0;
-    for r in [1..Length(rows)] do
-        sig := sig + r * Length(rows[r]);
-    od;
-    if (not is_aiii) and Length(chain) > 1 then
-        rot := ((sig - 1) mod Length(chain)) + 1;
-        chain2 := [];
-        for i in [rot..Length(chain)] do Add(chain2, chain[i]); od;
-        for i in [1..rot-1] do Add(chain2, chain[i]); od;
-        chain := chain2;
-    fi;
-    # 取前 needed 个根作为 e-根链；AIII 按行内位置允许循环复用
-    if Length(chain) >= needed then
-        chain := chain{[1..needed]};
-    elif (not is_aiii) and Length(chain) > 0 then
-        needed := Length(chain);
-    fi;
-    # 解析器与对称矩阵
-    parser := fail;
-    if rank = 2 and Length(subsystem_roots) = 2 then
-        parser := ParseRootStringG2Simple;
-    elif IsBoundGlobal("ParseRootString") then
-        parser := ValueGlobal("ParseRootString");
-    else
-        parser := ParseRootStringG2Simple;
-    fi;
-    if parser = fail then
-        return rec(h := "0", e := "0", f := "0");
-    fi;
-    
-    if rank = 2 and Length(subsystem_roots) = 2 then
-        S := [[2, -3], [-3, 6]];
-    else
-        return rec(h := "0", e := "0", f := "0");
-    fi;
-    # 对根字符串整体取负，便于在线性方案中切换方向。
-    FlipRoot := function(rt)
-        if Length(rt) > 0 and rt[1] = '-' then
-            if Length(rt) = 1 then
-                return rt;
-            fi;
-            return rt{[2..Length(rt)]};
-        fi;
-        return Concatenation("-", rt);
-    end;
-    if (not is_aiii) and Length(chain) > 0 and needed > 0 then
-        chain2 := [];
-        for i in [1..needed] do
-            base_root := chain[((i-1) mod Length(chain)) + 1];
-            if i <= Length(edge_dirs) and edge_dirs[i] = -1 then
-                Add(chain2, FlipRoot(base_root));
-            else
-                Add(chain2, base_root);
-            fi;
-        od;
-        chain := chain2;
-    fi;
-    if IsList(chain) then
-        chain := Compacted(chain);
-    fi;
-    if Length(chain) = 0 then
-        chain := ShallowCopy(subsystem_roots);
-        if IsList(chain) then
-            chain := Compacted(chain);
-        fi;
-    fi;
-    if is_aiii and Length(chain) > 0 and Length(chain) < needed then
-        seen := ShallowCopy(chain);
-        for i in [1..Length(subsystem_roots)] do
-            if not (subsystem_roots[i] in seen) then
-                Add(seen, subsystem_roots[i]);
-                Add(chain, subsystem_roots[i]);
-                if Length(chain) >= needed then
-                    break;
-                fi;
-            fi;
-        od;
-    fi;
-    if (not is_aiii) and Length(chain) > 0 and Length(chain) < needed then
-        chain2 := [];
-        for i in [1..needed] do
-            Add(chain2, chain[((i - 1) mod Length(chain)) + 1]);
-        od;
-        chain := chain2;
-    fi;
-    if is_aiii and Length(chain) > 0 and Length(chain) < needed then
-        Print("        [诊断] AIII 链长度不足，按唯一根降阶: needed=", needed, ", available=", Length(chain), "\n");
-        needed := Length(chain);
-    fi;
-    if needed = 0 then
-        return rec(h := "0", e := "0", f := "0");
-    fi;
-    # 构造 α_i = γ_i = 链上根（方阵尽可能接近对角）
-    A := [];
-    b := List([1..needed], i -> 2);
-    for i in [1..needed] do
-        A[i] := [];
-        for j in [1..needed] do
-            num := 0;
-            den := 1;
-            alpha := parser(chain[i]);
-            gamma := parser(chain[j]);
-            if IsList(alpha) and IsList(gamma) then
-                if Length(alpha) = 2 and Length(gamma) = 2 and rank = 2 and Length(subsystem_roots) = 2 then
-                    num := alpha[1]*(S[1][1]*gamma[1]+S[1][2]*gamma[2])
-                         + alpha[2]*(S[2][1]*gamma[1]+S[2][2]*gamma[2]);
-                    den := gamma[1]*(S[1][1]*gamma[1]+S[1][2]*gamma[2])
-                         + gamma[2]*(S[2][1]*gamma[1]+S[2][2]*gamma[2]);
-                elif Length(alpha) = 4 and Length(gamma) = 4 then
-                    num := alpha[1]*(S[1][1]*gamma[1]+S[1][2]*gamma[2]+S[1][3]*gamma[3]+S[1][4]*gamma[4])
-                         + alpha[2]*(S[2][1]*gamma[1]+S[2][2]*gamma[2]+S[2][3]*gamma[3]+S[2][4]*gamma[4])
-                         + alpha[3]*(S[3][1]*gamma[1]+S[3][2]*gamma[2]+S[3][3]*gamma[3]+S[3][4]*gamma[4])
-                         + alpha[4]*(S[4][1]*gamma[1]+S[4][2]*gamma[2]+S[4][3]*gamma[3]+S[4][4]*gamma[4]);
-                    den := gamma[1]*(S[1][1]*gamma[1]+S[1][2]*gamma[2]+S[1][3]*gamma[3]+S[1][4]*gamma[4])
-                         + gamma[2]*(S[2][1]*gamma[1]+S[2][2]*gamma[2]+S[2][3]*gamma[3]+S[2][4]*gamma[4])
-                         + gamma[3]*(S[3][1]*gamma[1]+S[3][2]*gamma[2]+S[3][3]*gamma[3]+S[3][4]*gamma[4])
-                         + gamma[4]*(S[4][1]*gamma[1]+S[4][2]*gamma[2]+S[4][3]*gamma[3]+S[4][4]*gamma[4]);
-                fi;
-            fi;
-            if den <> 0 then
-                A[i][j] := (2 * num) / den;
-            else
-                A[i][j] := 0;
-            fi;
-        od;
-    od;
-    # 求解（严格采用唯一线性解，不做兜底）
-    c := SolveRationalLinearSystem(A, b);
-    if c = fail then
-        Print("        [诊断] 线性方程组无解或非唯一，返回零三元组\n");
-        return rec(h := "0", e := "0", f := "0");
-    fi;
-    ok := true;
-    for i in [1..needed] do
-        lhs := 0;
-        for j in [1..needed] do
-            lhs := lhs + A[i][j] * c[j];
-        od;
-        if IsFloat(lhs) then
-            if AbsFloat(lhs - 2) > 1.0e-6 then
-                ok := false;
-                break;
-            fi;
-        else
-            if lhs <> 2 then
-                ok := false;
-                break;
-            fi;
-        fi;
-    od;
-    if not ok then
-        Print("        [诊断] 线性方程组校验失败，返回零三元组\n");
-        return rec(h := "0", e := "0", f := "0");
-    fi;
-    has_zero_coeff := false;
-    for i in [1..needed] do
-        if IsFloat(c[i]) then
-            if AbsFloat(c[i]) <= 1.0e-6 then
-                has_zero_coeff := true;
-                break;
-            fi;
-        else
-            if c[i] = 0 then
-                has_zero_coeff := true;
-                break;
-            fi;
-        fi;
-    od;
-    diag_type := "BDI";
-    if type = "su_pq" or PositionSublist(type, "AIII") <> fail then
-        diag_type := "AIII";
-    fi;
-    Print("        [诊断] ", diag_type, " 线性系数 c = ", c, "\n");
-    # 构造表达式
-    h_expr := "";
-    e_expr := "";
-    f_expr := "";
-    for i in [1..needed] do
-        if e_expr <> "" then e_expr := Concatenation(e_expr, " + "); fi;
-        e_expr := Concatenation(e_expr, "E_{[", chain[i], "]}");
-    od;
-    for i in [1..needed] do
-        if (IsFloat(c[i]) and AbsFloat(c[i]) <= 1.0e-6) or ((not IsFloat(c[i])) and c[i] = 0) then
-            continue;
-        fi;
-        if h_expr <> "" then h_expr := Concatenation(h_expr, " + "); fi;
-        if c[i] = 1 then
-            h_expr := Concatenation(h_expr, "H_{", chain[i], "}");
-        else
-            h_expr := Concatenation(h_expr, String(c[i]), "H_{", chain[i], "}");
-        fi;
-        if f_expr <> "" then f_expr := Concatenation(f_expr, " + "); fi;
-        if c[i] = 1 then
-            f_expr := Concatenation(f_expr, "F_{[", chain[i], "]}");
-        else
-            f_expr := Concatenation(f_expr, String(c[i]), "F_{[", chain[i], "]}");
-        fi;
-    od;
-    if h_expr = "" then h_expr := "0"; fi;
-    if e_expr = "" then e_expr := "0"; fi;
-    if f_expr = "" then f_expr := "0"; fi;
-    Print("        [LINEAR-CANDIDATE] h = ", h_expr, "\n");
-    Print("        [LINEAR-CANDIDATE] e = ", e_expr, "\n");
-    Print("        [LINEAR-CANDIDATE] f = ", f_expr, "\n");
-    return rec(h := h_expr, e := e_expr, f := f_expr);
+    return [FormatRoot(sum_vec), FormatRoot(vec_nc)];
 end;;
 
 # 模块 4 对外暴露的统一打印接口。
 # 当前实现直接转发到统一主入口 PrintSL2TripleUnified。
-PrintSL2Triple := function(ab_diagram_str, type, rank, subsystem_roots, colors_opt)
-    PrintSL2TripleUnified(ab_diagram_str, type, rank, subsystem_roots, colors_opt);
+PrintSL2Triple := function(type, rank, subsystem_roots, colors_opt)
+    PrintSL2TripleUnified(type, rank, subsystem_roots, colors_opt);
 end;;
 
 # 解析形如 "sqrt(6)E_{[a1]}" 或 "2H_{a1}" 的项，返回记录 {kind, root, coeff}

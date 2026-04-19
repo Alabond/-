@@ -569,20 +569,14 @@ for s in subsystems do
             # s.colors_list 包含所有根的颜色 (1=B, 0=W)
             comp_black := 0;
             comp_white := 0;
-            if IsBound(s.colors_list) then
-                for idx in comp.indices do
-                    if s.colors_list[idx] = 1 then comp_black := comp_black + 1;
-                    else comp_white := comp_white + 1;
-                    fi;
-                od;
-            else
-                # Fallback: 如果没有 colors_list (旧数据结构)，假设是 G2 扩展根 (2个根)
-                # 这种情况下 components 应该只有一个? 或者我们需要根据 IsRootBlack 重新计算
-                # 这里简单起见，如果 s.colors_list 不存在，我们可能无法处理复合类型
-                Print("    警告: 缺少颜色列表，无法处理复合类型组件颜色。\n");
-                all_comps_valid := false;
-                break;
+            if not IsBound(s.colors_list) then
+                Error("主流程要求复合子系统必须携带 colors_list。");
             fi;
+            for idx in comp.indices do
+                if s.colors_list[idx] = 1 then comp_black := comp_black + 1;
+                else comp_white := comp_white + 1;
+                fi;
+            od;
             
             # 解析组件类型（如 "A1","A2"）
             type_char := comp.type{[1]};
@@ -636,79 +630,50 @@ for s in subsystems do
 
         if all_comps_valid and filter_info.is_new then
             Print("    >>> 模块 3 输出: 组合轨道分析\n");
-            combined_orbits := CartesianProductList(comp_orbits_list);
-            Print("    >>> 组合分析: 共生成 ", Length(combined_orbits), " 个复合轨道配置\n");
+            Print("    >>> 组合分析: 主流程直接使用各组件实形式对应的 theta-orbit 构造，不再拼接 ab-diagram\n");
             Print("    ------------------------------------------\n");
-            
-            for comb in combined_orbits do
-                # comb 为 [orbit1, orbit2, ...]
-                # 将各组件的根、partition、ab-diagram 依序拼接，供 Builder 使用。
-                # 注意：保持行顺序与组件顺序一致，以确保根的消耗顺序匹配。
-                
-                # 采用策略：重排根列表 ordered_roots，使其与组件顺序一致
-                
-                ordered_roots := [];
-                full_ab_str := "";
-                full_partition := [];
-                component_payload := [];
-                
-                for i in [1..Length(comb)] do
-                    orbit := comb[i];
-                    comp_roots := comp_roots_list[i];
-                    info := comp_infos_list[i];
-                    comp_colors := [];
-                    for idx in s.components[i].indices do
-                        Add(comp_colors, s.colors_list[idx]);
-                    od;
-                    
-                    # 拼接根
-                    Append(ordered_roots, comp_roots);
-                    
-                    # 拼接 Partition
-                    Append(full_partition, orbit.partition);
-                    
-                    # 拼接 ab-diagram
-                    # orbit.ab_diagram 是字符串列表 ["aba", ...]
-                    for line in orbit.ab_diagram do
-                        if full_ab_str <> "" then full_ab_str := Concatenation(full_ab_str, "\n"); fi;
-                        full_ab_str := Concatenation(full_ab_str, line);
-                    od;
-                    
-                    Add(component_payload, rec(
-                        real_form_type := info.type,
-                        params := info.params,
-                        roots := comp_roots,
-                        colors := comp_colors,
-                        ab_diagram := orbit.ab_diagram
-                    ));
-                od;
-                
-                Print("    复合轨道信息:\n");
-                Print("      总划分: ", full_partition, "\n");
-                Print("      总 ab-diagram: \n", full_ab_str, "\n");
-                
-                # 调用 Builder (使用重排后的根列表)
-                total_rank := Length(ordered_roots);
-                # 统一入口：由构造器内部按需规范化根，再统一构造 Normal Triple
-                if IsBoundGlobal("PrintSL2TripleUnified") then
-                    GlobalCompositeComponentData := component_payload;
-                    if Length(component_payload) = 1 then
-                        GlobalKOrbitSubsystemTypeOverride := s.type;
-                        GlobalModule4CurrentRealFormInfo := rec(type := component_payload[1].real_form_type, params := component_payload[1].params);
-                    fi;
-                    ValueGlobal("PrintSL2TripleUnified")(full_ab_str, "Composite", total_rank, ordered_roots, s.colors_list);
-                    Unbind(GlobalCompositeComponentData);
-                    if IsBoundGlobal("GlobalKOrbitSubsystemTypeOverride") then
-                        Unbind(GlobalKOrbitSubsystemTypeOverride);
-                    fi;
-                    if IsBoundGlobal("GlobalModule4CurrentRealFormInfo") then
-                        Unbind(GlobalModule4CurrentRealFormInfo);
-                    fi;
-                else
-                    PrintSL2Triple(full_ab_str, "Composite", total_rank, ordered_roots);
+            ordered_roots := [];
+            full_partition := [];
+            component_payload := [];
+            for i in [1..Length(comp_roots_list)] do
+                comp_roots := comp_roots_list[i];
+                info := comp_infos_list[i];
+                if Length(comp_orbits_list[i]) > 0 and IsBound(comp_orbits_list[i][1].partition) then
+                    Append(full_partition, comp_orbits_list[i][1].partition);
                 fi;
-                Print("\n    ------------------------------------------\n");
+                comp_colors := [];
+                for idx in s.components[i].indices do
+                    Add(comp_colors, s.colors_list[idx]);
+                od;
+                Append(ordered_roots, comp_roots);
+                Add(component_payload, rec(
+                    real_form_type := info.type,
+                    params := info.params,
+                    roots := comp_roots,
+                    colors := comp_colors
+                ));
             od;
+            Print("    复合轨道信息:\n");
+            Print("      总划分(展示用，取各组件首个 noticed orbit): ", full_partition, "\n");
+            total_rank := Length(ordered_roots);
+            if IsBoundGlobal("PrintSL2TripleUnified") then
+                GlobalCompositeComponentData := component_payload;
+                if Length(component_payload) = 1 then
+                    GlobalKOrbitSubsystemTypeOverride := s.type;
+                    GlobalModule4CurrentRealFormInfo := rec(type := component_payload[1].real_form_type, params := component_payload[1].params);
+                fi;
+                ValueGlobal("PrintSL2TripleUnified")("Composite", total_rank, ordered_roots, s.colors_list);
+                Unbind(GlobalCompositeComponentData);
+                if IsBoundGlobal("GlobalKOrbitSubsystemTypeOverride") then
+                    Unbind(GlobalKOrbitSubsystemTypeOverride);
+                fi;
+                if IsBoundGlobal("GlobalModule4CurrentRealFormInfo") then
+                    Unbind(GlobalModule4CurrentRealFormInfo);
+                fi;
+            else
+                PrintSL2Triple("Composite", total_rank, ordered_roots, s.colors_list);
+            fi;
+            Print("\n    ------------------------------------------\n");
         fi;
         
     else

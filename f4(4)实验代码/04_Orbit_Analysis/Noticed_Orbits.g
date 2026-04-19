@@ -146,7 +146,7 @@ end;;
 #
 # params: [rank] or [p, q] or [n]
 FindNoticedOrbits_Generic := function(real_form_type, params)
-    local N, parts, p, result, ab, r_p, r_q, ab_alt;
+    local N, parts, p, result, r_p, r_q;
     
     result := [];
     
@@ -156,8 +156,7 @@ FindNoticedOrbits_Generic := function(real_form_type, params)
         parts := Partitions(N);
         for p in parts do
             if IsNoticed_TypeA_Split(p) then
-                ab := GenerateABDiagram_TypeA(p);
-                Add(result, rec(partition := p, ab_diagram := ab, desc := "sl(n, R)"));
+                Add(result, rec(partition := p, desc := "sl(n, R)"));
             fi;
         od;
         
@@ -169,13 +168,10 @@ FindNoticedOrbits_Generic := function(real_form_type, params)
         parts := Partitions(N);
         for p in parts do
             if IsNoticed_TypeA_SU_PQ(p, r_p, r_q) then
-                ab := GenerateABDiagram_TypeA(p);
                 if r_p = r_q and Length(p) = 1 and p[1] = N then
-                    Add(result, rec(partition := p, ab_diagram := ab, desc := Concatenation("su(", String(r_p), ",", String(r_q), ")")));
-                    ab_alt := GenerateABDiagram_TypeA_StartB(p);
-                    Add(result, rec(partition := p, ab_diagram := ab_alt, desc := Concatenation("su(", String(r_p), ",", String(r_q), ")")));
+                    Add(result, rec(partition := p, desc := Concatenation("su(", String(r_p), ",", String(r_q), ")")));
                 else
-                    Add(result, rec(partition := p, ab_diagram := ab, desc := Concatenation("su(", String(r_p), ",", String(r_q), ")")));
+                    Add(result, rec(partition := p, desc := Concatenation("su(", String(r_p), ",", String(r_q), ")")));
                 fi;
             fi;
         od;
@@ -186,8 +182,7 @@ FindNoticedOrbits_Generic := function(real_form_type, params)
         parts := Partitions(N);
         for p in parts do
             if IsNoticed_TypeC_Split(p) then
-                ab := GenerateABDiagram_TypeA(p);
-                Add(result, rec(partition := p, ab_diagram := ab, desc := "sp(n, R)"));
+                Add(result, rec(partition := p, desc := "sp(n, R)"));
             fi;
         od;
         
@@ -199,8 +194,7 @@ FindNoticedOrbits_Generic := function(real_form_type, params)
         parts := Partitions(N);
         for p in parts do
             if IsNoticed_TypeBD_Orthogonal(p) then
-                ab := GenerateABDiagram_TypeA(p);
-                Add(result, rec(partition := p, ab_diagram := ab, desc := Concatenation("so(", String(r_p), ",", String(r_q), ")")));
+                Add(result, rec(partition := p, desc := Concatenation("so(", String(r_p), ",", String(r_q), ")")));
             fi;
         od;
     
@@ -214,7 +208,7 @@ end;;
 
 # 修改接口调用
 PrintNoticedOrbits_Generic := function(real_form_type, params, subsystem_roots)
-    local orbits, o, ab_str, i, total_edges, row, expanded_roots, n_base;
+    local orbits, o;
     if IsBoundGlobal("GlobalAmbientType") and ValueGlobal("GlobalAmbientType") = "F4" and subsystem_roots <> fail then
         Print("    >>> 模块 3 输出: 实形式直传模块4\n");
         Print("        使用模块2实形式: RealForm=", real_form_type, ", Params=", params, "\n");
@@ -228,9 +222,9 @@ PrintNoticedOrbits_Generic := function(real_form_type, params, subsystem_roots)
             Read("../05_SL2_Triple_Construction/SL2_Triple_Builder.g");
         fi;
         if IsBoundGlobal("PrintSL2TripleUnified") then
-            ValueGlobal("PrintSL2TripleUnified")("", real_form_type, params[1], subsystem_roots, fail);
+            ValueGlobal("PrintSL2TripleUnified")(real_form_type, params[1], subsystem_roots, fail);
         elif IsBoundGlobal("PrintSL2Triple") then
-            ValueGlobal("PrintSL2Triple")("", real_form_type, params[1], subsystem_roots, fail);
+            ValueGlobal("PrintSL2Triple")(real_form_type, params[1], subsystem_roots, fail);
         fi;
         if IsBoundGlobal("GlobalModule4CurrentRealFormInfo") then
             Unbind(GlobalModule4CurrentRealFormInfo);
@@ -251,56 +245,6 @@ PrintNoticedOrbits_Generic := function(real_form_type, params, subsystem_roots)
             Print("        --------------------------------------\n");
             Print("        轨道信息:\n");
             Print("          划分 (Partition): ", o.partition, "\n");
-            Print("          ab-diagram: ", o.ab_diagram, "\n");
-            
-            if subsystem_roots <> fail then
-                # 将字符串列表转换为单行字符串（用换行符分隔）
-                ab_str := "";
-                for i in [1..Length(o.ab_diagram)] do
-                    if i > 1 then ab_str := Concatenation(ab_str, "\n"); fi;
-                    ab_str := Concatenation(ab_str, o.ab_diagram[i]);
-                od;
-                
-                # 调用 Builder
-                if IsBoundGlobal("GlobalAmbientType") and ValueGlobal("GlobalAmbientType") = "F4" then
-                    Print("        [模块4重载] 重新加载 F4 专用 SL2 Builder\n");
-                    Read("../05_SL2_Triple_Construction/SL2_Triple_Builder.g");
-                fi;
-                if IsBoundGlobal("PrintSL2Triple") then
-                    # 计算 ab-diagram 需要的边数 = sum(len(row)-1)
-                    # 并将根列表扩展到足够长，避免出现占位符
-                    total_edges := 0;
-                    for row in o.ab_diagram do
-                        if Length(row) > 1 then
-                            total_edges := total_edges + (Length(row) - 1);
-                        fi;
-                    od;
-                    n_base := Length(subsystem_roots);
-                    if IsBoundGlobal("GlobalAmbientType") and ValueGlobal("GlobalAmbientType") = "F4" then
-                        GlobalModule4CurrentRealFormInfo := rec(type := real_form_type, params := params);
-                        ValueGlobal("PrintSL2Triple")(ab_str, real_form_type, params[1], subsystem_roots, fail);
-                        if IsBoundGlobal("GlobalModule4CurrentRealFormInfo") then
-                            Unbind(GlobalModule4CurrentRealFormInfo);
-                        fi;
-                    elif n_base > 0 and total_edges > n_base then
-                        expanded_roots := [];
-                        for i in [1..total_edges] do
-                            Add(expanded_roots, subsystem_roots[((i - 1) mod n_base) + 1]);
-                        od;
-                        GlobalModule4CurrentRealFormInfo := rec(type := real_form_type, params := params);
-                        ValueGlobal("PrintSL2Triple")(ab_str, real_form_type, params[1], expanded_roots, fail);
-                        if IsBoundGlobal("GlobalModule4CurrentRealFormInfo") then
-                            Unbind(GlobalModule4CurrentRealFormInfo);
-                        fi;
-                    else
-                        GlobalModule4CurrentRealFormInfo := rec(type := real_form_type, params := params);
-                        ValueGlobal("PrintSL2Triple")(ab_str, real_form_type, params[1], subsystem_roots, fail);
-                        if IsBoundGlobal("GlobalModule4CurrentRealFormInfo") then
-                            Unbind(GlobalModule4CurrentRealFormInfo);
-                        fi;
-                    fi;
-                fi;
-            fi;
             Print("\n");
         od;
     fi;
